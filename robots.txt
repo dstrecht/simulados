@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dstrecht.github.io/simulados/sitemap.xml
