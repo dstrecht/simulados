@@ -1,0 +1,632 @@
+﻿Como fixar a versão de um módulo do Terraform Registry no bloco module? A) Com o argumento version B) Com o bloco required_providers C) Com o argumento release D) Com um sufixo no nome local,"A) Com o argumento version Por quê: O argumento version só vale para módulos de registry; para Git, use ?ref= na origem. Dica de prova: Versão de módulo do registry: version. ✗ B) Incorreta. É para providers. ✗ C) Incorreta. Não existe no bloco module. ✗ D) Incorreta. O nome local não fixa versão."
+Uma lista contém outras listas de sub-redes por zona. Qual função transforma tudo em uma única lista simples? A) concat B) distinct C) flatten D) compact,C) flatten Por quê: flatten é muito usado para preparar dados para for_each. Dica de prova: Listas aninhadas: flatten. ✗ A) Incorreta. Junta listas informadas. ✗ B) Incorreta. Remove repetidos. ✗ D) Incorreta. Remove vazios.
+Um recurso usa count com uma lista de nomes. Qual problema surge ao remover um nome do meio da lista? A) O Terraform bloqueia a remoção por padrão B) O estado é apagado e precisa ser importado C) As instâncias seguintes mudam de índice D) O item removido continua existindo para sempre,"C) As instâncias seguintes mudam de índice Por quê: Com for_each e chaves estáveis, só a instância removida é afetada. Dica de prova: count com lista mutável: prefira for_each. ✗ A) Incorreta. Não há bloqueio. ✗ B) Incorreta. Não é o comportamento. ✗ D) Incorreta. Ele seria destruído."
+"Nas versões atuais do Terraform, a condição de validation de uma variável pode se referir a outras variáveis? A) Não, só a data sources B) Sim, desde o Terraform 1.9 C) Não, só ao próprio valor D) Sim, mas só a outputs","B) Sim, desde o Terraform 1.9 Por quê: Antes do 1.9, a condição só podia referenciar a própria variável. Dica de prova: validation cruzada: Terraform 1.9+. ✗ A) Incorreta. Não é o caso. ✗ C) Incorreta. Isso era a regra antiga. ✗ D) Incorreta. Não é o caso."
+Uma equipe cria ambientes de teste que só são usados durante o dia. Como a IaC ajuda a controlar custos? A) Manter todos os ambientes ligados sem uso B) Desligar a cobrança do provedor de nuvem C) Reduzir o preço por hora dos recursos usados D) Recriar e destruir ambientes com facilidade,D) Recriar e destruir ambientes com facilidade Por quê: Ambientes efêmeros são criados sob demanda e destruídos depois. Dica de prova: Custo: ambientes efêmeros. ✗ A) Incorreta. Aumentaria o custo. ✗ B) Incorreta. Não é possível. ✗ C) Incorreta. O provedor define os preços.
+"Qual estrutura de arquivos é convencional em um módulo reutilizável? A) module.json, vars.json e out.json B) main.tf, variables.tf e outputs.tf C) init.tf, plan.tf, apply.tf e run.tf D) state.tf, lock.tf e backend.tf","B) main.tf, variables.tf e outputs.tf Por quê: Um README com exemplos de uso também é esperado no registry. Dica de prova: Módulo padrão: main, variables, outputs. ✗ A) Incorreta. Não é a convenção. ✗ C) Incorreta. Não é a convenção. ✗ D) Incorreta. Não é a convenção."
+"Qual faixa de versões a restrição ~> 1.2.0 permite para um módulo? A) De 1.2.0 até antes de 1.3.0 B) De 1.2.0 em diante, sem teto C) De 1.2.0 até antes de 2.0.0 D) Exatamente a versão 1.2.0",A) De 1.2.0 até antes de 1.3.0 Por quê: O operador ~> permite variar só o componente mais à direita informado. Dica de prova: ~> 1.2.0: só patches. ✗ B) Incorreta. Há limite superior. ✗ C) Incorreta. Seria ~> 1.2. ✗ D) Incorreta. Seria = 1.2.0.
+"Um recurso foi retirado do código e do estado, mas continua existindo na nuvem. Como o Terraform o trata depois disso? A) Destrói o recurso no próximo plan B) Não o vê mais nem o gerencia C) Recria o recurso no próximo apply D) Importa o recurso automaticamente",B) Não o vê mais nem o gerencia Por quê: Recursos órfãos continuam gerando custo e devem ser tratados manualmente ou importados. Dica de prova: Fora do código e do estado: órfão. ✗ A) Incorreta. Não está no estado. ✗ C) Incorreta. Não está no código. ✗ D) Incorreta. Não há import automático.
+"Um data source consulta um recurso criado na mesma configuração, referenciando seu id. Como fica a ordem? A) O data source é lido antes de tudo B) O Terraform acusa ciclo de dependência C) O recurso é criado antes da leitura D) Os dois ocorrem sem ordem definida",C) O recurso é criado antes da leitura Por quê: Referências funcionam da mesma forma para resources e data sources. Dica de prova: Data source que referencia resource: depois dele. ✗ A) Incorreta. Depende do recurso. ✗ B) Incorreta. Não há ciclo. ✗ D) Incorreta. A referência define ordem.
+"Qual função lê um arquivo de modelo e substitui variáveis nele, útil para gerar scripts de inicialização? A) filebase64 B) formatlist C) templatefile D) jsondecode",C) templatefile Por quê: O modelo usa a sintaxe ${nome} e diretivas como %{ for }. Dica de prova: Modelo com variáveis: templatefile. ✗ A) Incorreta. Lê e codifica em base64. ✗ B) Incorreta. Formata listas de strings. ✗ D) Incorreta. Converte JSON em valor.
+Um security group precisa de um bloco ingress para cada porta de uma lista. Qual recurso da linguagem gera esses blocos aninhados? A) Bloco locals dentro do ingress B) Função templatefile no ingress C) Bloco dynamic com for_each D) Meta-argumento count no ingress,C) Bloco dynamic com for_each Por quê: Use dynamic com moderação para não prejudicar a leitura do código. Dica de prova: Blocos aninhados repetidos: dynamic. ✗ A) Incorreta. locals fica no nível do módulo. ✗ B) Incorreta. Gera texto de arquivos. ✗ D) Incorreta. count não vale em blocos aninhados.
+"Como criar duas VPCs diferentes usando o mesmo módulo, sem count nem for_each? A) Declarar dois blocos module distintos B) Declarar duas versões no mesmo bloco module C) Declarar um bloco module com dois sources D) Declarar o módulo duas vezes com o mesmo nome",A) Declarar dois blocos module distintos Por quê: Cada bloco recebe seus próprios argumentos e tem endereço próprio. Dica de prova: Mesmo módulo duas vezes: dois blocos. ✗ B) Incorreta. Não cria instâncias. ✗ C) Incorreta. Cada bloco tem um source. ✗ D) Incorreta. Nomes devem ser únicos.
+Como o HCP Terraform pode autenticar na nuvem sem guardar chaves de acesso de longa duração no workspace? A) Chaves fixas escritas no código Terraform do repo B) Tokens de usuário em tags do workspace C) Credenciais dinâmicas de provider via OIDC D) Senhas gravadas nos outputs do workspace,C) Credenciais dinâmicas de provider via OIDC Por quê: A nuvem confia no HCP Terraform como provedor de identidade. Dica de prova: Sem chaves longas: credenciais dinâmicas. ✗ A) Incorreta. Expõe credenciais. ✗ B) Incorreta. Expõe credenciais. ✗ D) Incorreta. Expõe credenciais.
+Para que serve o bloqueio (locking) do estado? A) Criptografar o estado com uma chave própria B) Guardar versões antigas do estado local C) Impedir execuções simultâneas no mesmo estado D) Impedir a leitura do estado por terceiros,"C) Impedir execuções simultâneas no mesmo estado Por quê: Se o bloqueio ficar preso por falha, terraform force-unlock pode liberá-lo com cuidado. Dica de prova: Locking: uma operação de escrita por vez. ✗ A) Incorreta. É outro controle. ✗ B) Incorreta. Versionamento é outro recurso. ✗ D) Incorreta. Controle de acesso é outro recurso."
+"Um módulo deve ser aplicado só depois que outro módulo terminar, sem referências entre eles. O que usar no bloco module? A) providers B) depends_on C) version D) source",B) depends_on Por quê: Prefira referências a outputs sempre que possível. Dica de prova: Ordem entre módulos: depends_on. ✗ A) Incorreta. Repassa providers. ✗ C) Incorreta. Restringe versões. ✗ D) Incorreta. Indica a origem.
+Por que é boa prática revisar o terraform plan em um pull request antes do apply? A) Dispensa o arquivo de estado B) Mostra o impacto antes de mudar algo C) Aplica as mudanças mais rápido na nuvem D) Atualiza os providers sozinho,B) Mostra o impacto antes de mudar algo Por quê: Destruições e substituições inesperadas aparecem com destaque no plano. Dica de prova: PR com plan: impacto visível. ✗ A) Incorreta. O estado segue necessário. ✗ C) Incorreta. O plan não aplica. ✗ D) Incorreta. Isso é init -upgrade.
+Uma sub-rede usa vpc_id = aws_vpc.principal.id. O que o Terraform conclui dessa referência? A) A VPC precisa de depends_on explícito B) A VPC deve ser criada antes da sub-rede C) Os dois recursos são criados em paralelo D) A sub-rede deve ser criada antes da VPC,B) A VPC deve ser criada antes da sub-rede Por quê: Referências entre recursos são a forma preferida de definir dependências. Dica de prova: Referência cria dependência implícita. ✗ A) Incorreta. Não é necessário. ✗ C) Incorreta. Há dependência. ✗ D) Incorreta. É o inverso.
+"Ao rodar terraform apply sem um plano salvo, o que acontece? A) Os recursos são recriados todos B) Um novo plano é gerado e exibido C) O último plano salvo é usado D) O apply falha sem um plano salvo","B) Um novo plano é gerado e exibido Por quê: Em pipelines, salvar o plano garante que o aplicado é o que foi revisado. Dica de prova: apply sem arquivo: gera plano na hora. ✗ A) Incorreta. Não é o comportamento. ✗ C) Incorreta. Sem arquivo, gera outro. ✗ D) Incorreta. O plano salvo é opcional."
+Qual é o comportamento do terraform fmt -check quando há arquivos fora do padrão? A) Abre um editor para cada arquivo B) Reescreve os arquivos e retorna zero C) Apaga os arquivos fora do padrão D) Retorna código de saída não zero,D) Retorna código de saída não zero Por quê: Os arquivos com problema são listados na saída. Dica de prova: fmt -check: falha sem reescrever. ✗ A) Incorreta. Não abre editores. ✗ B) Incorreta. Com -check não reescreve. ✗ C) Incorreta. Não apaga arquivos.
+O backend foi alterado e a equipe quer apontar para o novo local sem migrar o estado anterior. Qual opção do init usar? A) -get=false B) -migrate-state C) -reconfigure D) -upgrade,C) -reconfigure Por quê: Use -migrate-state quando quiser levar o estado para o novo backend. Dica de prova: Novo backend sem migrar: -reconfigure. ✗ A) Incorreta. Pula módulos. ✗ B) Incorreta. Copiaria o estado. ✗ D) Incorreta. Atualiza providers e módulos.
+"Como referenciar o atributo id de um data source declarado como data ""aws_ami"" ""ubuntu""? A) var.data.aws_ami.id B) data.aws_ami.ubuntu.id C) aws_ami.ubuntu.data.id D) source.aws_ami.ubuntu","B) data.aws_ami.ubuntu.id Por quê: Sem o prefixo data, o Terraform procuraria um resource com esse tipo e nome. Dica de prova: Data source: data.TIPO.NOME.ATRIBUTO. ✗ A) Incorreta. var é para variáveis. ✗ C) Incorreta. Ordem incorreta. ✗ D) Incorreta. Prefixo inexistente."
+Os logs de TF_LOG estão poluindo a saída do pipeline. Como gravá-los em um arquivo? A) Adicionar um bloco logging no código B) Definir TF_LOG_PATH com o caminho C) Usar a opção -log-file no plan D) Definir TF_LOG=FILE no ambiente,B) Definir TF_LOG_PATH com o caminho Por quê: TF_LOG_CORE e TF_LOG_PROVIDER separam logs do núcleo e dos providers. Dica de prova: Logs em arquivo: TF_LOG_PATH. ✗ A) Incorreta. Bloco inexistente. ✗ C) Incorreta. Opção inexistente. ✗ D) Incorreta. Nível inexistente.
+"Qual restrição fixa um provider exatamente na versão 5.31.0? A) version = ""5.31.0"" B) version = ""!= 5.31.0"" C) version = ""~> 5.31"" D) version = "">= 5.31.0""","A) version = ""5.31.0"" Por quê: O operador = explícito tem o mesmo efeito que não usar operador. Dica de prova: Versão exata: sem operador ou com =. ✗ B) Incorreta. Exclui justamente essa versão. ✗ C) Incorreta. Permite versões 5.x maiores. ✗ D) Incorreta. Permite qualquer maior."
+"Depois de revisar o resultado de um plan -refresh-only, como gravar no estado as diferenças aceitas? A) terraform init -refresh-only B) terraform state push -refresh C) terraform refresh -approve-all D) terraform apply -refresh-only",D) terraform apply -refresh-only Por quê: O antigo terraform refresh faz o mesmo sem revisão e não é recomendado. Dica de prova: Aceitar desvio no estado: apply -refresh-only. ✗ A) Incorreta. Opção inexistente. ✗ B) Incorreta. Opção inexistente. ✗ C) Incorreta. Opção inexistente.
+"Dois módulos irmãos, rede e app, são chamados pelo raiz. Como o módulo app recebe o id da sub-rede criada em rede? A) O rede grava o id em uma variável global do projeto B) O raiz passa module.rede.subnet_id ao app C) O app lê module.rede.subnet_id direto D) O app usa data.module.rede.subnet_id","B) O raiz passa module.rede.subnet_id ao app Por quê: Módulos se comunicam por outputs e variáveis, sempre via o módulo que os chama. Dica de prova: Módulos irmãos: o raiz conecta. ✗ A) Incorreta. Não existem globais. ✗ C) Incorreta. Irmãos não se enxergam. ✗ D) Incorreta. Sintaxe inexistente."
+O que acontece quando um data source depende de um atributo que só será conhecido após criar outro recurso? A) O recurso é criado no plan B) O plan falha sem mostrar nada C) O data source é ignorado D) A leitura fica para o apply,"D) A leitura fica para o apply Por quê: No plano, os valores aparecem como known after apply. Dica de prova: Data source dependente: leitura no apply. ✗ A) Incorreta. O plan não cria recursos. ✗ B) Incorreta. Não falha por isso. ✗ C) Incorreta. Não é ignorado."
+Qual expressão gera uma nova lista com todos os nomes de var.nomes em letras maiúsculas? A) [upper(n) for n in var.nomes] B) [for n in var.nomes => upper(n)] C) {for n in var.nomes : upper(n)} D) [for n in var.nomes : upper(n)],"D) [for n in var.nomes : upper(n)] Por quê: Com chaves e =>, a expressão for gera um mapa em vez de uma lista. Dica de prova: Transformar lista: expressão for. ✗ A) Incorreta. Sintaxe de outra linguagem. ✗ B) Incorreta. => só vale entre chaves. ✗ C) Incorreta. Com chaves, exige => e gera mapa."
+"Qual opção do terraform plan faz o comando retornar código 2 quando há mudanças, útil em pipelines? A) -fail-on-diff B) -detailed-exitcode C) -exit-on-change D) -strict-exit",B) -detailed-exitcode Por quê: Assim o pipeline pode decidir se precisa de aprovação para aplicar. Dica de prova: Código de saída por mudanças: -detailed-exitcode. ✗ A) Incorreta. Opção inexistente. ✗ C) Incorreta. Opção inexistente. ✗ D) Incorreta. Opção inexistente.
+Como aplicar um mesmo conjunto de políticas a vários workspaces do HCP Terraform? A) Com um output de cada workspace B) Com uma variável policy em cada run C) Com cópias das regras em cada código D) Com um policy set vinculado a eles,"D) Com um policy set vinculado a eles Por quê: Policy sets podem valer para a organização, projetos ou workspaces. Dica de prova: Políticas em vários workspaces: policy sets. ✗ A) Incorreta. Não aplica políticas. ✗ B) Incorreta. Não aplica políticas. ✗ C) Incorreta. Difícil de manter."
+Um revisor aprovou o plano salvo de uma mudança. Qual é o próximo passo do fluxo? A) Apagar o estado para gerar um novo plano B) Rodar terraform fmt no plano salvo C) Aplicar o plano salvo com apply D) Rodar terraform init -upgrade outra vez,C) Aplicar o plano salvo com apply Por quê: Aplicar o arquivo garante que nada diferente do revisado será executado. Dica de prova: Plano aprovado: apply do arquivo. ✗ A) Incorreta. Perderia o mapeamento. ✗ B) Incorreta. Não formata planos. ✗ D) Incorreta. Pode mudar providers.
+"Qual comando verifica se a configuração é sintaticamente válida e internamente consistente, sem acessar serviços remotos? A) terraform import B) terraform apply C) terraform validate D) terraform login",C) terraform validate Por quê: O validate é útil em pipelines de CI antes do plan. Dica de prova: Checar a configuração sem nuvem: terraform validate. ✗ A) Incorreta. Traz recursos ao estado. ✗ B) Incorreta. Altera a infraestrutura. ✗ D) Incorreta. Obtém token do HCP Terraform.
+"No bloco import, o argumento id pode vir de uma variável em vez de um texto fixo? A) Sim, mas só com dados do estado B) Não, o id vem sempre do provider C) Não, aceita só texto literal fixo D) Sim, aceita expressões desde o 1.6","D) Sim, aceita expressões desde o 1.6 Por quê: O valor precisa ser conhecido durante o plan. Dica de prova: import id: aceita expressões. ✗ A) Incorreta. Aceita variáveis. ✗ B) Incorreta. É informado no bloco. ✗ C) Incorreta. Aceita expressões."
+Como a IaC ajuda equipes de compliance a verificar regras de segurança na infraestrutura? A) Regras checadas no código antes do apply B) O estado bloqueia recursos fora das regras C) Os provedores passam a auditar tudo sozinhos D) A auditoria deixa de ser necessária na empresa,A) Regras checadas no código antes do apply Por quê: Ferramentas como Sentinel e OPA avaliam o plano contra políticas. Dica de prova: Compliance: políticas sobre o código. ✗ B) Incorreta. O estado não avalia regras. ✗ C) Incorreta. Não é o caso. ✗ D) Incorreta. Continua necessária.
+"Uma equipe deve ter acesso a todos os workspaces da aplicação de pagamentos, atuais e futuros. Qual é a abordagem mais simples? A) Tornar o estado público na empresa B) Dar acesso no projeto da aplicação C) Compartilhar o token de um usuário D) Dar acesso a cada workspace novo",B) Dar acesso no projeto da aplicação Por quê: Permissões de projeto simplificam a gestão em escala. Dica de prova: Acesso a um grupo de workspaces: projeto. ✗ A) Incorreta. Expõe dados sensíveis. ✗ C) Incorreta. Viola boas práticas. ✗ D) Incorreta. Exige manutenção manual.
+"Na etapa Write do fluxo principal, qual prática é recomendada para trabalho em equipe? A) Editar os arquivos direto no servidor B) Versionar o código em um repositório C) Enviar o código por e-mail D) Guardar o código só no laptop",B) Versionar o código em um repositório Por quê: Branches e pull requests tornam a revisão parte do fluxo. Dica de prova: Write em equipe: controle de versão. ✗ A) Incorreta. Sem histórico. ✗ C) Incorreta. Sem controle de versão. ✗ D) Incorreta. Sem colaboração.
+"Qual valor de TF_LOG gera logs no nível TRACE em formato JSON, para ferramentas de análise? A) TF_LOG=DATA B) TF_LOG=JSON C) TF_LOG=RAW D) TF_LOG=YAML",B) TF_LOG=JSON Por quê: O formato JSON pode mudar entre versões e não é uma interface estável. Dica de prova: Logs em JSON: TF_LOG=JSON. ✗ A) Incorreta. Valor inválido. ✗ C) Incorreta. Valor inválido. ✗ D) Incorreta. Valor inválido.
+"Qual comando renomeia um endereço no estado de forma imperativa, como alternativa ao bloco moved? A) terraform state pull B) terraform state mv C) terraform state rm D) terraform state list","B) terraform state mv Por quê: O bloco moved é preferível em equipe, pois fica no código e aparece no plano. Dica de prova: Renomear no estado pela CLI: state mv. ✗ A) Incorreta. Baixa o estado. ✗ C) Incorreta. Remove do estado. ✗ D) Incorreta. Lista endereços."
+Qual é o efeito de declarar uma variável com default = null? A) Ela é removida do plano de execução B) Ela vira opcional e pode não ter valor C) Ela vira obrigatória em todos os módulos D) Ela passa a ser tratada como sensível,"B) Ela vira opcional e pode não ter valor Por quê: Com null, o argumento de recurso que recebe a variável costuma ser tratado como omitido. Dica de prova: default = null: opcional. ✗ A) Incorreta. Não é o efeito. ✗ C) Incorreta. Seria sem default. ✗ D) Incorreta. Isso é sensitive."
+Um registro DNS em um provedor precisa apontar para o balanceador criado em outra nuvem. Como o Terraform trata isso? A) Exige duas configurações sem ligação alguma B) Referências entre providers diferentes C) Copia o IP manualmente para uma variável fixa D) Proíbe recursos de providers distintos juntos,"B) Referências entre providers diferentes Por quê: O Terraform ordena a criação pelo grafo, mesmo entre providers diferentes. Dica de prova: Multi-cloud: referências entre providers. ✗ A) Incorreta. Podem estar juntas. ✗ C) Incorreta. Não é necessário. ✗ D) Incorreta. É permitido."
+Um plan mostra que uma mudança manual em produção deve ser mantida. Qual é a forma correta de incorporá-la? A) Ignorar o aviso em todos os próximos planos B) Editar o estado à mão para ocultar o desvio C) Atualizar o código para refletir a mudança D) Rodar apply para reverter e depois refazer,"C) Atualizar o código para refletir a mudança Por quê: Depois de ajustar o código, o plan deve voltar a ficar sem mudanças. Dica de prova: Manter mudança manual: levar ao código. ✗ A) Incorreta. O desvio segue lá. ✗ B) Incorreta. Arriscado e não resolve. ✗ D) Incorreta. Perde a mudança."
+Como a IaC permite testar mudanças de infraestrutura antes de chegarem à produção? A) O código dispensa ambientes de teste B) Validação e plano rodam em pipelines de CI C) A nuvem desfaz sozinha mudanças com erro D) O estado bloqueia mudanças perigosas na nuvem,B) Validação e plano rodam em pipelines de CI Por quê: Políticas como código e testes automatizados reforçam essa verificação. Dica de prova: Testar antes: CI com validate e plan. ✗ A) Incorreta. Ambientes de teste seguem úteis. ✗ C) Incorreta. Não há desfazer automático. ✗ D) Incorreta. O estado não avalia risco.
+Qual é uma boa prática ao projetar as entradas de um módulo reutilizável? A) Exigir que o raiz edite os arquivos do módulo B) Ler credenciais de variáveis sem descrição C) Fixar todos os valores dentro do módulo D) Expor só variáveis necessárias e documentadas,D) Expor só variáveis necessárias e documentadas Por quê: Valores padrão sensatos reduzem o esforço de quem usa o módulo. Dica de prova: Módulo reutilizável: entradas enxutas. ✗ A) Incorreta. Quebra o reuso. ✗ B) Incorreta. Pouco claro e inseguro. ✗ C) Incorreta. Reduz a flexibilidade.
+Uma plataforma interna oferece módulos aprovados para que equipes de produto criem seus próprios bancos de dados. Qual benefício da IaC isso mostra? A) Uso de um estado único para a empresa B) Eliminação de toda política de segurança C) Criação manual centralizada em tickets D) Provisionamento self-service com padrões,D) Provisionamento self-service com padrões Por quê: Módulos e políticas garantem que o self-service siga as regras da empresa. Dica de prova: Self-service seguro: módulos aprovados. ✗ A) Incorreta. Não é recomendado. ✗ B) Incorreta. Políticas seguem válidas. ✗ C) Incorreta. É o oposto.
+"Em um workspace do HCP Terraform, como disparar manualmente um novo plano pela interface web? A) Com a troca do nome do workspace B) Com a ação de iniciar um novo run C) Com a exclusão do conjunto de variáveis D) Com a edição do arquivo de estado",B) Com a ação de iniciar um novo run Por quê: Também é possível escolher runs só de plano ou de refresh. Dica de prova: Run manual: iniciar novo run. ✗ A) Incorreta. Não dispara runs. ✗ C) Incorreta. Não dispara runs. ✗ D) Incorreta. Não dispara runs.
+"Qual comando mostra o que seria destruído, sem destruir nada? A) terraform init -destroy B) terraform show -destroy C) terraform plan -destroy D) terraform state -destroy",C) terraform plan -destroy Por quê: Revise sempre esse plano antes de rodar o destroy em ambientes importantes. Dica de prova: Prévia de destruição: plan -destroy. ✗ A) Incorreta. Opção inexistente. ✗ B) Incorreta. Opção inexistente. ✗ D) Incorreta. Opção inexistente.
+Um desenvolvedor não tem certeza se já rodou terraform init no diretório. O que acontece ao rodá-lo de novo? A) O arquivo de lock é removido e recriado B) O estado é apagado e recriado vazio C) Nada de ruim; o init pode ser repetido D) Os recursos na nuvem são recriados,"C) Nada de ruim; o init pode ser repetido Por quê: Repita o init ao mudar providers, módulos ou backend. Dica de prova: init repetido: seguro. ✗ A) Incorreta. O lock é mantido. ✗ B) Incorreta. O init não apaga o estado. ✗ D) Incorreta. O init não cria recursos."
+"Durante um plan, aparece a mensagem Objects have changed outside of Terraform. O que ela indica? A) Houve mudanças feitas fora do Terraform B) O estado foi apagado do backend remoto da equipe C) O código tem erro de sintaxe grave D) O provider precisa de nova versão",A) Houve mudanças feitas fora do Terraform Por quê: Decida se atualiza o código para refletir a mudança ou se deixa o apply revertê-la. Dica de prova: Mudança fora do Terraform: drift. ✗ B) Incorreta. Não é o significado. ✗ C) Incorreta. Seria erro de validação. ✗ D) Incorreta. Não é o significado.
+Um módulo filho precisa usar o valor da variável regiao do módulo raiz. Como isso deve ser feito? A) Usar um output do filho para ler o valor do pai B) Passar o valor como argumento no bloco module C) Declarar a variável como global no módulo raiz D) Referenciar var.regiao direto no módulo filho,B) Passar o valor como argumento no bloco module Por quê: Variáveis de entrada e outputs são a interface entre módulos. Dica de prova: Pai para filho: argumentos do bloco module. ✗ A) Incorreta. Outputs enviam dados ao pai. ✗ C) Incorreta. Não existem variáveis globais. ✗ D) Incorreta. O filho não enxerga variáveis do pai.
+"Os arquivos a.auto.tfvars e b.auto.tfvars definem a mesma variável com valores diferentes. Qual valor é usado? A) O de b.auto.tfvars B) O de a.auto.tfvars C) Nenhum, gera erro D) O valor padrão",A) O de b.auto.tfvars Por quê: Arquivos *.auto.tfvars são lidos em ordem léxica; o último vence. Dica de prova: auto.tfvars: o último em ordem alfabética vence. ✗ B) Incorreta. É lido antes e sobrescrito. ✗ C) Incorreta. Não gera erro. ✗ D) Incorreta. Os arquivos têm precedência.
+"É possível criar várias instâncias de um mesmo módulo, uma por ambiente, a partir de um mapa? A) Não, é preciso copiar o módulo B) Sim, mas só com o bloco dynamic C) Sim, com for_each no bloco module D) Não, módulos são criados uma só vez","C) Sim, com for_each no bloco module Por quê: Cada instância é endereçada como module.nome[""chave""]. Dica de prova: Várias instâncias de módulo: for_each. ✗ A) Incorreta. Não é necessário. ✗ B) Incorreta. dynamic gera blocos aninhados. ✗ D) Incorreta. Aceitam repetição."
+"Um recurso usa for_each com as chaves api e web. Como referenciar o id da instância api? A) each.api.aws_instance.id B) aws_instance.app[""api""].id C) aws_instance.app.api.id D) aws_instance.app[0].id","B) aws_instance.app[""api""].id Por quê: Com for_each, as instâncias são identificadas pela chave; com count, pelo índice. Dica de prova: Instância de for_each: recurso[""chave""]. ✗ A) Incorreta. Sintaxe inválida. ✗ C) Incorreta. Falta a indexação. ✗ D) Incorreta. Índice é para count."
+Qual é um benefício de usar o HCP Terraform como backend de estado? A) Histórico de versões do estado e bloqueio B) Dispensa de autenticação para ler o estado C) Remoção automática de dados sensíveis D) Estado gravado no Git junto com o código,A) Histórico de versões do estado e bloqueio Por quê: O estado também fica criptografado em repouso. Dica de prova: HCP como backend: versões e lock. ✗ B) Incorreta. Exige autenticação. ✗ C) Incorreta. Não remove. ✗ D) Incorreta. Não é o caso.
+"Como importar várias instâncias existentes de uma vez, uma para cada chave de um mapa, usando bloco import? A) Usar count no bloco moved B) Usar alias no bloco import C) Usar dynamic no bloco import D) Usar for_each no bloco import",D) Usar for_each no bloco import Por quê: O id de cada objeto vem do valor associado a cada chave. Dica de prova: Importar em massa: import com for_each. ✗ A) Incorreta. moved não importa. ✗ B) Incorreta. alias é de providers. ✗ C) Incorreta. dynamic é para blocos aninhados.
+Qual é uma vantagem do Terraform em relação a ferramentas de IaC específicas de um único provedor de nuvem? A) Preços menores negociados com cada provedor B) Um só fluxo e linguagem para vários provedores C) Dispensa de credenciais nos provedores D) Acesso a recursos que os provedores não expõem,B) Um só fluxo e linguagem para vários provedores Por quê: Ferramentas de um provedor gerenciam só os serviços dele. Dica de prova: Terraform: multi-provedor com um fluxo. ✗ A) Incorreta. Não negocia preços. ✗ C) Incorreta. Credenciais seguem necessárias. ✗ D) Incorreta. Usa as APIs públicas.
+"Depois de alterar a restrição de versão de um provider, qual comando baixa a versão mais nova permitida e atualiza o arquivo de lock? A) terraform fmt -upgrade B) terraform get -lock C) terraform apply -upgrade D) terraform init -upgrade","D) terraform init -upgrade Por quê: Sem -upgrade, o init respeita as versões já gravadas no lock. Dica de prova: Atualizar provider no lock: init -upgrade. ✗ A) Incorreta. Opção inexistente. ✗ B) Incorreta. Opção inexistente. ✗ C) Incorreta. Opção inexistente."
+"Como referenciar o atributo id de um recurso declarado como resource ""aws_vpc"" ""principal""? A) resource.principal.id B) data.principal.aws_vpc C) var.aws_vpc.principal D) aws_vpc.principal.id",D) aws_vpc.principal.id Por quê: Essas referências também criam dependências implícitas entre recursos. Dica de prova: Referência a atributo: tipo.nome.atributo. ✗ A) Incorreta. Falta o tipo do recurso. ✗ B) Incorreta. Ordem e prefixo incorretos. ✗ C) Incorreta. var é para variáveis.
+Uma equipe adicionou o bloco cloud a uma configuração que já tinha estado local. O que acontece ao rodar terraform init? A) Os recursos na nuvem são recriados do zero B) O estado local é apagado sem nenhum aviso ao usuário C) O bloco cloud é ignorado enquanto houver estado local D) O Terraform oferece migrar o estado para o workspace,"D) O Terraform oferece migrar o estado para o workspace Por quê: Depois da migração, runs e estado passam a ficar no HCP Terraform. Dica de prova: Bloco cloud + init: migração do estado. ✗ A) Incorreta. O init não cria recursos. ✗ B) Incorreta. Não é apagado. ✗ C) Incorreta. Não é ignorado."
+"No Terraform Registry, o que indica um provider do nível Official? A) É mantido por qualquer pessoa da comunidade B) É um provider privado da organização C) É mantido por parceiros da HashiCorp D) É mantido pela própria HashiCorp","D) É mantido pela própria HashiCorp Por quê: Os níveis são Official, Partner e Community. Dica de prova: Official: mantido pela HashiCorp. ✗ A) Incorreta. Esse é o nível Community. ✗ B) Incorreta. Fica no registry privado. ✗ C) Incorreta. Esse é o nível Partner."
+Como o módulo raiz lê o valor id_da_rede exposto por um módulo chamado rede? A) rede.module.id_da_rede B) var.rede.id_da_rede C) module.rede.id_da_rede D) output.rede.id_da_rede,C) module.rede.id_da_rede Por quê: Só valores declarados em blocos output do filho ficam disponíveis ao pai. Dica de prova: Saída de módulo: module.NOME.OUTPUT. ✗ A) Incorreta. Ordem incorreta. ✗ B) Incorreta. var é para variáveis. ✗ D) Incorreta. Prefixo incorreto.
+Um recurso aws_instance é usado sem declarar o provider em required_providers. De onde o Terraform tenta obtê-lo? A) De um espelho local configurado por padrão B) Do arquivo de estado de outra configuração C) Do namespace hashicorp no registry público D) Do diretório de módulos do projeto atual,"C) Do namespace hashicorp no registry público Por quê: Declare sempre source e version para evitar ambiguidade, sobretudo com providers de outros namespaces. Dica de prova: Provider não declarado: hashicorp/NOME. ✗ A) Incorreta. Espelhos exigem configuração. ✗ B) Incorreta. Estado não fornece providers. ✗ D) Incorreta. Módulos não contêm providers."
+O que é: Infraestrutura como Código (IaC)?Infraestrutura como Código com Terraform,"Definir a infraestrutura em arquivos versionáveis, que podem ser revisados, versionados e reaplicados. É o oposto de criar recursos clicando no console ou documentar servidores em planilhas."
+O que é: Linguagem declarativa?Infraestrutura como Código com Terraform,"Descreve o estado final desejado, não os passos. O Terraform compara o desejado com o estado atual e monta um plano com as ações necessárias; a ordem vem das dependências, não da ordem dos blocos no arquivo."
+O que é: Idempotência?Infraestrutura como Código com Terraform,"Aplicar a mesma configuração duas vezes, sem mudança no código nem na infraestrutura, resulta em nenhuma alteração proposta na segunda vez. O estado reconhece os objetos, por isso não há erro de 'já existe' nem duplicatas."
+O que é: Provider?Infraestrutura como Código com Terraform,"Plugin que traduz a configuração em chamadas de API de cada plataforma: nuvem pública, nuvem privada, SaaS, DNS, monitoramento, GitHub, Kubernetes, Helm. É o que permite gerenciar serviços variados com a mesma ferramenta."
+O que é: Multi-cloud e nuvem híbrida?Infraestrutura como Código com Terraform,"Uma mesma configuração pode combinar vários providers (ex.: vSphere no datacenter e AWS). Referências entre providers diferentes funcionam e o Terraform ordena a criação pelo grafo, como um DNS apontando para o balanceador de outra nuvem."
+O que é: Fluxo agnóstico ao serviço?Infraestrutura como Código com Terraform,Um só fluxo e uma só linguagem para qualquer serviço que tenha provider. Aprender o fluxo uma vez permite gerenciar plataformas muito diferentes; ferramentas de um provedor gerenciam só os serviços dele.
+O que é: HCL e .tf.json?Infraestrutura como Código com Terraform,"Os arquivos .tf usam HCL (HashiCorp Configuration Language). Existe sintaxe JSON equivalente em arquivos .tf.json, útil quando a configuração é gerada por outros programas. YAML, XML, CSV, INI, SQL ou Python não são suportados como linguagem nativa."
+O que é: Foco do Terraform?Infraestrutura como Código com Terraform,"Provisionar e gerenciar infraestrutura. Instalar pacotes dentro de servidores já criados é foco de gestão de configuração (Ansible, Chef); monitorar CPU e compilar código são outros domínios."
+O que é: Infraestrutura imutável?Infraestrutura como Código com Terraform,Substituir recursos em vez de alterá-los no local. Reduz servidores únicos e difíceis de reproduzir; editar servidores em produção por acesso remoto gera desvio de configuração.
+O que é: Paridade de ambientes?Infraestrutura como Código com Terraform,"Homologação e produção usam o mesmo código; variáveis e tfvars por ambiente controlam só o que precisa mudar, como tamanho de máquinas."
+O que é: Ambientes efêmeros e custo?Infraestrutura como Código com Terraform,"IaC permite criar e destruir ambientes com facilidade, sob demanda. Reduz custo desligando o que não é usado; não muda o preço por hora do provedor."
+O que é: Recuperação de desastre?Infraestrutura como Código com Terraform,"Se uma região cai, o ambiente pode ser recriado a partir do código em outra região. A IaC recria a infraestrutura; dados continuam exigindo backup e replicação próprios."
+O que é: Controle de mudanças?Infraestrutura como Código com Terraform,Mudanças passam por commits e revisão; o histórico do controle de versão mostra quem mudou o quê e quando. O código também funciona como documentação viva do ambiente real.
+O que é: Compliance e testes antes da produção?Infraestrutura como Código com Terraform,Validação e plano rodam em pipelines de CI; ferramentas como Sentinel e OPA avaliam o plano contra políticas antes do apply. O estado não avalia regras nem risco.
+O que é: Self-service com padrões?Infraestrutura como Código com Terraform,Uma plataforma interna oferece módulos aprovados para as equipes criarem seus recursos. Módulos e políticas garantem que o self-service siga as regras da empresa e aceleram novos projetos.
+O que é: Níveis de provider no Registry?Infraestrutura como Código com Terraform,"Official é mantido pela própria HashiCorp; Partner, por empresas parceiras validadas; Community, por qualquer pessoa da comunidade."
+O que é: Desvio por mudança manual?Infraestrutura como Código com Terraform,"Quando alguém altera algo no console, o código serve de referência para detectar e corrigir a diferença, ou para incorporá-la ao código. A IaC não bloqueia o console nem apaga recursos sem plano."
+⚠ Pegadinha: Achar que uma configuração só pode ter recursos de um provedor de nuvem.Como não cair?,"Falso: é comum combinar nuvem, DNS, monitoramento, Kubernetes e Helm na mesma configuração."
+⚠ Pegadinha: Marcar 'executa os blocos na ordem do arquivo' como motivo de ser declarativo.Como não cair?,A ordem vem das dependências (grafo). Declarativo é descrever o estado final.
+⚠ Pegadinha: Escolher 'custo zero de infraestrutura' ou 'reduz o preço por hora' como benefício.Como não cair?,Os recursos continuam pagos. O ganho de custo vem de criar e destruir ambientes efêmeros com facilidade.
+"⚠ Pegadinha: Aceitar 'dispensa testes', 'dispensa revisão' ou 'dispensa controle de versão'.Como não cair?","IaC reforça testes, revisão por pares e versionamento; nada disso deixa de existir."
+⚠ Pegadinha: Achar que a IaC dispensa credenciais nos provedores.Como não cair?,Credenciais continuam necessárias; o Terraform usa as APIs públicas dos provedores.
+⚠ Pegadinha: Achar que a IaC copia os dados dos discos para a nova região na recuperação de desastre.Como não cair?,A IaC recria a infraestrutura; dados exigem backup e replicação próprios.
+⚠ Pegadinha: Achar que 'a nuvem desfaz sozinha mudanças com erro' ou que o estado bloqueia mudanças perigosas.Como não cair?,"Não há desfazer automático e o estado não avalia risco; quem verifica é CI com validate, plan e políticas."
+⚠ Pegadinha: Pensar que o Terraform precisa de agentes instalados nos servidores gerenciados.Como não cair?,"O Terraform não exige agentes nos servidores: providers chamam as APIs. Não confunda com os agentes do HCP Terraform, que executam runs em rede privada."
+⚠ Pegadinha: Achar que um 'módulo único para todas as nuvens' substitui providers.Como não cair?,Módulos não substituem providers; cada API precisa do seu provider.
+⚠ Pegadinha: Marcar YAML como linguagem dos arquivos .tf.Como não cair?,A linguagem é HCL; a alternativa suportada é JSON em .tf.json.
+⚠ Pegadinha: Escolher 'uso de um estado único para a empresa' como benefício do self-service.Como não cair?,Estado único para a empresa não é recomendado; o benefício é provisionamento self-service com módulos aprovados.
+⚠ Pegadinha: Achar que o Terraform dá acesso a recursos que os provedores não expõem ou negocia preços.Como não cair?,O Terraform só usa as APIs públicas e não altera preços.
+Se o enunciado trouxer: ambientes iguais várias vezes por semanaPense em…,Repetibilidade com a mesma configuração
+Se o enunciado trouxer: homologação parecida com produçãoPense em…,Mesmo código com variáveis/tfvars por ambiente
+"Se o enunciado trouxer: ambientes usados só durante o dia, custoPense em…",Criar e destruir ambientes efêmeros
+Se o enunciado trouxer: região indisponívelPense em…,Recriar o ambiente a partir do código (dados exigem backup)
+Se o enunciado trouxer: quem mudou o quê e quandoPense em…,Commits e revisão no controle de versão
+"Se o enunciado trouxer: compliance, regras de segurança antes do applyPense em…","Políticas sobre o código/plano (Sentinel, OPA) em CI"
+Se o enunciado trouxer: equipes criam bancos com módulos aprovadosPense em…,Provisionamento self-service com padrões
+"Se o enunciado trouxer: GitHub, monitoramento e nuvem com a mesma ferramentaPense em…",Um provider para cada serviço com API
+Se o enunciado trouxer: vSphere no datacenter e AWSPense em…,Providers de cada ambiente no mesmo código
+Se o enunciado trouxer: aplicar duas vezes sem mudançasPense em…,Nenhuma alteração proposta (idempotência)
+Se o enunciado trouxer: configuração gerada por outro programaPense em…,JSON em arquivos .tf.json
+Se o enunciado trouxer: substituir em vez de alterarPense em…,Infraestrutura imutável
+Se o enunciado trouxer: regra de firewall alterada à mãoPense em…,O código serve de referência para detectar e corrigir o desvio
+Terraform (provisionamento) (e não Ansible/Chef (gestão de configuração)): quando é a escolha certa?,"Criar e gerenciar a infraestrutura: redes, instâncias, bancos, DNS, clusters."
+Ansible/Chef (gestão de configuração) (e não Terraform (provisionamento)): quando é a escolha certa?,Instalar e configurar software dentro de máquinas já criadas.
+"Criar e gerenciar a infraestrutura: redes, instâncias, bancos, DNS, clusters. É Terraform (provisionamento) ou Ansible/Chef (gestão de configuração)?",Terraform (provisionamento)
+Instalar e configurar software dentro de máquinas já criadas. É Terraform (provisionamento) ou Ansible/Chef (gestão de configuração)?,Ansible/Chef (gestão de configuração)
+Declarativo (e não Imperativo): quando é a escolha certa?,Você descreve o resultado final e o Terraform calcula os passos pelo grafo.
+Imperativo (e não Declarativo): quando é a escolha certa?,Você lista cada chamada de API ou passo de script na ordem.
+Você descreve o resultado final e o Terraform calcula os passos pelo grafo. É Declarativo ou Imperativo?,Declarativo
+Você lista cada chamada de API ou passo de script na ordem. É Declarativo ou Imperativo?,Imperativo
+HCL (.tf) (e não JSON (.tf.json)): quando é a escolha certa?,Configuração escrita por pessoas: mais legível.
+JSON (.tf.json) (e não HCL (.tf)): quando é a escolha certa?,Configuração gerada automaticamente por outros programas.
+Configuração escrita por pessoas: mais legível. É HCL (.tf) ou JSON (.tf.json)?,HCL (.tf)
+Configuração gerada automaticamente por outros programas. É HCL (.tf) ou JSON (.tf.json)?,JSON (.tf.json)
+Provider Official (e não Provider Partner): quando é a escolha certa?,Mantido pela própria HashiCorp.
+Provider Partner (e não Provider Official): quando é a escolha certa?,Publicado por empresa parceira validada; Community é de qualquer pessoa.
+Mantido pela própria HashiCorp. É Provider Official ou Provider Partner?,Provider Official
+Publicado por empresa parceira validada; Community é de qualquer pessoa. É Provider Official ou Provider Partner?,Provider Partner
+Infraestrutura imutável (e não Remendar no local): quando é a escolha certa?,Substituir o recurso por um novo a partir do código.
+Remendar no local (e não Infraestrutura imutável): quando é a escolha certa?,Editar servidor em produção por acesso remoto: gera desvio e servidores únicos.
+Substituir o recurso por um novo a partir do código. É Infraestrutura imutável ou Remendar no local?,Infraestrutura imutável
+Editar servidor em produção por acesso remoto: gera desvio e servidores únicos. É Infraestrutura imutável ou Remendar no local?,Remendar no local
+IaC recria infraestrutura (e não Backup recupera dados): quando é a escolha certa?,Região caiu: recriar o ambiente em outra região pelo código.
+Backup recupera dados (e não IaC recria infraestrutura): quando é a escolha certa?,Discos e bancos precisam de backup e replicação próprios.
+Região caiu: recriar o ambiente em outra região pelo código. É IaC recria infraestrutura ou Backup recupera dados?,IaC recria infraestrutura
+Discos e bancos precisam de backup e replicação próprios. É IaC recria infraestrutura ou Backup recupera dados?,Backup recupera dados
+O que é: Terraform Core x provider?Fundamentos do Terraform,"O Core lê a configuração e o estado, calcula o grafo e monta o plano; o provider é um plugin que chama as APIs e implementa os tipos de resource e data source. Providers recentes também oferecem funções próprias."
+O que é: required_providers?Fundamentos do Terraform,"Fica dentro do bloco terraform e declara origem (source) e restrição de versão de cada provider, como hashicorp/aws ~> 5.0. O bloco provider configura (região, por exemplo); required_providers diz de onde baixar e qual versão aceitar."
+O que é: Endereço de origem do provider?Fundamentos do Terraform,"Formato HOSTNAME/NAMESPACE/TIPO. Quando o hostname é omitido, usa-se registry.terraform.io, como em hashicorp/aws. Provider não declarado é buscado no namespace hashicorp do registry público."
+O que é: Nome local?Fundamentos do Terraform,"Em aws = { source = ""hashicorp/aws"" }, aws é o nome local: como o módulo referencia o provider. Por convenção é igual ao tipo do provider."
+O que é: Operador ~> (pessimista)?Fundamentos do Terraform,"Permite variar só o componente mais à direita informado. ~> 5.1 aceita de 5.1 até antes de 6.0; ~> 5.1.0 aceita só patches, abaixo de 5.2.0."
+O que é: Versão exata?Fundamentos do Terraform,"version = ""5.31.0"" fixa exatamente; o operador = explícito tem o mesmo efeito. >= permite qualquer versão maior e != exclui a versão."
+O que é: required_version?Fundamentos do Terraform,"Fica no bloco terraform e restringe a versão da CLI, por exemplo required_version = "">= 1.12"". version no bloco provider não restringe a CLI."
+O que é: .terraform.lock.hcl?Fundamentos do Terraform,Criado pelo terraform init para registrar as versões exatas e hashes dos providers selecionados. Deve ir ao controle de versão para todos usarem as mesmas versões; não contém senhas e não é recriado pelo plan.
+O que é: Diretório .terraform?Fundamentos do Terraform,Onde o init instala os plugins de providers (e os módulos baixados). Não deve ser versionado.
+O que é: Provider com alias?Fundamentos do Terraform,"Para usar o mesmo provider em duas regiões, declare um segundo bloco provider com alias. No resource, selecione com provider = aws.oeste; sem isso, o recurso usa a configuração padrão."
+O que é: Herança de provider em módulos?Fundamentos do Terraform,Módulo filho sem bloco provider herda a configuração padrão do raiz. Configurações com alias precisam ser repassadas com o argumento providers no bloco module.
+O que é: Provider em módulo reutilizável?Fundamentos do Terraform,"O módulo declara seus providers em required_providers no próprio módulo, com só uma versão mínima (>=). O raiz combina as restrições e o lock define a versão exata; versão exata no filho gera conflitos."
+O que é: Funções de provider?Fundamentos do Terraform,"Disponíveis desde o Terraform 1.8, chamadas com provider::NOME::FUNÇÃO(args), como provider::aws::arn_parse(var.arn)."
+O que é: Estado: finalidade?Fundamentos do Terraform,"Mapear a configuração aos objetos reais. Também guarda atributos, valores de outputs e metadados (dependências, provider de cada recurso) e melhora o desempenho. É gravado em JSON."
+O que é: lineage e serial?Fundamentos do Terraform,lineage identifica o estado e evita misturar estados de configurações diferentes; serial aumenta a cada gravação do estado.
+O que é: Refresh no plan?Fundamentos do Terraform,"Por padrão, antes de comparar configuração e estado, o plan atualiza o estado com os objetos reais. -refresh=false pula essa leitura, com risco de plano desatualizado."
+O que é: Workspaces da CLI?Fundamentos do Terraform,"Mesma configuração, cada workspace com seu próprio estado; o lock é compartilhado e o provider é o mesmo. terraform.workspace pode variar nomes por ambiente."
+O que é: Instalação de provider interno?Fundamentos do Terraform,Provider fora do registry público é instalado por espelho ou registry privado. A configuração provider_installation da CLI define espelhos de rede ou de sistema de arquivos.
+⚠ Pegadinha: Achar que ~> 5.1 aceita 6.x e 7.x.Como não cair?,~> trava o componente à esquerda do último informado: ~> 5.1 fica abaixo de 6.0.
+⚠ Pegadinha: Achar que o arquivo de lock não deve ir ao Git porque 'contém senhas' ou 'é recriado a cada plan'.Como não cair?,"O lock não contém senhas, não é recriado pelo plan e deve ser versionado."
+⚠ Pegadinha: Marcar 'verdadeiro' para enviar terraform.tfstate ao Git.Como não cair?,Falso: o estado pode conter segredos e causar conflitos; use backend remoto com bloqueio e criptografia.
+⚠ Pegadinha: Usar alias = aws.oeste ou source = aws.oeste no bloco resource.Como não cair?,alias fica no bloco provider; no resource o argumento é provider = aws.oeste.
+⚠ Pegadinha: Criar uma variável region com dois valores ou um segundo bloco terraform para outra região.Como não cair?,Segunda região do mesmo provider = segundo bloco provider com alias.
+⚠ Pegadinha: Achar que o estado apagado é recuperado da nuvem ou que o plan não muda nada.Como não cair?,Sem estado não há mapeamento: o plan propõe criar tudo de novo; seria preciso importar para evitar duplicatas.
+⚠ Pegadinha: Achar que o Git ou o provider avisam o Terraform que um recurso saiu do código.Como não cair?,O recurso segue no estado e não está no código: por isso o plano propõe destruí-lo.
+⚠ Pegadinha: Achar que a ordem de destruição vem da ordem alfabética ou da data de criação.Como não cair?,"Para recurso removido do código, a ordem vem das dependências gravadas no estado."
+⚠ Pegadinha: Fixar versão exata do provider dentro de módulo reutilizável.Como não cair?,"Gera conflitos entre módulos; no módulo, declare só versão mínima com >=."
+⚠ Pegadinha: Usar terraform init -upgrade para gerar hashes de outra plataforma.Como não cair?,Lock multiplataforma: terraform providers lock -platform=linux_amd64 -platform=darwin_arm64.
+⚠ Pegadinha: Achar que provider não declarado vem de espelho local padrão ou do diretório de módulos.Como não cair?,Vem do namespace hashicorp no registry público; espelhos exigem configuração.
+"⚠ Pegadinha: Achar que o estado guarda código dos módulos, binários de providers ou histórico de commits.Como não cair?","Estado guarda mapeamento, atributos, outputs e metadados; binários ficam em .terraform e o histórico no Git."
+⚠ Pegadinha: Achar que cada workspace da CLI usa outro diretório de código ou outro lock.Como não cair?,O código e o lock são os mesmos; só o estado é separado.
+"Se o enunciado trouxer: origem e versão de provider, hashicorp/aws ~> 5.0Pense em…",required_providers dentro de terraform
+Se o enunciado trouxer: região padrão do providerPense em…,Bloco provider
+Se o enunciado trouxer: duas regiões da AWSPense em…,Segundo bloco provider com alias + provider = aws.ALIAS
+Se o enunciado trouxer: versões exatas registradas pelo initPense em…,.terraform.lock.hcl (versionar)
+Se o enunciado trouxer: onde ficam os plugins baixadosPense em…,Subdiretório .terraform (não versionar)
+Se o enunciado trouxer: exigir CLI 1.12 ou superiorPense em…,required_version no bloco terraform
+Se o enunciado trouxer: macOS na equipe e Linux no pipelinePense em…,terraform providers lock -platform
+Se o enunciado trouxer: provider interno fora do registry públicoPense em…,Espelho ou registry privado (provider_installation)
+Se o enunciado trouxer: provider::aws::arn_parsePense em…,"Função de provider, Terraform 1.8+"
+Se o enunciado trouxer: sufixo aleatório para nomesPense em…,Provider random ao lado do aws
+Se o enunciado trouxer: lineagePense em…,Evitar misturar estados de configurações diferentes
+Se o enunciado trouxer: dev e prd com a mesma configuração na CLIPense em…,Workspaces da CLI: um estado por workspace
+Se o enunciado trouxer: listar providers exigidos com restriçõesPense em…,terraform providers
+required_providers (e não bloco provider): quando é a escolha certa?,Declarar origem (source) e restrição de versão.
+bloco provider (e não required_providers): quando é a escolha certa?,Configurar argumentos como região padrão.
+Declarar origem (source) e restrição de versão. É required_providers ou bloco provider?,required_providers
+Configurar argumentos como região padrão. É required_providers ou bloco provider?,bloco provider
+required_version (e não version em required_providers): quando é a escolha certa?,Restringir a versão da CLI do Terraform.
+version em required_providers (e não required_version): quando é a escolha certa?,Restringir a versão de um provider.
+Restringir a versão da CLI do Terraform. É required_version ou version em required_providers?,required_version
+Restringir a versão de um provider. É required_version ou version em required_providers?,version em required_providers
+~> 5.1 (e não ~> 5.1.0): quando é a escolha certa?,"Aceita 5.1 ou superior, abaixo de 6.0."
+~> 5.1.0 (e não ~> 5.1): quando é a escolha certa?,"Só patches: 5.1.x, abaixo de 5.2.0."
+"Aceita 5.1 ou superior, abaixo de 6.0. É ~> 5.1 ou ~> 5.1.0?",~> 5.1
+"Só patches: 5.1.x, abaixo de 5.2.0. É ~> 5.1 ou ~> 5.1.0?",~> 5.1.0
+.terraform.lock.hcl (e não diretório .terraform): quando é a escolha certa?,Versionar no Git: fixa versões e hashes dos providers.
+diretório .terraform (e não .terraform.lock.hcl): quando é a escolha certa?,Não versionar: cache local de plugins e módulos.
+Versionar no Git: fixa versões e hashes dos providers. É .terraform.lock.hcl ou diretório .terraform?,.terraform.lock.hcl
+Não versionar: cache local de plugins e módulos. É .terraform.lock.hcl ou diretório .terraform?,diretório .terraform
+terraform version (e não terraform providers): quando é a escolha certa?,Mostrar a versão da CLI e dos providers instalados.
+terraform providers (e não terraform version): quando é a escolha certa?,"Listar providers exigidos pela configuração e pelos módulos, com restrições."
+Mostrar a versão da CLI e dos providers instalados. É terraform version ou terraform providers?,terraform version
+"Listar providers exigidos pela configuração e pelos módulos, com restrições. É terraform version ou terraform providers?",terraform providers
+provider = aws.oeste (no resource) (e não providers (no bloco module)): quando é a escolha certa?,Escolher a configuração com alias para um recurso.
+providers (no bloco module) (e não provider = aws.oeste (no resource)): quando é a escolha certa?,Repassar configuração com alias para um módulo filho.
+Escolher a configuração com alias para um recurso. É provider = aws.oeste (no resource) ou providers (no bloco module)?,provider = aws.oeste (no resource)
+Repassar configuração com alias para um módulo filho. É provider = aws.oeste (no resource) ou providers (no bloco module)?,providers (no bloco module)
+>= no módulo reutilizável (e não versão exata no raiz/lock): quando é a escolha certa?,Módulo filho declara só versão mínima.
+versão exata no raiz/lock (e não >= no módulo reutilizável): quando é a escolha certa?,O raiz e o arquivo de lock definem a versão exata usada.
+Módulo filho declara só versão mínima. É >= no módulo reutilizável ou versão exata no raiz/lock?,>= no módulo reutilizável
+O raiz e o arquivo de lock definem a versão exata usada. É >= no módulo reutilizável ou versão exata no raiz/lock?,versão exata no raiz/lock
+O que é: Fluxo principal?Fluxo de Trabalho Principal,"Write, plan e apply. Na prática, o init prepara o diretório antes do primeiro plan. Na etapa Write em equipe, versione o código em repositório e use branches e pull requests."
+O que é: terraform init?Fluxo de Trabalho Principal,"Prepara o diretório: baixa providers e módulos e configura o backend. Não cria recursos e é seguro repetir; repita ao mudar providers, módulos ou backend. Em diretório sem .tf, informa que está vazio."
+O que é: init -upgrade?Fluxo de Trabalho Principal,"Baixa a versão mais nova permitida pelas restrições e atualiza o lock. Sem -upgrade, o init respeita as versões já gravadas no lock."
+O que é: init -reconfigure x -migrate-state?Fluxo de Trabalho Principal,-reconfigure aponta para o novo backend ignorando o estado anterior; -migrate-state leva o estado existente para o novo backend.
+O que é: init -backend-config e -backend=false?Fluxo de Trabalho Principal,"-backend-config=backend.hcl completa uma configuração parcial de backend (o bloco backend não aceita variáveis). -backend=false prepara o diretório sem acessar o backend, comum antes do validate em CI."
+O que é: init -plugin-dir?Fluxo de Trabalho Principal,"Usa providers de um diretório local, para servidores sem internet. Espelhos de providers também podem ser configurados no arquivo de configuração da CLI."
+O que é: terraform validate?Fluxo de Trabalho Principal,"Verifica sintaxe e consistência interna (tipos, referências a variáveis) sem acessar serviços remotos. Precisa de diretório inicializado (providers instalados). Não testa credenciais nem valores que dependem das APIs, como tipo de instância inexistente."
+O que é: terraform fmt?Fluxo de Trabalho Principal,"Ajusta arquivos .tf e .tfvars ao estilo canônico, sem mudar lógica. Por padrão reescreve o diretório atual; -recursive inclui subdiretórios; -check não reescreve e retorna código não zero se houver arquivo fora do padrão; -diff mostra as diferenças."
+O que é: terraform plan?Fluxo de Trabalho Principal,"Mostra as ações propostas sem alterar recursos reais; faz leituras às APIs no refresh. Símbolos: + criar, ~ alterar no local, -/+ destruir e recriar. O resumo 'Plan: 2 to add, 1 to change, 1 to destroy' conta substituições como criação e destruição."
+O que é: Plano salvo (-out)?Fluxo de Trabalho Principal,"terraform plan -out=tfplan salva o plano; terraform apply tfplan aplica exatamente ele, sem pedir confirmação. Se o código ou o estado mudaram depois, o Terraform recusa o plano obsoleto. O arquivo pode conter valores sensíveis."
+O que é: terraform apply?Fluxo de Trabalho Principal,"Sem plano salvo, gera um novo plano, exibe e pede confirmação (yes). -auto-approve dispensa o prompt. Em falha parcial, o que foi criado fica no estado; não há rollback automático."
+O que é: apply -replace?Fluxo de Trabalho Principal,"Forma recomendada de recriar um recurso sem mudar o código; mostra a substituição no plano. taint está obsoleto. Para for_each: -replace='aws_instance.web[""api""]' com aspas simples para o shell."
+O que é: destroy?Fluxo de Trabalho Principal,"terraform destroy remove todos os recursos da configuração pedindo confirmação, na ordem inversa das dependências. Equivale a terraform apply -destroy; plan -destroy só mostra a prévia. prevent_destroy faz o comando falhar sem destruir nada."
+O que é: -target?Fluxo de Trabalho Principal,"Para exceções, como recuperar erros; uso rotineiro é desaconselhado porque pode deixar a configuração inconsistente com o estado. Ex.: terraform destroy -target=ENDEREÇO."
+O que é: Opções de automação?Fluxo de Trabalho Principal,-input=false faz o comando falhar em vez de esperar valor de variável; -detailed-exitcode faz o plan retornar 2 quando há mudanças; -auto-approve aplica sem prompt.
+O que é: Valores na CLI?Fluxo de Trabalho Principal,"-var=""regiao=us-east-1"" passa um valor (maior precedência) e -var-file=producao.tfvars carrega arquivo que não é carregado sozinho."
+O que é: known after apply?Fluxo de Trabalho Principal,O valor só existirá depois da criação; referências a ele também ficam desconhecidas até o apply. Não indica erro nem segredo.
+O que é: Plano em JSON e console?Fluxo de Trabalho Principal,"Para ferramentas: plan -out=tfplan e depois show -json tfplan. terraform console abre um console interativo para testar expressões e funções, como cidrsubnet."
+O que é: Paralelismo?Fluxo de Trabalho Principal,-parallelism=N ajusta o paralelismo das operações. Não serve para esperar o bloqueio do estado (isso é -lock-timeout) nem para pular a consulta aos objetos reais (isso é -refresh=false).
+⚠ Pegadinha: Achar que validate checa credenciais ou compara recursos reais com o estado.Como não cair?,validate não acessa a nuvem; credenciais inválidas aparecem no plan/apply e comparar com a infraestrutura real é papel do plan.
+⚠ Pegadinha: Marcar 'falso' para 'validate precisa de init'.Como não cair?,Verdadeiro: sem init não há providers para validar; em CI use init -backend=false.
+⚠ Pegadinha: Achar que apply tfplan pede confirmação.Como não cair?,"Falso: o plano salvo é aplicado sem prompt, por isso revise antes."
+⚠ Pegadinha: Achar que plan -destroy executa a destruição.Como não cair?,Só mostra a prévia; o equivalente de destroy é apply -destroy.
+⚠ Pegadinha: Usar terraform state rm para destruir um recurso.Como não cair?,state rm só tira do estado; o recurso continua na nuvem.
+⚠ Pegadinha: Achar que fmt -diff serve para CI sem alterar arquivos.Como não cair?,-diff mostra diferenças mas ainda reescreve; para só verificar use -check.
+"⚠ Pegadinha: Achar que fmt atualiza providers, remove código não usado ou reordena blocos.Como não cair?",fmt só ajusta estilo; atualizar providers é init -upgrade.
+⚠ Pegadinha: Achar que após falha parcial no apply o Terraform desfaz o que criou.Como não cair?,Não há rollback: os recursos criados ficam no estado; corrija e rode apply de novo.
+⚠ Pegadinha: Achar que o init repetido apaga o estado ou recria o lock.Como não cair?,init é seguro para repetir: mantém o lock e não apaga estado nem cria recursos.
+"⚠ Pegadinha: Escolher opções inventadas: -yes, -force, -no-prompt, -save, -file, -only, -fail-on-diff, -silent.Como não cair?","As reais: -auto-approve, -out, -target, -detailed-exitcode."
+⚠ Pegadinha: Usar -replace=aws_instance.web[0] para instância de for_each.Como não cair?,"Índice é de count; para for_each use a chave: aws_instance.web[""api""]."
+⚠ Pegadinha: Achar que ~ indica destruição e recriação.Como não cair?,~ é alteração no local; -/+ é destruir e recriar; + é só criar.
+⚠ Pegadinha: Usar -target como rotina para ganhar tempo.Como não cair?,"A recomendação é reservar -target para exceções, como recuperar erros."
+⚠ Pegadinha: Passar arquivo de backend com -var-file ou no plan.Como não cair?,Configuração parcial de backend: terraform init -backend-config=backend.hcl.
+Se o enunciado trouxer: pipeline sem digitar yesPense em…,-auto-approve
+Se o enunciado trouxer: pipeline falhar em vez de esperar variávelPense em…,-input=false
+Se o enunciado trouxer: código de saída 2 quando há mudançasPense em…,plan -detailed-exitcode
+Se o enunciado trouxer: pipeline falhar se .tf fora do padrão sem alterarPense em…,terraform fmt -check (com -recursive)
+Se o enunciado trouxer: aplicar exatamente o que foi revisadoPense em…,plan -out=tfplan e apply tfplan
+Se o enunciado trouxer: recriar instância com problema sem mudar códigoPense em…,terraform apply -replace=ENDEREÇO
+Se o enunciado trouxer: novo backend sem migrar estadoPense em…,init -reconfigure
+Se o enunciado trouxer: servidor sem internet no initPense em…,init -plugin-dir=CAMINHO
+Se o enunciado trouxer: validate sem acessar backend remotoPense em…,init -backend=false
+Se o enunciado trouxer: atualizar provider dentro da restrição e o lockPense em…,init -upgrade
+Se o enunciado trouxer: plano para ferramenta de análisePense em…,plan -out=tfplan + show -json tfplan
+Se o enunciado trouxer: testar cidrsubnet ou outra funçãoPense em…,terraform console
+Se o enunciado trouxer: pular consulta aos objetos reais em infra grandePense em…,-refresh=false (risco de ignorar desvio)
+terraform validate (e não terraform fmt -check): quando é a escolha certa?,"Sintaxe, tipos e referências (ex.: var.porta não declarada)."
+terraform fmt -check (e não terraform validate): quando é a escolha certa?,"Estilo canônico dos arquivos, sem reescrever; falha com código não zero."
+"Sintaxe, tipos e referências (ex.: var.porta não declarada). É terraform validate ou terraform fmt -check?",terraform validate
+"Estilo canônico dos arquivos, sem reescrever; falha com código não zero. É terraform validate ou terraform fmt -check?",terraform fmt -check
+init -migrate-state (e não init -reconfigure): quando é a escolha certa?,Levar o estado existente para o novo backend.
+init -reconfigure (e não init -migrate-state): quando é a escolha certa?,Apontar para o novo backend sem migrar o estado anterior.
+Levar o estado existente para o novo backend. É init -migrate-state ou init -reconfigure?,init -migrate-state
+Apontar para o novo backend sem migrar o estado anterior. É init -migrate-state ou init -reconfigure?,init -reconfigure
+plan -destroy (e não apply -destroy / destroy): quando é a escolha certa?,Só mostrar o que seria destruído.
+apply -destroy / destroy (e não plan -destroy): quando é a escolha certa?,Destruir de fato (pede confirmação).
+Só mostrar o que seria destruído. É plan -destroy ou apply -destroy / destroy?,plan -destroy
+Destruir de fato (pede confirmação). É plan -destroy ou apply -destroy / destroy?,apply -destroy / destroy
+apply (sem arquivo) (e não apply tfplan): quando é a escolha certa?,Gera um plano na hora e pede yes.
+apply tfplan (e não apply (sem arquivo)): quando é a escolha certa?,"Aplica exatamente o plano salvo, sem prompt; recusa se obsoleto."
+Gera um plano na hora e pede yes. É apply (sem arquivo) ou apply tfplan?,apply (sem arquivo)
+"Aplica exatamente o plano salvo, sem prompt; recusa se obsoleto. É apply (sem arquivo) ou apply tfplan?",apply tfplan
+fmt -check (e não fmt -diff): quando é a escolha certa?,Só indicar arquivos fora do padrão (CI).
+fmt -diff (e não fmt -check): quando é a escolha certa?,Mostrar as diferenças (ainda reescreve sem -check).
+Só indicar arquivos fora do padrão (CI). É fmt -check ou fmt -diff?,fmt -check
+Mostrar as diferenças (ainda reescreve sem -check). É fmt -check ou fmt -diff?,fmt -diff
+apply -replace (e não taint): quando é a escolha certa?,"Forma atual de recriar um recurso, visível no plano."
+taint (e não apply -replace): quando é a escolha certa?,Obsoleto.
+"Forma atual de recriar um recurso, visível no plano. É apply -replace ou taint?",apply -replace
+Obsoleto. É apply -replace ou taint?,taint
+-input=false (e não -auto-approve): quando é a escolha certa?,Não esperar valores de variáveis: falhar em automação.
+-auto-approve (e não -input=false): quando é a escolha certa?,Não esperar o yes de confirmação do apply/destroy.
+Não esperar valores de variáveis: falhar em automação. É -input=false ou -auto-approve?,-input=false
+Não esperar o yes de confirmação do apply/destroy. É -input=false ou -auto-approve?,-auto-approve
+O que é: Referências?Configuração do Terraform,"Resource: aws_vpc.principal.id; data source: data.aws_ami.ubuntu.id; variável: var.regiao; local: local.prefixo (o bloco é locals, a referência é local no singular); output de módulo: module.rede.subnet_id. Referências criam dependências implícitas."
+O que é: resource x data?Configuração do Terraform,"resource gerencia (cria, altera, destrói); data só lê objetos existentes, como uma VPC de outra equipe buscada pela tag. Atributos de data source não podem ser alterados; para gerenciar, importe como resource."
+O que é: Precedência de variáveis?Configuração do Terraform,"Ordem crescente: default, TF_VAR_, terraform.tfvars, *.auto.tfvars e, por fim, -var e -var-file na CLI. Arquivos *.auto.tfvars são lidos em ordem léxica e o último vence."
+O que é: Arquivos carregados automaticamente?Configuração do Terraform,"terraform.tfvars, terraform.tfvars.json e *.auto.tfvars. Outros, como producao.tfvars, exigem -var-file. variables.tf declara, não define valores."
+O que é: Tipos?Configuração do Terraform,"Primitivos: string, number, bool. Coleções: list, map, set (mesmo tipo de elemento). Estruturais: object (atributos nomeados com tipos diferentes) e tuple (posições com tipos diferentes). any deixa o Terraform inferir."
+O que é: Conversão de tipos?Configuração do Terraform,"""5"" para number é convertido; ""true"" para bool também. ""abc"" para number gera erro de tipo, sem conversão silenciosa."
+O que é: optional e default = null?Configuração do Terraform,"optional(number, 80) declara atributo opcional de object com padrão (desde o Terraform 1.3). default = null torna a variável opcional; sem default ela é obrigatória."
+O que é: count x for_each?Configuração do Terraform,"count endereça por índice (web[0], count.index); for_each por chave (app[""api""], each.key, each.value). Remover item do meio com count muda índices seguintes; com for_each só a instância removida é afetada. Não se usa os dois no mesmo bloco."
+O que é: for_each com lista?Configuração do Terraform,"for_each aceita map ou set de strings; converta com toset(var.nomes). Com set, each.key e each.value são iguais."
+O que é: Expressões for e splat?Configuração do Terraform,[for n in var.nomes : upper(n)] gera lista; com chaves e => gera mapa; filtro com if no final. Splat aws_instance.web[*].id vale para count; para for_each use values(aws_instance.web)[*].id. one(module.app[*].id) retorna o único elemento ou null.
+O que é: Bloco dynamic?Configuração do Terraform,Gera blocos aninhados repetidos (como ingress para cada porta) com for_each. count não vale em blocos aninhados. Use com moderação.
+O que é: Funções cobradas?Configuração do Terraform,"flatten (listas aninhadas), lookup (mapa com padrão), zipmap (listas para mapa), merge, concat, coalesce (primeiro não nulo nem vazio), try (primeira expressão sem erro), can (verdadeiro/falso), templatefile, join, replace, timestamp (muda a cada run). Não existem funções definidas pelo usuário em HCL."
+O que é: Dependências?Configuração do Terraform,"Implícitas por referência (forma preferida) ou explícitas com depends_on, quando não há referência. Ordem no arquivo ou nomes parecidos não criam dependência. Data source que referencia resource é lido depois dele, no apply se depender de valor desconhecido."
+O que é: lifecycle?Configuração do Terraform,"create_before_destroy (cria o novo antes de destruir), prevent_destroy (bloqueia destruição), ignore_changes (lista ou all; aceita mudanças externas), replace_triggered_by (recria quando outro recurso muda), precondition e postcondition."
+O que é: Validação?Configuração do Terraform,"validation na variável restringe entradas com condition e error_message; desde o 1.9 pode referenciar outras variáveis. precondition valida antes e postcondition valida depois de criar ou ler o objeto, ambas no bloco lifecycle; precondition também pode ficar em output. check com assert gera aviso, não erro, e pode ter um data source com escopo."
+O que é: sensitive?Configuração do Terraform,"sensitive = true em variável ou output oculta o valor na saída, mas ele continua no estado. Output que usa valor sensível sem sensitive = true gera erro. A função sensitive() marca um valor; nonsensitive() faz o oposto."
+O que é: ephemeral e write-only?Configuração do Terraform,"Valores efêmeros (Terraform 1.10) e argumentos write-only (1.11) evitam gravar o segredo no estado e no plano. Recurso efêmero do Vault lê sem ir ao estado. Para trocar um write-only (password_wo), altere o argumento de versão associado (password_wo_version)."
+O que é: Vault?Configuração do Terraform,"Ler o segredo do Vault na execução tira credenciais do código, e o provider gera credenciais dinâmicas e curtas. Data source comum leva o valor ao estado; use ephemeral para evitar."
+⚠ Pegadinha: Achar que TF_VAR_ vence terraform.tfvars ou que default vence arquivos.Como não cair?,Crescente: default < TF_VAR_ < terraform.tfvars < *.auto.tfvars < -var/-var-file.
+⚠ Pegadinha: Achar que sensitive = true impede gravar o segredo no estado.Como não cair?,sensitive só oculta na saída; para tirar do estado use ephemeral ou write-only.
+⚠ Pegadinha: Usar locals.prefixo ou variable.regiao como referência.Como não cair?,Referências válidas: local.prefixo e var.regiao.
+⚠ Pegadinha: Usar aws_instance.web[*].id em recurso com for_each.Como não cair?,Splat direto não vale para mapa: values(aws_instance.web)[*].id.
+⚠ Pegadinha: Usar count dentro de bloco aninhado ingress.Como não cair?,count não vale em blocos aninhados; use dynamic com for_each.
+⚠ Pegadinha: Passar tolist(var.nomes) ou var.nomes[*] ao for_each.Como não cair?,Continua lista; use toset(var.nomes).
+⚠ Pegadinha: Achar que declarar o bucket antes no arquivo garante a ordem.Como não cair?,"A ordem no arquivo não importa; sem referência, use depends_on."
+⚠ Pegadinha: Usar ignore_changes para impedir destruição ou prevent_destroy para aceitar tags externas.Como não cair?,prevent_destroy protege contra destruição; ignore_changes = [tags] aceita mudanças externas.
+"⚠ Pegadinha: Escrever ignore_changes = any, true ou [*].Como não cair?",Para ignorar tudo o valor é all.
+⚠ Pegadinha: Achar que falha de check desfaz o apply.Como não cair?,check gera aviso; o Terraform não desfaz applies.
+⚠ Pegadinha: Colocar precondition no bloco variable ou validation no provider.Como não cair?,validation fica na variável; precondition e postcondition ficam no lifecycle (precondition também pode ficar em output).
+⚠ Pegadinha: Achar que validation só pode olhar a própria variável nas versões atuais.Como não cair?,Desde o Terraform 1.9 pode referenciar outras variáveis; a regra antiga era só a própria.
+⚠ Pegadinha: Usar hidden = true ou secret = true para esconder output.Como não cair?,O argumento é sensitive = true; o valor segue acessível com terraform output NOME.
+⚠ Pegadinha: Achar que timestamp() força recriar recursos.Como não cair?,Retorna valor novo a cada execução e só altera o atributo; use valor fixo ou ignore_changes.
+⚠ Pegadinha: Usar coalesce para capturar erro ou can para valor alternativo.Como não cair?,try retorna a primeira expressão sem erro; can retorna verdadeiro ou falso; coalesce ignora nulos.
+"Se o enunciado trouxer: valor com -var, tfvars e default ao mesmo tempoPense em…",-var vence
+Se o enunciado trouxer: a.auto.tfvars e b.auto.tfvars com a mesma variávelPense em…,b vence (ordem léxica)
+"Se o enunciado trouxer: aceitar só dev, hml ou prd com mensagemPense em…",validation com contains e error_message
+Se o enunciado trouxer: falhar se não recebeu IP público após criarPense em…,postcondition no lifecycle
+Se o enunciado trouxer: conferir imagem antes de criarPense em…,precondition no lifecycle
+"Se o enunciado trouxer: site não responde após apply, só alertarPense em…",check com assert (aviso)
+Se o enunciado trouxer: banco não pode ser destruído por enganoPense em…,prevent_destroy = true
+Se o enunciado trouxer: trocar sem indisponibilidadePense em…,create_before_destroy = true
+Se o enunciado trouxer: ferramenta externa altera tagsPense em…,ignore_changes = [tags]
+Se o enunciado trouxer: recriar quando outro recurso mudaPense em…,replace_triggered_by
+Se o enunciado trouxer: bloco ingress para cada portaPense em…,dynamic com for_each
+Se o enunciado trouxer: segredo fora do estado e do planoPense em…,ephemeral e write-only
+Se o enunciado trouxer: módulo/recurso opcional com count 0 ou 1Pense em…,one(module.app[*].id)
+Se o enunciado trouxer: VPC de outra equipe pela tagPense em…,Data source
+count (e não for_each): quando é a escolha certa?,Número de instâncias ou condicional 0/1 (cond ? 1 : 0); endereço por índice.
+for_each (e não count): quando é a escolha certa?,Instâncias por nome/chave estável; remover item afeta só ele.
+Número de instâncias ou condicional 0/1 (cond ? 1 : 0); endereço por índice. É count ou for_each?,count
+Instâncias por nome/chave estável; remover item afeta só ele. É count ou for_each?,for_each
+object (e não map): quando é a escolha certa?,Atributos nomeados com tipos diferentes.
+map (e não object): quando é a escolha certa?,"Todos os valores do mesmo tipo, como tags map(string)."
+Atributos nomeados com tipos diferentes. É object ou map?,object
+"Todos os valores do mesmo tipo, como tags map(string). É object ou map?",map
+tuple (e não list): quando é a escolha certa?,"Posições com tipos diferentes, tamanho fixo."
+list (e não tuple): quando é a escolha certa?,Sequência de valores do mesmo tipo.
+"Posições com tipos diferentes, tamanho fixo. É tuple ou list?",tuple
+Sequência de valores do mesmo tipo. É tuple ou list?,list
+precondition (e não postcondition): quando é a escolha certa?,Validar antes de criar (imagem é x86_64?).
+postcondition (e não precondition): quando é a escolha certa?,Validar o resultado depois de criar (recebeu IP público?).
+Validar antes de criar (imagem é x86_64?). É precondition ou postcondition?,precondition
+Validar o resultado depois de criar (recebeu IP público?). É precondition ou postcondition?,postcondition
+validation / precondition / postcondition (e não check): quando é a escolha certa?,Falha gera erro e interrompe.
+check (e não validation / precondition / postcondition): quando é a escolha certa?,"Falha gera aviso, sem interromper o apply."
+Falha gera erro e interrompe. É validation / precondition / postcondition ou check?,validation / precondition / postcondition
+"Falha gera aviso, sem interromper o apply. É validation / precondition / postcondition ou check?",check
+sensitive (e não ephemeral / write-only): quando é a escolha certa?,"Oculta na saída, mas grava no estado."
+ephemeral / write-only (e não sensitive): quando é a escolha certa?,Não grava no estado nem no plano.
+"Oculta na saída, mas grava no estado. É sensitive ou ephemeral / write-only?",sensitive
+Não grava no estado nem no plano. É sensitive ou ephemeral / write-only?,ephemeral / write-only
+try (e não coalesce): quando é a escolha certa?,Primeira expressão que não gera erro (can retorna bool).
+coalesce (e não try): quando é a escolha certa?,Primeiro argumento não nulo e não string vazia.
+Primeira expressão que não gera erro (can retorna bool). É try ou coalesce?,try
+Primeiro argumento não nulo e não string vazia. É try ou coalesce?,coalesce
+prevent_destroy (e não create_before_destroy): quando é a escolha certa?,Impedir destruição acidental.
+create_before_destroy (e não prevent_destroy): quando é a escolha certa?,Evitar indisponibilidade na troca: cria o novo antes.
+Impedir destruição acidental. É prevent_destroy ou create_before_destroy?,prevent_destroy
+Evitar indisponibilidade na troca: cria o novo antes. É prevent_destroy ou create_before_destroy?,create_before_destroy
+O que é: Módulo raiz x filho?Módulos do Terraform,Raiz são os arquivos do diretório de trabalho; todo módulo chamado a partir dele é filho. O nome não tem relação com quantidade de recursos ou origem.
+O que é: Interface entre módulos?Módulos do Terraform,"Pai para filho: argumentos no bloco module (variáveis de entrada). Filho para pai: blocos output, lidos como module.NOME.OUTPUT. Variáveis, locals e recursos do filho são encapsulados."
+O que é: Escopo de variáveis?Módulos do Terraform,Cada módulo tem seu escopo; não existem variáveis globais nem herança. Raiz e filho podem ter variáveis com o mesmo nome sem conflito.
+O que é: Módulos irmãos?Módulos do Terraform,Irmãos não se enxergam: o raiz passa module.rede.subnet_id como argumento ao módulo app.
+O que é: Variável sem default?Módulos do Terraform,"Se o bloco module não informar o argumento, o Terraform acusa argumento ausente. Defina default para tornar a entrada opcional."
+O que é: Estrutura convencional?Módulos do Terraform,"main.tf, variables.tf e outputs.tf, com README de exemplos esperado no registry. Boa prática: expor só variáveis necessárias e documentadas, com padrões sensatos."
+O que é: Origens (source)?Módulos do Terraform,"Caminho local (./modulos/rede, ../compartilhado/rede), registry público (namespace/nome/provider, como hashicorp/consul/aws), registry privado (app.terraform.io/ORG/NOME/PROVIDER) e Git. source não aceita variáveis."
+O que é: Git: ?ref= e //?Módulos do Terraform,?ref=v1.2.0 aponta uma tag ou referência; //modulos/vpc indica subdiretório do repositório. Podem ser combinados.
+O que é: Argumento version?Módulos do Terraform,"Fixa versão só para módulos de registry. Não vale para Git (use ?ref=) nem para caminho local, que não tem versões publicadas."
+O que é: Versionamento semântico?Módulos do Terraform,"Major nova (2.4.1 para 3.0.0) pode ter mudanças incompatíveis; minor traz recursos compatíveis; patch, correções. ~> 1.2.0 aceita de 1.2.0 até antes de 1.3.0; ~> 2.0 aceita até antes de 3.0."
+O que é: Versão em produção?Módulos do Terraform,"Fixar a versão evita mudanças inesperadas ao rodar init. Para atualizações sempre deliberadas, use versão exata (= 3.4.1) e atualize via PR revisando o plano."
+O que é: Download de módulos?Módulos do Terraform,terraform init baixa módulos para .terraform/modules; terraform get baixa ou atualiza só módulos. Rode init ao adicionar bloco module ou mudar source; init -upgrade atualiza para versão nova dentro da restrição. Não edite .terraform.
+O que é: Lock e módulos?Módulos do Terraform,.terraform.lock.hcl registra somente providers. Versões de módulos são fixadas no próprio bloco module.
+O que é: Meta-argumentos no bloco module?Módulos do Terraform,"count (condicional 0/1, acesso module.bastion[0]), for_each (uma instância por chave, module.nome[""chave""]), depends_on (ordem sem referência) e providers (repassa configuração com alias)."
+O que é: Mesmo módulo duas vezes?Módulos do Terraform,"Sem count nem for_each, declare dois blocos module distintos, cada um com nome único, argumentos e endereço próprios."
+O que é: moved ao refatorar?Módulos do Terraform,Mover recurso do raiz para dentro de um módulo sem recriar: bloco moved com from = aws_vpc.principal e to = module.rede.aws_vpc.principal.
+O que é: Registry e selos?Módulos do Terraform,Terraform Registry reúne módulos prontos e documentados; repositório público deve se chamar terraform-PROVIDER-NOME e as tags semânticas viram versões. Partner indica publicação por empresa parceira validada. Registry privado exige terraform login.
+⚠ Pegadinha: Achar que o filho pode ler var.regiao do raiz diretamente.Como não cair?,O filho não enxerga variáveis do pai; passe o valor como argumento no bloco module.
+⚠ Pegadinha: Achar que o app lê module.rede.subnet_id direto do irmão.Como não cair?,Irmãos não se enxergam; o raiz conecta os dois.
+⚠ Pegadinha: Achar que o raiz lê local.nome_final do filho.Como não cair?,Locals do filho são privados; o filho precisa expor em output.
+"⚠ Pegadinha: Usar version = ""v1.2.0"" em módulo Git.Como não cair?",version não vale para Git; use ?ref=v1.2.0 no source.
+⚠ Pegadinha: Achar que o lock registra versões de módulos ou da CLI.Como não cair?,Lock: só providers.
+⚠ Pegadinha: Achar que ~> 1.2.0 vai até antes de 2.0.0.Como não cair?,Isso seria ~> 1.2; ~> 1.2.0 é só patches.
+⚠ Pegadinha: Achar que >= 2.0 exclui a 3.0.Como não cair?,>= não tem teto; para parar antes da 3.0 use ~> 2.0.
+⚠ Pegadinha: Achar que a variável sem default vira null ou herda do raiz.Como não cair?,Sem default é obrigatória: o Terraform acusa argumento ausente.
+⚠ Pegadinha: Controlar a criação do módulo com source = var.criar ou create_module.Como não cair?,source não aceita variáveis; use count = var.criar ? 1 : 0.
+⚠ Pegadinha: Achar que // na origem indica versão ou backend.Como não cair?,// indica subdiretório; versão é ?ref= ou version.
+⚠ Pegadinha: Usar bloco removed ou import ao mover recurso para dentro de módulo.Como não cair?,removed tira do estado e import traz objeto externo; o certo é moved.
+⚠ Pegadinha: Repassar provider com alias usando alias no bloco module.Como não cair?,alias não existe no bloco module; use o argumento providers.
+"⚠ Pegadinha: Escolher terraform fetch, sync ou pull para baixar módulos.Como não cair?","O comando é terraform get (na prática, o init já baixa)."
+Se o enunciado trouxer: valor do filho para o paiPense em…,output no filho + module.NOME.OUTPUT
+Se o enunciado trouxer: valor do pai para o filhoPense em…,Argumento no bloco module
+Se o enunciado trouxer: módulos irmãos rede e appPense em…,O raiz passa module.rede.X ao app
+Se o enunciado trouxer: módulo de tag GitPense em…,?ref=v1.2.0 no source
+Se o enunciado trouxer: subdiretório do repositórioPense em…,//caminho no source
+Se o enunciado trouxer: registry privado do HCP TerraformPense em…,app.terraform.io/ORG/NOME/PROVIDER + terraform login
+Se o enunciado trouxer: nome de repositório para o registry públicoPense em…,terraform-PROVIDER-NOME
+Se o enunciado trouxer: módulo só quando a flag for verdadeiraPense em…,count = var.flag ? 1 : 0
+Se o enunciado trouxer: uma instância de módulo por ambiente a partir de mapaPense em…,for_each no bloco module
+Se o enunciado trouxer: ordem entre módulos sem referênciasPense em…,depends_on no bloco module
+Se o enunciado trouxer: novo bloco module ou source alteradoPense em…,terraform init antes do plan
+Se o enunciado trouxer: nova versão compatível do móduloPense em…,terraform init -upgrade
+Se o enunciado trouxer: recurso movido para dentro de module.redePense em…,Bloco moved
+Se o enunciado trouxer: onde ficam módulos baixadosPense em…,.terraform/modules
+version (e não ?ref=): quando é a escolha certa?,Módulo do registry (público ou privado).
+?ref= (e não version): quando é a escolha certa?,Módulo de repositório Git: ?ref= no source aponta a tag ou outra referência (ex.: ?ref=v1.2.0).
+Módulo do registry (público ou privado). É version ou ?ref=?,version
+Módulo de repositório Git: ?ref= no source aponta a tag ou outra referência (ex.: ?ref=v1.2.0). É version ou ?ref=?,?ref=
+variável no bloco module (e não output do filho): quando é a escolha certa?,Levar valor do pai para o filho.
+output do filho (e não variável no bloco module): quando é a escolha certa?,Levar valor do filho para o pai (module.NOME.OUTPUT).
+Levar valor do pai para o filho. É variável no bloco module ou output do filho?,variável no bloco module
+Levar valor do filho para o pai (module.NOME.OUTPUT). É variável no bloco module ou output do filho?,output do filho
+terraform get (e não terraform init): quando é a escolha certa?,Baixar/atualizar só módulos.
+terraform init (e não terraform get): quando é a escolha certa?,"Passo usual: módulos, providers e backend."
+Baixar/atualizar só módulos. É terraform get ou terraform init?,terraform get
+"Passo usual: módulos, providers e backend. É terraform get ou terraform init?",terraform init
+~> 2.0 (e não ~> 2.0.0): quando é a escolha certa?,De 2.0 até antes de 3.0.
+~> 2.0.0 (e não ~> 2.0): quando é a escolha certa?,Só 2.0.x.
+De 2.0 até antes de 3.0. É ~> 2.0 ou ~> 2.0.0?,~> 2.0
+Só 2.0.x. É ~> 2.0 ou ~> 2.0.0?,~> 2.0.0
+versão exata (= 3.4.1) (e não ~> 3.0 / >= 3.0): quando é a escolha certa?,Produção com atualização sempre deliberada.
+~> 3.0 / >= 3.0 (e não versão exata (= 3.4.1)): quando é a escolha certa?,Aceitam versões novas automaticamente.
+Produção com atualização sempre deliberada. É versão exata (= 3.4.1) ou ~> 3.0 / >= 3.0?,versão exata (= 3.4.1)
+Aceitam versões novas automaticamente. É versão exata (= 3.4.1) ou ~> 3.0 / >= 3.0?,~> 3.0 / >= 3.0
+moved (e não removed): quando é a escolha certa?,Mudar endereço (inclusive para dentro de módulo) sem recriar.
+removed (e não moved): quando é a escolha certa?,Tirar o recurso do estado.
+Mudar endereço (inclusive para dentro de módulo) sem recriar. É moved ou removed?,moved
+Tirar o recurso do estado. É moved ou removed?,removed
+for_each no module (e não dynamic): quando é a escolha certa?,Várias instâncias do módulo a partir de um mapa.
+dynamic (e não for_each no module): quando é a escolha certa?,Blocos aninhados repetidos dentro de um recurso.
+Várias instâncias do módulo a partir de um mapa. É for_each no module ou dynamic?,for_each no module
+Blocos aninhados repetidos dentro de um recurso. É for_each no module ou dynamic?,dynamic
+O que é: Backend local?Gerenciamento de State,"Padrão quando nenhum backend é configurado: arquivo terraform.tfstate local, com terraform.tfstate.backup guardando a versão anterior. O argumento path muda o caminho. Usa bloqueio do sistema de arquivos, que não protege outras máquinas."
+O que é: Backend remoto?Gerenciamento de State,"Configurado no bloco backend dentro de terraform. Principal vantagem: estado compartilhado com segurança, em geral com criptografia, versionamento e bloqueio. O init continua necessário."
+O que é: Backend S3?Gerenciamento de State,"key define o caminho do objeto de estado no bucket (uma por configuração ou ambiente); encrypt = true ativa criptografia no servidor; use_lockfile = true ativa bloqueio nativo sem DynamoDB, que está obsoleto para lock a partir do Terraform 1.11."
+O que é: Outros backends?Gerenciamento de State,azurerm guarda o estado em contêiner do Azure Blob Storage e bloqueia por lease do blob; gcs guarda em bucket do Google Cloud Storage com bloqueio.
+O que é: Locking?Gerenciamento de State,"Impede execuções simultâneas no mesmo estado; adquirido por operações que podem escrever no estado (validate, fmt e login não usam estado). -lock=false desativa e é arriscado; -lock-timeout=5m espera o bloqueio ser liberado."
+O que é: force-unlock?Gerenciamento de State,"terraform force-unlock ID_DO_LOCK libera um bloqueio preso após execução interrompida. A mensagem de erro mostra o ID, quem criou e quando. Use só com certeza de que nada está rodando."
+O que é: Estado como dado sensível?Gerenciamento de State,Pode conter senhas e chaves em texto claro. Use backend com criptografia e controle de acesso e não envie ao Git.
+O que é: Configuração parcial de backend?Gerenciamento de State,"O backend é lido antes das variáveis, por isso var.bucket não funciona ali. Valores por ambiente vêm de -backend-config no init."
+O que é: Migração de backend?Gerenciamento de State,terraform init -migrate-state move o estado existente para o novo backend; -reconfigure ignora o estado anterior.
+O que é: Drift (desvio)?Gerenciamento de State,"Mudança feita fora do Terraform; o plan mostra 'Objects have changed outside of Terraform'. Sem mudar o código, o próximo apply reverte para o valor do código; VM apagada no console é recriada pelo plan."
+O que é: -refresh-only?Gerenciamento de State,terraform plan -refresh-only mostra diferenças para atualizar o estado sem propor mudanças nos recursos; terraform apply -refresh-only grava as diferenças aceitas. O antigo terraform refresh faz o mesmo sem revisão e não é recomendado.
+O que é: Manter mudança manual?Gerenciamento de State,Atualize o código para refletir a mudança (ou use ignore_changes); depois o plan volta a ficar limpo. Editar o estado à mão é arriscado.
+O que é: state pull e state push?Gerenciamento de State,"state pull mostra o estado atual, local ou remoto, na saída padrão. state push envia um estado ao backend e pode sobrescrever um estado mais novo: é para recuperações excepcionais."
+O que é: Não editar o tfstate?Gerenciamento de State,"O arquivo é JSON legível, mas editá-lo à mão pode corromper o estado e perder o mapeamento. Use terraform state, moved, import e removed."
+O que é: terraform_remote_state?Gerenciamento de State,Data source que lê os outputs do estado de outra configuração; só os outputs do módulo raiz dela ficam acessíveis.
+O que é: Workspaces locais?Gerenciamento de State,"Com backend local, o workspace default usa terraform.tfstate na raiz e os demais ficam em terraform.tfstate.d."
+O que é: Recurso órfão?Gerenciamento de State,"Retirado do código e do estado, mas existindo na nuvem: o Terraform não o vê mais nem o gerencia; continua gerando custo e deve ser tratado manualmente ou importado."
+O que é: HCP Terraform como backend?Gerenciamento de State,"Oferece histórico de versões do estado, bloqueio automático durante cada run e criptografia em repouso; também é possível bloquear o workspace manualmente pela interface."
+⚠ Pegadinha: Usar var.bucket no bloco backend.Como não cair?,O backend é lido antes das variáveis; use configuração parcial com -backend-config.
+⚠ Pegadinha: Achar que o backend local não tem bloqueio ou que bloqueia outras máquinas.Como não cair?,"Tem bloqueio do sistema de arquivos, que só vale no disco local."
+⚠ Pegadinha: Achar que backend remoto tira os dados sensíveis do estado.Como não cair?,O estado continua podendo conter segredos; protegê-lo é papel de criptografia e acesso.
+⚠ Pegadinha: Achar que o apply reescreve o código com a tag alterada à mão.Como não cair?,O código não é alterado: o apply devolve a tag ao valor do código.
+⚠ Pegadinha: Achar que a VM apagada no console some do plano porque 'o estado já sabe'.Como não cair?,O refresh detecta a falta e o plan propõe criá-la de novo.
+⚠ Pegadinha: Usar state rm para liberar o lock.Como não cair?,state rm remove recursos do estado; para lock preso é terraform force-unlock ID.
+⚠ Pegadinha: Achar que criptografia ou bloqueio de acesso público recuperam versões antigas.Como não cair?,Só o versionamento de objetos no bucket permite recuperar uma versão anterior.
+⚠ Pegadinha: Achar que state push é rotina segura.Como não cair?,Pode sobrescrever estado mais novo; é para recuperações excepcionais.
+⚠ Pegadinha: Achar que o arquivo de estado é binário ou que editar apaga recursos na nuvem.Como não cair?,"É JSON; editar não mexe na nuvem, mas pode corromper o mapeamento."
+⚠ Pegadinha: Usar path no backend S3.Como não cair?,path é do backend local; no S3 o caminho é key.
+⚠ Pegadinha: Escolher lock_table ou force_lock para bloqueio no S3.Como não cair?,O argumento é use_lockfile = true; DynamoDB para lock está obsoleto a partir do 1.11.
+⚠ Pegadinha: Achar que terraform validate ou fmt adquirem lock.Como não cair?,Só operações que podem escrever no estado adquirem bloqueio.
+⚠ Pegadinha: Achar que recurso fora do código e do estado será destruído ou importado sozinho.Como não cair?,Vira órfão: o Terraform não o vê mais.
+Se o enunciado trouxer: estado bloqueado após execução interrompidaPense em…,terraform force-unlock ID_DO_LOCK
+Se o enunciado trouxer: segunda pessoa esperar até 5 minutosPense em…,-lock-timeout=5m
+Se o enunciado trouxer: trocar backend local por remoto levando o estadoPense em…,terraform init -migrate-state
+Se o enunciado trouxer: Objects have changed outside of TerraformPense em…,Drift: mudança fora do Terraform
+Se o enunciado trouxer: atualizar estado sem mudar recursosPense em…,plan -refresh-only e apply -refresh-only
+Se o enunciado trouxer: ler outputs de outra configuraçãoPense em…,terraform_remote_state
+Se o enunciado trouxer: caminho do estado no bucket S3Pense em…,key
+Se o enunciado trouxer: criptografia no S3Pense em…,encrypt = true
+Se o enunciado trouxer: lock no S3 sem DynamoDBPense em…,use_lockfile = true
+Se o enunciado trouxer: Azure Blob StoragePense em…,Backend azurerm
+Se o enunciado trouxer: Google Cloud StoragePense em…,Backend gcs
+Se o enunciado trouxer: estado corrompido no bucketPense em…,Versionamento de objetos no bucket
+Se o enunciado trouxer: equipe com cópias locais do estadoPense em…,Estados divergentes: usar backend remoto com bloqueio
+Se o enunciado trouxer: workspaces não default com backend localPense em…,terraform.tfstate.d
+plan -refresh-only (e não apply -refresh-only): quando é a escolha certa?,Ver o desvio sem propor mudanças nos recursos.
+apply -refresh-only (e não plan -refresh-only): quando é a escolha certa?,Gravar no estado as diferenças aceitas.
+Ver o desvio sem propor mudanças nos recursos. É plan -refresh-only ou apply -refresh-only?,plan -refresh-only
+Gravar no estado as diferenças aceitas. É plan -refresh-only ou apply -refresh-only?,apply -refresh-only
+state pull (e não state push): quando é a escolha certa?,Exibir o estado atual na saída padrão.
+state push (e não state pull): quando é a escolha certa?,Enviar um estado ao backend (excepcional; pode sobrescrever o mais novo).
+Exibir o estado atual na saída padrão. É state pull ou state push?,state pull
+Enviar um estado ao backend (excepcional; pode sobrescrever o mais novo). É state pull ou state push?,state push
+-lock-timeout=5m (e não -lock=false): quando é a escolha certa?,Esperar até 5 minutos pelo bloqueio.
+-lock=false (e não -lock-timeout=5m): quando é a escolha certa?,Desativar o bloqueio: risco de escrita concorrente.
+Esperar até 5 minutos pelo bloqueio. É -lock-timeout=5m ou -lock=false?,-lock-timeout=5m
+Desativar o bloqueio: risco de escrita concorrente. É -lock-timeout=5m ou -lock=false?,-lock=false
+Atualizar o código (e não Rodar apply sem mudar código): quando é a escolha certa?,Manter a mudança manual.
+Rodar apply sem mudar código (e não Atualizar o código): quando é a escolha certa?,Reverter o recurso para o valor do código.
+Manter a mudança manual. É Atualizar o código ou Rodar apply sem mudar código?,Atualizar o código
+Reverter o recurso para o valor do código. É Atualizar o código ou Rodar apply sem mudar código?,Rodar apply sem mudar código
+terraform.tfstate.backup (e não terraform.tfstate.d): quando é a escolha certa?,Versão anterior do estado local.
+terraform.tfstate.d (e não terraform.tfstate.backup): quando é a escolha certa?,Estados dos workspaces não default no backend local.
+Versão anterior do estado local. É terraform.tfstate.backup ou terraform.tfstate.d?,terraform.tfstate.backup
+Estados dos workspaces não default no backend local. É terraform.tfstate.backup ou terraform.tfstate.d?,terraform.tfstate.d
+use_lockfile (S3) (e não versionamento do bucket): quando é a escolha certa?,Bloqueio nativo sem DynamoDB.
+versionamento do bucket (e não use_lockfile (S3)): quando é a escolha certa?,Recuperar versão anterior de estado corrompido.
+Bloqueio nativo sem DynamoDB. É use_lockfile (S3) ou versionamento do bucket?,use_lockfile (S3)
+Recuperar versão anterior de estado corrompido. É use_lockfile (S3) ou versionamento do bucket?,versionamento do bucket
+O que é: Bloco import?Manutenção da Infraestrutura,"Disponível desde o Terraform 1.5, traz um recurso existente para o estado de forma declarativa e revisável no plano, com to e id. Desde o 1.6 o id aceita expressões (o valor precisa ser conhecido no plan). Com for_each no bloco import, importa várias instâncias de uma vez, uma por chave do mapa."
+O que é: Gerar configuração do import?Manutenção da Infraestrutura,terraform plan -generate-config-out=gerado.tf gera o HCL dos recursos declarados em blocos import. Revise o código gerado antes de aplicar.
+O que é: Import em módulo filho?Manutenção da Infraestrutura,"O bloco import fica no módulo raiz, mesmo para recurso de módulo filho: to = module.rede.aws_vpc.principal."
+O que é: terraform import (CLI)?Manutenção da Infraestrutura,"Sintaxe: terraform import ENDEREÇO ID, como terraform import aws_instance.web i-0abc123. Só altera o estado: o bloco resource precisa existir antes e nenhum código é gerado."
+O que é: Depois do import?Manutenção da Infraestrutura,"O plan deve mostrar nenhuma mudança, indicando código fiel ao recurso real. Após o apply, o bloco import pode ser mantido ou removido; removê-lo não destrói nada."
+O que é: Formato do ID de import?Manutenção da Infraestrutura,Consta na documentação do recurso no registry; pode ser identificador simples ou combinação de campos.
+O que é: Bloco moved e state mv?Manutenção da Infraestrutura,"Renomear aws_instance.app para aws_instance.api sem recriar: bloco moved (declarativo, fica no código e aparece no plano, preferível em equipe) ou terraform state mv (imperativo)."
+O que é: Bloco removed e state rm?Manutenção da Infraestrutura,"Parar de gerenciar sem destruir: bloco removed com lifecycle destroy = false (desde o 1.7, declarativo) ou terraform state rm ENDEREÇO (imperativo). O recurso continua na nuvem."
+O que é: state replace-provider?Manutenção da Infraestrutura,"Atualiza o estado quando um provider muda de namespace no registry. Depois, ajuste required_providers e rode init."
+O que é: Inspeção do estado?Manutenção da Infraestrutura,terraform state list lista endereços (aceita filtro como module.rede); state show ENDEREÇO mostra atributos de um recurso; terraform show exibe o estado inteiro ou um plano salvo (com -json para ferramentas).
+O que é: terraform output e graph?Manutenção da Infraestrutura,"output -json entrega outputs estruturados para scripts; -raw entrega um único valor sem aspas. terraform graph gera o grafo de dependências em DOT, convertível em imagem com Graphviz."
+O que é: TF_LOG?Manutenção da Infraestrutura,"Ativa logs detalhados. Níveis do mais para o menos detalhado: TRACE, DEBUG, INFO, WARN, ERROR. TF_LOG=JSON gera nível TRACE em JSON, formato que não é interface estável."
+O que é: TF_LOG_PATH?Manutenção da Infraestrutura,"Grava os logs em arquivo, mas só indica onde gravar: sem TF_LOG definido, nenhum arquivo é criado. Para desligar, remova TF_LOG do ambiente."
+O que é: TF_LOG_CORE e TF_LOG_PROVIDER?Manutenção da Infraestrutura,Separam os logs do núcleo e dos providers; TF_LOG vale para ambos.
+O que é: crash.log?Manutenção da Infraestrutura,Gravado quando o Terraform encerra com falha interna (panic); pode ser anexado a um relato de bug após remover dados sensíveis.
+O que é: Cuidado com logs?Manutenção da Infraestrutura,"Logs detalhados, como TRACE, podem conter dados sensíveis; revise antes de compartilhar e apague arquivos antigos. Logs não alteram estado nem recursos."
+⚠ Pegadinha: Achar que terraform import da CLI cria o bloco resource em main.tf.Como não cair?,"Não gera código; para gerar, use bloco import com plan -generate-config-out."
+⚠ Pegadinha: Inverter a ordem: terraform import i-0abc123 aws_instance.web.Como não cair?,"Primeiro o endereço, depois o ID."
+⚠ Pegadinha: Usar bloco removed ao renomear recurso.Como não cair?,removed tira do estado; renomear é moved.
+⚠ Pegadinha: Achar que o bloco import precisa ficar para sempre ou virar removed.Como não cair?,Pode ser mantido ou removido; a remoção não destrói nada e removed tiraria o recurso do estado.
+⚠ Pegadinha: Definir TF_LOG_PATH e esperar arquivo de log.Como não cair?,Sem TF_LOG não há log; TF_LOG_PATH só indica o destino.
+"⚠ Pegadinha: Usar TF_LOG=FILE, DATA, RAW ou YAML.Como não cair?",Valores válidos incluem os níveis (TRACE a ERROR) e JSON.
+⚠ Pegadinha: Achar que INFO ou WARN é mais detalhado que DEBUG.Como não cair?,Ordem: TRACE > DEBUG > INFO > WARN > ERROR.
+⚠ Pegadinha: Usar apply -replace ou destroy -target para parar de gerenciar.Como não cair?,-replace recria e -target destrói; parar sem destruir é state rm ou removed.
+⚠ Pegadinha: Usar count no bloco moved ou alias no import para importar em massa.Como não cair?,Importação em massa: for_each no bloco import.
+⚠ Pegadinha: Achar que o id do import só aceita texto literal.Como não cair?,"Aceita expressões desde o 1.6, desde que conhecidas no plan."
+⚠ Pegadinha: Achar que plan com substituição ou destruição após import está ok.Como não cair?,Import bem feito = plano sem mudanças; ajuste o código até ficar limpo.
+⚠ Pegadinha: Usar terraform state mv-provider ou providers rename.Como não cair?,O comando é terraform state replace-provider.
+"⚠ Pegadinha: Escolher terraform print, list, cat, map, tree ou deps.Como não cair?","Comandos reais: show, state list, graph."
+Se o enunciado trouxer: recurso renomeado no código sem recriarPense em…,Bloco moved (ou state mv)
+"Se o enunciado trouxer: deixar de gerenciar sem destruir, revisável no planoPense em…",removed com destroy = false
+Se o enunciado trouxer: deixar de gerenciar sem destruir pela CLIPense em…,terraform state rm ENDEREÇO
+Se o enunciado trouxer: trazer recurso existente de forma declarativaPense em…,Bloco import com to e id
+Se o enunciado trouxer: gerar HCL do recurso importadoPense em…,plan -generate-config-out=arquivo.tf
+Se o enunciado trouxer: importar várias instâncias de um mapaPense em…,for_each no bloco import
+Se o enunciado trouxer: provider mudou de namespacePense em…,terraform state replace-provider
+Se o enunciado trouxer: logs em arquivoPense em…,TF_LOG + TF_LOG_PATH
+Se o enunciado trouxer: logs só dos providersPense em…,TF_LOG_PROVIDER
+Se o enunciado trouxer: panicPense em…,crash.log
+Se o enunciado trouxer: outputs para scriptPense em…,terraform output -json (-raw para um valor)
+Se o enunciado trouxer: grafo em DOTPense em…,terraform graph
+Se o enunciado trouxer: atributos de um único recursoPense em…,terraform state show ENDEREÇO
+Se o enunciado trouxer: formato de ID para importarPense em…,Documentação do recurso no registry
+Bloco import (e não terraform import (CLI)): quando é a escolha certa?,"Declarativo, revisável no plano, aceita for_each e pode gerar código com -generate-config-out."
+terraform import (CLI) (e não Bloco import): quando é a escolha certa?,"Imperativo, só estado; o bloco resource precisa existir antes."
+"Declarativo, revisável no plano, aceita for_each e pode gerar código com -generate-config-out. É Bloco import ou terraform import (CLI)?",Bloco import
+"Imperativo, só estado; o bloco resource precisa existir antes. É Bloco import ou terraform import (CLI)?",terraform import (CLI)
+moved / state mv (e não removed / state rm): quando é a escolha certa?,Mudar o endereço sem recriar.
+removed / state rm (e não moved / state mv): quando é a escolha certa?,Tirar do controle do Terraform sem destruir.
+Mudar o endereço sem recriar. É moved / state mv ou removed / state rm?,moved / state mv
+Tirar do controle do Terraform sem destruir. É moved / state mv ou removed / state rm?,removed / state rm
+state list (e não state show ENDEREÇO): quando é a escolha certa?,Listar endereços no estado (com filtro opcional).
+state show ENDEREÇO (e não state list): quando é a escolha certa?,Ver todos os atributos de um recurso.
+Listar endereços no estado (com filtro opcional). É state list ou state show ENDEREÇO?,state list
+Ver todos os atributos de um recurso. É state list ou state show ENDEREÇO?,state show ENDEREÇO
+terraform show (e não terraform state show): quando é a escolha certa?,Estado inteiro ou plano salvo.
+terraform state show (e não terraform show): quando é a escolha certa?,Um único recurso do estado.
+Estado inteiro ou plano salvo. É terraform show ou terraform state show?,terraform show
+Um único recurso do estado. É terraform show ou terraform state show?,terraform state show
+TF_LOG (e não TF_LOG_PATH): quando é a escolha certa?,Define o nível (liga os logs).
+TF_LOG_PATH (e não TF_LOG): quando é a escolha certa?,Define o arquivo de destino (precisa de TF_LOG).
+Define o nível (liga os logs). É TF_LOG ou TF_LOG_PATH?,TF_LOG
+Define o arquivo de destino (precisa de TF_LOG). É TF_LOG ou TF_LOG_PATH?,TF_LOG_PATH
+state rm (e não destroy -target): quando é a escolha certa?,Recurso continua existindo na nuvem.
+destroy -target (e não state rm): quando é a escolha certa?,Recurso é destruído.
+Recurso continua existindo na nuvem. É state rm ou destroy -target?,state rm
+Recurso é destruído. É state rm ou destroy -target?,destroy -target
+O que é: Workspace?HCP Terraform,"Uma configuração com estado, variáveis e runs próprios. Prática comum: um workspace por ambiente (dev, hml, prd). Runs no mesmo workspace entram em fila e rodam um de cada vez, com estado bloqueado durante o run."
+O que é: Projetos?HCP Terraform,Agrupam workspaces para organizar acesso de equipes e visibilidade. Dar acesso no projeto cobre todos os workspaces atuais e futuros da aplicação.
+O que é: Equipes e owners?HCP Terraform,"Permissões são dadas por equipe, no nível do projeto ou do workspace. A equipe owners tem acesso administrativo total; dê menor privilégio às demais."
+O que é: Fluxo VCS?HCP Terraform,"Runs disparados automaticamente por commits e pull requests. Pull request recebe plano especulativo, sem apply, exibido como verificação no PR. Em monorepo, defina o diretório de trabalho do workspace e, se quiser, limite os gatilhos a caminhos."
+O que é: Fluxo CLI?HCP Terraform,terraform plan no terminal roda remotamente e a saída aparece localmente; o run fica registrado no workspace.
+O que é: Fluxo API?HCP Terraform,Indicado quando outra ferramenta de automação envia versões de configuração e cria runs.
+O que é: Bloco cloud?HCP Terraform,"Dentro de terraform, conecta a configuração da CLI ao HCP Terraform indicando organização e workspaces: name para um só, tags para vários. Com estado local existente, o init oferece migrar o estado para o workspace."
+O que é: terraform login?HCP Terraform,Obtém e salva localmente um token de API no arquivo de credenciais da CLI; terraform logout o remove. Também é necessário para baixar módulos do registry privado.
+O que é: Modos de execução?HCP Terraform,"Remoto: plan e apply na infraestrutura do HCP Terraform. Local: runs na máquina e estado no HCP. Agentes: executam runs em redes privadas, com conexões de saída, sem abrir portas de entrada."
+O que é: Variáveis no workspace?HCP Terraform,"Podem ser variáveis Terraform ou de ambiente; credenciais de provider costumam ser de ambiente marcadas como sensíveis. Variable sets compartilham variáveis com a organização, projetos ou workspaces."
+O que é: Precedência de variable set?HCP Terraform,"A variável definida no próprio workspace vence a do conjunto de variáveis, salvo quando o conjunto é marcado como prioritário."
+O que é: Políticas como código?HCP Terraform,"Sentinel e OPA (linguagem Rego), aplicadas por policy sets à organização, projetos ou workspaces, antes do apply. Níveis Sentinel: advisory só registra; soft mandatory permite que usuário autorizado prossiga; hard mandatory não pode ser sobreposto."
+O que é: Run tasks?HCP Terraform,"Integram ferramentas de terceiros (como segurança) ao run, em etapas antes e depois do plan; podem ser consultivas ou obrigatórias."
+O que é: Ordem do run?HCP Terraform,"Plan, estimativa de custos, políticas e apply. A estimativa de custos mostra o impacto financeiro e pode ser usada por políticas para barrar mudanças caras."
+O que é: Health assessments?HCP Terraform,Avaliações de saúde verificam periodicamente se a infraestrutura real corresponde ao estado (detecção de desvio) e também checam blocos check continuamente.
+O que é: Credenciais dinâmicas?HCP Terraform,"Via OIDC, a nuvem confia no HCP Terraform como provedor de identidade, sem chaves de acesso de longa duração no workspace."
+O que é: Compartilhamento de estado?HCP Terraform,"Para um workspace ler outputs de outro, configure o compartilhamento de estado; a leitura usa tfe_outputs ou terraform_remote_state."
+O que é: Registry privado e auditoria?HCP Terraform,Registry privado compartilha módulos e providers internos só com a organização. O histórico de runs mostra quem aprovou e aplicou; planos de maior porte oferecem trilha de auditoria da organização. Tags nos workspaces ajudam a filtrar entre centenas.
+⚠ Pegadinha: Achar que o variable set vence a variável do workspace.Como não cair?,O workspace vence por padrão; só o conjunto prioritário sobrepõe.
+⚠ Pegadinha: Escolher agentes para integrar ferramenta de segurança de terceiros.Como não cair?,Agentes executam runs em redes privadas; integração com terceiros é run task.
+⚠ Pegadinha: Achar que advisory ou hard mandatory deixam prosseguir com aprovação.Como não cair?,Só soft mandatory permite que usuário autorizado prossiga.
+⚠ Pegadinha: Achar que pull request dispara apply.Como não cair?,"PR gera plano especulativo, sem apply."
+⚠ Pegadinha: Inverter o modo local: runs no HCP e estado na máquina.Como não cair?,"Local = runs na máquina, estado no HCP."
+⚠ Pegadinha: Achar que dois runs no mesmo workspace rodam juntos ou se cancelam.Como não cair?,"Entram em fila, um de cada vez; há um só estado."
+⚠ Pegadinha: Achar que o init com bloco cloud apaga o estado local ou recria recursos.Como não cair?,O init oferece migrar o estado para o workspace.
+⚠ Pegadinha: Conectar a CLI com provider chamado hcp ou data source de workspace.Como não cair?,O certo é o bloco cloud dentro de terraform.
+"⚠ Pegadinha: Escolher terraform token, auth ou connect.Como não cair?",O comando é terraform login (logout remove).
+⚠ Pegadinha: Dar acesso a cada workspace novo manualmente ou compartilhar token de usuário.Como não cair?,Dê acesso no projeto: cobre workspaces atuais e futuros.
+⚠ Pegadinha: Achar que plano especulativo é um fluxo do HCP Terraform.Como não cair?,"Os fluxos são VCS, CLI e API."
+⚠ Pegadinha: Achar que políticas vêm antes do plan ou que o apply vem antes dos custos.Como não cair?,"Ordem: plan, custos, políticas, apply."
+⚠ Pegadinha: Usar count no bloco cloud para vários workspaces.Como não cair?,cloud não aceita count; use tags.
+Se o enunciado trouxer: outra ferramenta envia configuração e dispara runsPense em…,Fluxo orientado por API
+Se o enunciado trouxer: commits e pull requests disparam runsPense em…,Fluxo VCS
+Se o enunciado trouxer: sem chaves de longa duração no workspacePense em…,Credenciais dinâmicas via OIDC
+Se o enunciado trouxer: mesmas políticas em vários workspacesPense em…,Policy set
+Se o enunciado trouxer: acesso a workspaces atuais e futuros da aplicaçãoPense em…,Permissão no projeto
+Se o enunciado trouxer: rede privada sem acesso públicoPense em…,Agentes do HCP Terraform
+Se o enunciado trouxer: ferramenta de segurança analisa o planoPense em…,Run tasks
+Se o enunciado trouxer: mesmas credenciais em vários workspacesPense em…,Variable sets
+Se o enunciado trouxer: prosseguir com falha de política por usuário autorizadoPense em…,Soft mandatory
+Se o enunciado trouxer: verificar periodicamente desvioPense em…,Health assessments
+Se o enunciado trouxer: impacto financeiro no runPense em…,Estimativa de custos
+"Se o enunciado trouxer: monorepo, workspace só para infra/redePense em…",Diretório de trabalho do workspace
+Se o enunciado trouxer: quem aprovou e aplicouPense em…,Histórico de runs do workspace
+Se o enunciado trouxer: ler outputs de outro workspacePense em…,Compartilhamento de estado + tfe_outputs/terraform_remote_state
+Agentes (e não Run tasks): quando é a escolha certa?,Executar runs em rede privada sem acesso público.
+Run tasks (e não Agentes): quando é a escolha certa?,Ferramenta de terceiros analisar o plano durante o run.
+Executar runs em rede privada sem acesso público. É Agentes ou Run tasks?,Agentes
+Ferramenta de terceiros analisar o plano durante o run. É Agentes ou Run tasks?,Run tasks
+Soft mandatory (e não Hard mandatory): quando é a escolha certa?,Usuário autorizado pode sobrepor a falha.
+Hard mandatory (e não Soft mandatory): quando é a escolha certa?,Falha bloqueia sempre; advisory só registra.
+Usuário autorizado pode sobrepor a falha. É Soft mandatory ou Hard mandatory?,Soft mandatory
+Falha bloqueia sempre; advisory só registra. É Soft mandatory ou Hard mandatory?,Hard mandatory
+Execução remota (e não Execução local): quando é a escolha certa?,Plan e apply no HCP Terraform.
+Execução local (e não Execução remota): quando é a escolha certa?,"Runs na máquina, estado no HCP."
+Plan e apply no HCP Terraform. É Execução remota ou Execução local?,Execução remota
+"Runs na máquina, estado no HCP. É Execução remota ou Execução local?",Execução local
+Fluxo VCS (e não Fluxo API): quando é a escolha certa?,Commits e PRs disparam runs.
+Fluxo API (e não Fluxo VCS): quando é a escolha certa?,Outra ferramenta envia configuração e cria runs.
+Commits e PRs disparam runs. É Fluxo VCS ou Fluxo API?,Fluxo VCS
+Outra ferramenta envia configuração e cria runs. É Fluxo VCS ou Fluxo API?,Fluxo API
+Variável do workspace (e não Variable set): quando é a escolha certa?,Vence por padrão.
+Variable set (e não Variável do workspace): quando é a escolha certa?,Vence só se marcado como prioritário; serve para compartilhar entre workspaces.
+Vence por padrão. É Variável do workspace ou Variable set?,Variável do workspace
+Vence só se marcado como prioritário; serve para compartilhar entre workspaces. É Variável do workspace ou Variable set?,Variable set
+name no bloco cloud (e não tags no bloco cloud): quando é a escolha certa?,Um único workspace.
+tags no bloco cloud (e não name no bloco cloud): quando é a escolha certa?,Vários workspaces.
+Um único workspace. É name no bloco cloud ou tags no bloco cloud?,name no bloco cloud
+Vários workspaces. É name no bloco cloud ou tags no bloco cloud?,tags no bloco cloud
+Projetos (e não Tags de workspace): quando é a escolha certa?,Agrupar e dar acesso a equipes.
+Tags de workspace (e não Projetos): quando é a escolha certa?,Encontrar e filtrar workspaces.
+Agrupar e dar acesso a equipes. É Projetos ou Tags de workspace?,Projetos
+Encontrar e filtrar workspaces. É Projetos ou Tags de workspace?,Tags de workspace

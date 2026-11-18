@@ -1,0 +1,487 @@
+﻿Qual comando mostra as fontes de tempo usadas pelo chrony e o estado de sincronização? A) chronyc shutdown B) chronyc sources C) hwclock --show D) date --sources,B) chronyc sources Por quê: chronyc sources e chronyc tracking mostram a sincronização; ntpq -p faz o mesmo no ntpd. Dica de prova: Fontes do chrony: chronyc sources. ✗ A) Incorreta. Não lista fontes. ✗ C) Incorreta. Mostra o relógio de hardware. ✗ D) Incorreta. Opção inválida.
+Qual comando ativa a sincronização automática de horário via NTP em um sistema com systemd? A) timedatectl set-ntp true B) date --ntp true C) timedatectl set-time true D) hwclock --ntp true,"A) timedatectl set-ntp true Por quê: Com set-ntp true, o systemd-timesyncd ou o chrony mantém o horário. Dica de prova: Ativar NTP: timedatectl set-ntp true. ✗ B) Incorreta. Opção inválida. ✗ C) Incorreta. Espera uma data e hora. ✗ D) Incorreta. Opção inválida."
+Qual comando mostra qual é a impressora padrão do sistema? A) lpstat -d B) lpr -d C) lpq -d D) lprm -d,A) lpstat -d Por quê: lpstat -d mostra a padrão; lpstat -p mostra o estado das impressoras. Dica de prova: Impressora padrão: lpstat -d. ✗ B) Incorreta. Opção inválida para lpr. ✗ C) Incorreta. Opção inválida para lpq. ✗ D) Incorreta. Opção inválida para lprm.
+Qual comando legado mostra a tabela de roteamento em formato numérico? A) netstat -s B) netstat -rn C) netstat -i D) netstat -tl,B) netstat -rn Por quê: netstat e route são do net-tools; o iproute2 usa ip route. Dica de prova: Rotas no netstat: -rn. ✗ A) Incorreta. Mostra estatísticas por protocolo. ✗ C) Incorreta. Mostra estatísticas das interfaces. ✗ D) Incorreta. Mostra portas TCP em escuta.
+"Arquivos de log crescem sem controle. Qual ferramenta roda periodicamente para girar, compactar e apagar logs antigos? A) logger B) logrotate C) journald D) lastlog",B) logrotate Por quê: O logrotate usa /etc/logrotate.conf e /etc/logrotate.d. Dica de prova: Girar logs: logrotate. ✗ A) Incorreta. Grava mensagens no log. ✗ C) Incorreta. Coleta mensagens do sistema. ✗ D) Incorreta. Mostra os últimos logins.
+Qual comando mostra rapidamente todos os endereços IP atribuídos à máquina? A) hostname -d B) hostname -s C) hostname -I D) hostname -f,C) hostname -I Por quê: hostname -I lista endereços sem detalhes; ip addr mostra tudo. Dica de prova: IPs da máquina: hostname -I. ✗ A) Incorreta. Mostra o domínio. ✗ B) Incorreta. Mostra o nome curto. ✗ D) Incorreta. Mostra o nome completo.
+Qual comando mostra a data e a hora atuais em UTC? A) date -I B) date -r C) date -s D) date -u,D) date -u Por quê: date -u usa UTC; TZ=região date mostra outro fuso. Dica de prova: Hora em UTC: date -u. ✗ A) Incorreta. Mostra em formato ISO local. ✗ B) Incorreta. Mostra a data de um arquivo. ✗ C) Incorreta. Define a data.
+Qual comando define de forma persistente um IP fixo em uma conexão do NetworkManager? A) nmcli con modify lan ipv4.addresses B) ifconfig lan 10.0.0.5 netmask 255.255.255.0 C) ip addr add 10.0.0.5/24 dev lan D) hostnamectl set-ip 10.0.0.5/24,"A) nmcli con modify lan ipv4.addresses Por quê: Após modificar, use nmcli connection up para aplicar. Dica de prova: IP persistente no NetworkManager: nmcli connection modify. ✗ B) Incorreta. É temporário e legado. ✗ C) Incorreta. É temporário. ✗ D) Incorreta. Subcomando inexistente."
+"No rsyslog, qual linha envia todas as mensagens para o servidor 10.0.0.5 por TCP? A) *.* :10.0.0.5:514 B) *.* @10.0.0.5:514 C) *.* #10.0.0.5:514 D) *.* @@10.0.0.5:514","D) *.* @@10.0.0.5:514 Por quê: No rsyslog, @ envia por UDP e @@ por TCP. Dica de prova: Log remoto por TCP: @@. ✗ A) Incorreta. Sintaxe inválida. ✗ B) Incorreta. Um @ indica UDP. ✗ C) Incorreta. Seria um comentário."
+Em qual arquivo do servidor ficam as chaves públicas autorizadas a entrar em uma conta por SSH? A) ~/.ssh/authorized_keys B) ~/.ssh/known_hosts C) ~/.ssh/id_ed25519 D) /etc/ssh/ssh_config,A) ~/.ssh/authorized_keys Por quê: authorized_keys fica no servidor; known_hosts fica no cliente. Dica de prova: Chaves autorizadas: ~/.ssh/authorized_keys. ✗ B) Incorreta. Guarda chaves de servidores conhecidos. ✗ C) Incorreta. É a chave privada do usuário. ✗ D) Incorreta. Configuração do cliente.
+Qual comando define o fuso horário do sistema para America/Sao_Paulo com systemd? A) localectl set-timezone America/Sao_Paulo B) hwclock --timezone America/Sao_Paulo C) date --zone America/Sao_Paulo D) timedatectl set-timezone America/Sao_Paulo,D) timedatectl set-timezone America/Sao_Paulo Por quê: Fusos seguem o formato Região/Cidade do banco tz. Dica de prova: Definir fuso: timedatectl set-timezone. ✗ A) Incorreta. localectl não trata fusos. ✗ B) Incorreta. Opção inválida. ✗ C) Incorreta. Opção inválida.
+Qual comando muda o nome de login do usuário jsilva para joao.silva? A) usermod -l joao.silva jsilva B) usermod -d joao.silva jsilva C) usermod -g joao.silva jsilva D) usermod -c joao.silva jsilva,A) usermod -l joao.silva jsilva Por quê: usermod -l muda o login; o home pode ser movido com -d e -m. Dica de prova: Renomear login: usermod -l. ✗ B) Incorreta. Altera o diretório pessoal. ✗ C) Incorreta. Altera o grupo primário. ✗ D) Incorreta. Altera o comentário.
+"No /etc/group, o que aparece no quarto campo da linha dev:x:1005:ana,joao? A) O diretório padrão do grupo B) A senha do grupo em texto claro C) Os membros secundários do grupo D) O shell padrão do grupo","C) Os membros secundários do grupo Por quê: Campos: nome, senha (x), GID e lista de membros. Dica de prova: Quarto campo do group: membros. ✗ A) Incorreta. Não existe esse campo. ✗ B) Incorreta. O x indica senha em outro arquivo. ✗ D) Incorreta. Não existe esse campo."
+Em qual arquivo o ntpd lê os servidores de tempo a consultar? A) /etc/ntp.servers B) /etc/adjtime C) /etc/timezone D) /etc/ntp.conf,D) /etc/ntp.conf Por quê: O chrony usa /etc/chrony.conf ou /etc/chrony/chrony.conf. Dica de prova: Configuração do ntpd: /etc/ntp.conf. ✗ A) Incorreta. Não é padrão. ✗ B) Incorreta. Guarda ajustes do RTC. ✗ C) Incorreta. Guarda o fuso.
+"Como um host IPv6 costuma obter um endereço global automaticamente, sem servidor DHCPv6, a partir de anúncios do roteador? A) Por tradução de endereços (NAT) B) Por mensagens ARP de broadcast C) Por autoconfiguração sem estado (SLAAC) D) Por consultas reversas no DNS",C) Por autoconfiguração sem estado (SLAAC) Por quê: O SLAAC combina o prefixo anunciado com um identificador de interface. Dica de prova: IPv6 automático: SLAAC. ✗ A) Incorreta. Não atribui endereços. ✗ B) Incorreta. O IPv6 não usa ARP. ✗ D) Incorreta. Não atribui endereços.
+"Um comando deve rodar uma única vez, hoje às 23h. Qual ferramenta é a mais adequada? A) watch -n 23 B) crontab -e C) at 23:00 D) anacron -n",C) at 23:00 Por quê: at agenda tarefas únicas; atq lista e atrm remove. Dica de prova: Execução única: at. ✗ A) Incorreta. Repete um comando em intervalos. ✗ B) Incorreta. Agenda execuções repetidas. ✗ D) Incorreta. Executa tarefas periódicas atrasadas.
+Qual comando cria um novo grupo chamado auditoria? A) useradd auditoria B) groupadd auditoria C) groupmod auditoria D) newgrp auditoria,"B) groupadd auditoria Por quê: groupadd cria, groupmod altera e groupdel remove grupos. Dica de prova: Criar grupo: groupadd. ✗ A) Incorreta. Cria um usuário. ✗ C) Incorreta. Altera grupos existentes. ✗ D) Incorreta. Troca o grupo da sessão."
+"No /etc/resolv.conf, para que serve a linha search empresa.local? A) Completa nomes curtos B) Define o servidor DNS primário C) Define o nome da máquina D) Bloqueia consultas externas",A) Completa nomes curtos Por quê: search e domain acrescentam sufixos a nomes sem ponto. Dica de prova: search: sufixo para nomes curtos. ✗ B) Incorreta. É a função de nameserver. ✗ C) Incorreta. Não é a função. ✗ D) Incorreta. Não é a função.
+"Na variável DISPLAY=:0, o que o :0 representa? A) A primeira placa de rede B) A porta 0 do servidor SSH C) O display 0 da máquina local D) O primeiro usuário do sistema",C) O display 0 da máquina local Por quê: O formato é host:display.tela; vazio antes de : indica a máquina local. Dica de prova: DISPLAY=:0: primeiro display local. ✗ A) Incorreta. Não se refere à rede. ✗ B) Incorreta. Não se refere ao SSH. ✗ D) Incorreta. Não se refere a usuários.
+"No /etc/shadow, a senha de uma conta começa com !. O que isso indica? A) A senha está em texto claro B) A senha nunca expira C) A conta está bloqueada D) A conta é do administrador",C) A conta está bloqueada Por quê: passwd -l e usermod -L inserem o ! no início do hash. Dica de prova: ! no shadow: conta bloqueada. ✗ A) Incorreta. Não é o significado. ✗ B) Incorreta. Não é o significado. ✗ D) Incorreta. Não é o significado.
+Qual é o formato de uma linha do /etc/hosts? A) nome IP porta B) IP:porta nome C) IP nome apelidos D) nome=IP apelidos,"C) IP nome apelidos Por quê: Cada linha começa com o IP, seguido do nome e de apelidos opcionais. Dica de prova: /etc/hosts: IP nome apelidos. ✗ A) Incorreta. Ordem incorreta. ✗ B) Incorreta. Não usa porta. ✗ D) Incorreta. Não é o formato."
+Qual arquivo guarda as senhas criptografadas e os administradores dos grupos? A) /etc/gshadow B) /etc/sudoers C) /etc/group D) /etc/shadow,"A) /etc/gshadow Por quê: O /etc/gshadow complementa o /etc/group, como o /etc/shadow complementa o /etc/passwd. Dica de prova: Dados protegidos de grupos: /etc/gshadow. ✗ B) Incorreta. Regras do sudo. ✗ C) Incorreta. Lista pública de grupos. ✗ D) Incorreta. Senhas de usuários."
+Qual é a relação comum entre o systemd-journald e o rsyslog em distribuições modernas? A) Os dois não podem estar instalados B) O journald coleta; o rsyslog grava C) O rsyslog substitui o kernel D) O journald só funciona sem rede,B) O journald coleta; o rsyslog grava Por quê: O rsyslog pode ler o journal e gerar arquivos em /var/log. Dica de prova: journald e rsyslog: coexistem. ✗ A) Incorreta. Podem coexistir. ✗ C) Incorreta. Não é a relação. ✗ D) Incorreta. Não é a relação.
+"Como o IPv6 envia mensagens a vários hosts ao mesmo tempo, já que não tem broadcast? A) Por endereços de multicast B) Por endereços link-local C) Por NAT obrigatório D) Por endereços de loopback","A) Por endereços de multicast Por quê: IPv6 usa unicast, multicast e anycast. Dica de prova: IPv6 sem broadcast: multicast. ✗ B) Incorreta. Identificam interfaces no enlace. ✗ C) Incorreta. Não é o mecanismo. ✗ D) Incorreta. Só atingem o próprio host."
+Qual tipo de arquivo descreve os recursos e opções de um modelo de impressora para o CUPS? A) PAM B) PID C) PPD D) PEM,C) PPD Por quê: Impressoras modernas podem funcionar sem driver com IPP Everywhere. Dica de prova: Descrição da impressora: PPD. ✗ A) Incorreta. Configura autenticação. ✗ B) Incorreta. Guarda número de processo. ✗ D) Incorreta. Guarda certificados.
+Qual comando ativa uma conexão já configurada no NetworkManager chamada escritorio? A) nmcli connection up escritorio B) nmcli connection delete escritorio C) nmcli connection show escritorio D) nmcli connection reload escritorio,A) nmcli connection up escritorio Por quê: nmcli connection up/down ativa e desativa perfis. Dica de prova: Ativar perfil: nmcli connection up. ✗ B) Incorreta. Remove a conexão. ✗ C) Incorreta. Mostra detalhes. ✗ D) Incorreta. Recarrega arquivos.
+Qual comando mostra os endereços IP configurados nas interfaces de rede? A) ip route show B) ip rule show C) ip addr show D) ip neigh show,C) ip addr show Por quê: O pacote iproute2 substitui ifconfig e route por ip addr e ip route. Dica de prova: Endereços IP: ip addr. ✗ A) Incorreta. Mostra rotas. ✗ B) Incorreta. Mostra regras de roteamento. ✗ D) Incorreta. Mostra a tabela de vizinhos.
+Qual comando mostra apenas as mensagens do journal referentes ao serviço nginx? A) journalctl -u nginx B) journalctl -k nginx C) journalctl -f nginx D) journalctl -r nginx,"A) journalctl -u nginx Por quê: -u filtra pela unidade; pode ser combinado com -b, -p e --since. Dica de prova: Logs de um serviço: journalctl -u. ✗ B) Incorreta. -k mostra só o kernel. ✗ C) Incorreta. -f acompanha tudo. ✗ D) Incorreta. -r inverte a ordem."
+Qual comando consulta os servidores de nomes autoritativos do domínio exemplo.com? A) dig exemplo.com AAAA B) dig exemplo.com NS C) dig exemplo.com TXT D) dig exemplo.com MX,"B) dig exemplo.com NS Por quê: Tipos comuns: A, AAAA, MX, NS, CNAME, PTR e TXT. Dica de prova: Servidores de nomes: registro NS. ✗ A) Incorreta. Consulta endereços IPv6. ✗ C) Incorreta. Consulta registros TXT. ✗ D) Incorreta. Consulta registros MX."
+Qual comando mostra quais comandos o usuário atual pode executar com sudo? A) sudo -i B) sudo -k C) sudo -v D) sudo -l,D) sudo -l Por quê: sudo -l lê as regras do sudoers aplicáveis ao usuário. Dica de prova: Privilégios no sudo: sudo -l. ✗ A) Incorreta. Abre um shell de login como root. ✗ B) Incorreta. Invalida a credencial em cache. ✗ C) Incorreta. Renova a credencial em cache.
+Qual comando remove o trabalho número 42 da fila de impressão? A) lprm 42 B) lpstat 42 C) lpr 42 D) lpq 42,A) lprm 42 Por quê: lprm remove trabalhos; cancel também faz isso no CUPS. Dica de prova: Remover da fila: lprm. ✗ B) Incorreta. Mostra estado. ✗ C) Incorreta. Imprimiria um arquivo chamado 42. ✗ D) Incorreta. Mostra a fila.
+"Um script executado com ./config.sh define export APP=1. Depois que ele termina, a variável não existe no shell do usuário. Por quê? A) O script rodou em um processo filho B) O bash não aceita letras maiúsculas C) A variável foi apagada pelo cron D) O export só vale para o root","A) O script rodou em um processo filho Por quê: Para alterar o shell atual, use source config.sh ou . config.sh. Dica de prova: Variável sumiu: processo filho; use source. ✗ B) Incorreta. Aceita normalmente. ✗ C) Incorreta. O cron não participa. ✗ D) Incorreta. Vale para qualquer usuário."
+Qual comando mostra e permite ajustar o fuso horário e a sincronização NTP em sistemas com systemd? A) loginctl B) localectl C) timedatectl D) hostnamectl,C) timedatectl Por quê: timedatectl set-timezone e set-ntp controlam fuso e sincronização. Dica de prova: Fuso e NTP no systemd: timedatectl. ✗ A) Incorreta. Gerencia sessões. ✗ B) Incorreta. Gerencia locale e teclado. ✗ D) Incorreta. Gerencia o nome da máquina.
+"Qual comando mostra os limites de recursos do shell atual, como número de arquivos abertos? A) umask -a B) limits -a C) ulimit -a D) ulimit -n 0",C) ulimit -a Por quê: ulimit consulta e ajusta limites; valores persistentes ficam em /etc/security/limits.conf. Dica de prova: Limites do shell: ulimit -a. ✗ A) Incorreta. Opção inválida. ✗ B) Incorreta. Comando inexistente. ✗ D) Incorreta. Definiria o limite de arquivos.
+Qual comando cria o usuário carlos com diretório pessoal a partir de /etc/skel? A) useradd -m carlos B) usermod -m carlos C) groupadd -m carlos D) useradd -r carlos,A) useradd -m carlos Por quê: useradd -m copia o conteúdo de /etc/skel para o novo home. Dica de prova: Criar usuário com home: useradd -m. ✗ B) Incorreta. Modifica usuários existentes. ✗ C) Incorreta. Cria grupos. ✗ D) Incorreta. Cria uma conta de sistema.
+Qual linha do sudoers permite que o usuário backup execute /usr/bin/rsync como root sem digitar senha? A) backup ALL=(ALL) /usr/bin/rsync B) backup ALL=(root) NOPASSWD: /usr/bin/rsync C) %backup ALL=(root) /usr/bin/rsync D) backup NOPASSWD=(root) ALL,B) backup ALL=(root) NOPASSWD: /usr/bin/rsync Por quê: Restringir comandos específicos segue o menor privilégio. Dica de prova: Comando sem senha: NOPASSWD. ✗ A) Incorreta. Exige senha para o comando. ✗ C) Incorreta. Refere-se a um grupo e exige senha. ✗ D) Incorreta. Sintaxe inválida.
+"Qual faixa de portas é conhecida como portas bem conhecidas, reservadas a serviços padrão? A) De 0 a 1023 B) De 65536 a 99999 C) De 1024 a 49151 D) De 49152 a 65535","A) De 0 a 1023 Por quê: No Linux, só o root pode escutar em portas abaixo de 1024 por padrão. Dica de prova: Portas bem conhecidas: 0 a 1023. ✗ B) Incorreta. Não existem. ✗ C) Incorreta. Portas registradas. ✗ D) Incorreta. Portas dinâmicas ou efêmeras."
+"Qual comando consulta diretamente o servidor DNS e mostra detalhes da resposta, como seções e TTL? A) dig B) ss C) ping D) route",A) dig Por quê: dig e host consultam o DNS; getent hosts usa a ordem do nsswitch. Dica de prova: Consulta DNS detalhada: dig. ✗ B) Incorreta. Lista sockets. ✗ C) Incorreta. Testa conectividade. ✗ D) Incorreta. Mostra rotas no formato antigo.
+"Qual comando edita o /etc/passwd com bloqueio, evitando alterações simultâneas? A) pwedit B) vigr C) visudo D) vipw",D) vipw Por quê: vipw edita o passwd e vigr edita o group; -s edita as versões shadow. Dica de prova: Editar passwd com segurança: vipw. ✗ A) Incorreta. Comando inexistente. ✗ B) Incorreta. Edita o /etc/group. ✗ C) Incorreta. Edita o sudoers.
+"Com hosts: files dns no nsswitch.conf, um nome existe no /etc/hosts e no DNS com IPs diferentes. Qual IP as aplicações usam? A) Os dois alternados B) O do DNS C) O do /etc/hosts D) Nenhum, por conflito",C) O do /etc/hosts Por quê: A ordem da linha hosts define a prioridade das fontes. Dica de prova: files antes de dns: vale o /etc/hosts. ✗ A) Incorreta. Não há alternância. ✗ B) Incorreta. O DNS vem depois. ✗ D) Incorreta. Não há erro.
+Qual comando mostra os trabalhos na fila da impressora padrão? A) lpr B) lpadmin C) lprm D) lpq,"D) lpq Por quê: lpr imprime, lpq mostra a fila, lprm remove e lpstat mostra o estado. Dica de prova: Fila de impressão: lpq. ✗ A) Incorreta. Envia trabalhos para impressão. ✗ B) Incorreta. Configura impressoras. ✗ C) Incorreta. Remove trabalhos da fila."
+"Qual protocolo é usado com frequência para acessar a tela de máquinas virtuais no KVM, como no virt-manager? A) SNMP B) SFTP C) SMB D) SPICE",D) SPICE Por quê: SPICE e VNC são comuns para consoles de VMs. Dica de prova: Console de VM no KVM: SPICE. ✗ A) Incorreta. Gerencia dispositivos. ✗ B) Incorreta. Transfere arquivos. ✗ C) Incorreta. Compartilha arquivos.
+"Qual comando executa backup.sh como o usuário oracle, usando sudo? A) sudo -u oracle ./backup.sh B) sudo -l oracle ./backup.sh C) sudo -g oracle ./backup.sh D) sudo -k oracle ./backup.sh","A) sudo -u oracle ./backup.sh Por quê: Sem -u, o sudo executa como root. Dica de prova: Rodar como outro usuário: sudo -u. ✗ B) Incorreta. Lista privilégios. ✗ C) Incorreta. Define o grupo. ✗ D) Incorreta. Invalida credenciais."
+Um script recém-criado retorna Permission denied ao ser executado com ./script.sh. O que falta? A) Permissão de execução no arquivo B) Um alias com o nome do script C) Uma variável PATH mais longa D) Uma linha export no início,A) Permissão de execução no arquivo Por quê: Scripts precisam do bit x ou devem ser chamados como bash script.sh. Dica de prova: Permission denied: falta chmod +x. ✗ B) Incorreta. Não resolve a permissão. ✗ C) Incorreta. O caminho ./ já foi indicado. ✗ D) Incorreta. Não resolve a permissão.
+Por que é recomendado gerar um certificado de revogação logo após criar uma chave GnuPG? A) Para acelerar a cifragem B) Para exportar a chave privada C) Para invalidar a chave perdida D) Para aumentar o tamanho da chave,C) Para invalidar a chave perdida Por quê: gpg --gen-revoke gera o certificado; guarde-o em local seguro. Dica de prova: Certificado de revogação: invalidar chave perdida. ✗ A) Incorreta. Não tem esse efeito. ✗ B) Incorreta. Não é o objetivo. ✗ D) Incorreta. Não altera a chave.
+"Qual comando mostra quando o sistema foi reiniciado recentemente, a partir do histórico de logins? A) id reboot B) last -f /etc/passwd C) last reboot D) who -u",C) last reboot Por quê: O wtmp registra reinicializações como o pseudousuário reboot. Dica de prova: Histórico de reboots: last reboot. ✗ A) Incorreta. Não mostra reinicializações. ✗ B) Incorreta. Arquivo inadequado. ✗ D) Incorreta. Mostra sessões e ociosidade.
+Qual opção do journald.conf limita o espaço em disco usado pelo journal persistente? A) ForwardToSyslog= B) SystemMaxUse= C) RuntimeMaxUse= D) MaxRetentionSec=,B) SystemMaxUse= Por quê: SystemMaxUse vale para /var/log/journal; RuntimeMaxUse para /run/log/journal. Dica de prova: Limite em disco: SystemMaxUse. ✗ A) Incorreta. Repassa ao syslog. ✗ C) Incorreta. Limita o journal em memória. ✗ D) Incorreta. Limita pelo tempo.
+Qual protocolo permite que um terminal remoto obtenha a tela de login gráfica de um servidor X pela rede? A) SMTP B) XDMCP C) DHCP D) LDAP,B) XDMCP Por quê: O XDMCP não é criptografado e deve ser usado com cuidado. Dica de prova: Login gráfico remoto no X: XDMCP. ✗ A) Incorreta. Envia e-mails. ✗ C) Incorreta. Distribui endereços IP. ✗ D) Incorreta. Acessa diretórios.
+"Quantos hosts utilizáveis há em uma rede /30, comum em enlaces ponto a ponto? A) 6 B) 4 C) 2 D) 14","C) 2 Por quê: Redes /30 têm 4 endereços, com 2 utilizáveis. Dica de prova: /30: 2 hosts. ✗ A) Incorreta. Seria o caso de /29. ✗ B) Incorreta. Inclui rede e broadcast. ✗ D) Incorreta. Seria o caso de /28."
+Qual comando do CUPS cancela o trabalho de impressão 17? A) cancel 17 B) lpstat 17 C) lpr 17 D) lpq 17,A) cancel 17 Por quê: cancel (CUPS) e lprm (estilo BSD) removem trabalhos. Dica de prova: Cancelar impressão: cancel ou lprm. ✗ B) Incorreta. Mostra estados. ✗ C) Incorreta. Imprime um arquivo. ✗ D) Incorreta. Mostra a fila.
+Qual comando executa uma tarefa única em 30 minutos usando um temporizador transitório do systemd? A) systemctl start --on-active=30m /usr/local/bin/tarefa B) timedatectl --on-active=30m /usr/local/bin/tarefa C) systemd-run --on-active=30m /usr/local/bin/tarefa D) journalctl --on-active=30m /usr/local/bin/tarefa,"C) systemd-run --on-active=30m /usr/local/bin/tarefa Por quê: systemd-run cria unidades transitórias, inclusive com agendamento. Dica de prova: Timer temporário: systemd-run. ✗ A) Incorreta. Opção inválida. ✗ B) Incorreta. Ajusta data e hora. ✗ D) Incorreta. Consulta logs."
+Qual comando mostra quem está conectado e o que cada usuário está executando? A) Comando w B) Comando df C) Comando su D) Comando id,A) Comando w Por quê: who lista sessões; w mostra também carga e comando atual. Dica de prova: Quem está e fazendo o quê: w. ✗ B) Incorreta. Mostra uso de disco. ✗ C) Incorreta. Troca de usuário. ✗ D) Incorreta. Mostra identidades do usuário.
+Qual porta e protocolo o syslog tradicional usa para receber mensagens pela rede? A) 514/UDP B) 389/TCP C) 25/TCP D) 161/UDP,"A) 514/UDP Por quê: O rsyslog também aceita TCP, geralmente na mesma porta. Dica de prova: Syslog remoto: 514/UDP. ✗ B) Incorreta. É LDAP. ✗ C) Incorreta. É SMTP. ✗ D) Incorreta. É SNMP."
+"Em sistemas que usam systemd-networkd, onde ficam os arquivos de configuração das interfaces? A) /etc/sysconfig/interfaces/ B) /etc/network/if-up.d/ C) /etc/NetworkManager/conf.d/ D) /etc/systemd/network/",D) /etc/systemd/network/ Por quê: O systemd-networkd lê arquivos .network em /etc/systemd/network. Dica de prova: systemd-networkd: /etc/systemd/network. ✗ A) Incorreta. Não é o local padrão. ✗ B) Incorreta. Scripts do ifupdown. ✗ C) Incorreta. Configura o NetworkManager.
+Qual opção do ssh indica um arquivo de chave privada específico para a conexão? A) ssh -l ~/.ssh/chave_prod usuario@servidor B) ssh -p ~/.ssh/chave_prod usuario@servidor C) ssh -i ~/.ssh/chave_prod usuario@servidor D) ssh -o ~/.ssh/chave_prod usuario@servidor,C) ssh -i ~/.ssh/chave_prod usuario@servidor Por quê: A diretiva IdentityFile no ~/.ssh/config faz o mesmo. Dica de prova: Chave específica: ssh -i. ✗ A) Incorreta. -l define o login. ✗ B) Incorreta. -p define a porta. ✗ D) Incorreta. -o define opções.
+Qual comando avisa o usuário 7 dias antes de a senha expirar? A) chage -M 7 usuario B) chage -E 7 usuario C) chage -I 7 usuario D) chage -W 7 usuario,"D) chage -W 7 usuario Por quê: chage -W define o aviso, -M a validade e -E a expiração da conta. Dica de prova: Aviso de expiração: chage -W. ✗ A) Incorreta. Define validade máxima. ✗ B) Incorreta. Define expiração da conta. ✗ C) Incorreta. Define dias de inatividade."
+Qual comando mostra se as impressoras estão ativas e aceitando trabalhos? A) lpstat -p B) lpr -p C) lpstat -d D) lprm -p,A) lpstat -p Por quê: lpstat -t mostra um resumo completo; -p o estado das impressoras. Dica de prova: Estado das impressoras: lpstat -p. ✗ B) Incorreta. Opção inválida para lpr. ✗ C) Incorreta. Mostra a impressora padrão. ✗ D) Incorreta. Opção inválida para lprm.
+Qual recurso de acessibilidade lê em voz alta o conteúdo da tela para usuários com deficiência visual? A) Software de leitura de tela B) Teclas de aderência C) Tema de alto contraste D) Teclas de repetição lenta,"A) Software de leitura de tela Por quê: O Orca é o leitor de tela comum em desktops Linux; há também lupa, teclado virtual e braille. Dica de prova: Fala do conteúdo da tela: leitor de tela. ✗ B) Incorreta. Ajudam a usar atalhos com uma mão. ✗ C) Incorreta. Melhora a visibilidade, sem fala. ✗ D) Incorreta. Evitam repetições acidentais."
+Qual comando publica a chave pública GnuPG do usuário em um servidor de chaves? A) gpg --list-keys ID_DA_CHAVE B) gpg --edit-key ID_DA_CHAVE C) gpg --recv-keys ID_DA_CHAVE D) gpg --send-keys ID_DA_CHAVE,D) gpg --send-keys ID_DA_CHAVE Por quê: --keyserver define o servidor; --recv-keys busca chaves de outras pessoas. Dica de prova: Publicar chave: gpg --send-keys. ✗ A) Incorreta. Lista chaves. ✗ B) Incorreta. Edita chaves. ✗ C) Incorreta. Baixa chaves.
+"O /etc/cron.allow não existe e o /etc/cron.deny contém o usuário estagiario. O que acontece? A) Ninguém pode usar o crontab B) Só estagiario fica sem acesso C) Só estagiario pode usar o crontab D) Todos podem, inclusive estagiario","B) Só estagiario fica sem acesso Por quê: Sem cron.allow, o cron.deny lista os bloqueados. Dica de prova: cron.deny: bloqueia os listados. ✗ A) Incorreta. Não é o efeito. ✗ C) Incorreta. Seria o caso do cron.allow. ✗ D) Incorreta. O deny bloqueia o listado."
+O que é: Arquivos de shell de login?105 Shells e Scripts,"O bash de login lê /etc/profile e depois o primeiro que existir entre ~/.bash_profile, ~/.bash_login e ~/.profile. Ao sair de um shell de login, executa ~/.bash_logout. O /etc/profile costuma ler os .sh de /etc/profile.d/."
+O que é: Arquivos de shell interativo?105 Shells e Scripts,"~/.bashrc é lido por shells interativos sem login e é o lugar de aliases e funções pessoais. Em sistemas Debian, /etc/bash.bashrc vale para todos os usuários em shells interativos."
+O que é: /etc/environment?105 Shells e Scripts,"Define variáveis para todos os usuários no formato VAR=valor; é lido pelo PAM, não pelo shell, e não é um script (aceita só atribuições simples)."
+O que é: /etc/skel x /etc/profile.d?105 Shells e Scripts,"/etc/skel só é copiado para usuários novos. Para acrescentar variáveis ao ambiente de login de todos sem editar o /etc/profile, coloca-se um script em /etc/profile.d/."
+O que é: source e .?105 Shells e Scripts,"source arquivo ou . arquivo executam os comandos no shell atual, sem exigir permissão de execução (só leitura). Executar com ./script cria um processo filho, então variáveis exportadas nele somem quando termina."
+O que é: Variáveis e ambiente?105 Shells e Scripts,"Atribuição sem espaço ao redor do = e sem $ (HOJE=valor). VAR=valor comando define a variável só para aquele processo (env faz o mesmo); export altera o shell atual. set lista variáveis e funções, inclusive não exportadas; env e printenv mostram só o ambiente exportado; declare -f lista funções."
+"O que é: PATH, PS1 e PS2?105 Shells e Scripts","PATH define onde procurar comandos (incluir ~/bin para executar scripts pelo nome). PS1 é o prompt principal, com sequências como \u (usuário), \h (máquina) e \w (diretório); PS2 é o prompt de continuação."
+O que é: Aliases?105 Shells e Scripts,"alias cria apelidos; unalias remove (unalias -a remove todos). Um alias criado no terminal some ao abrir outro: para persistir, coloque no ~/.bashrc. unset remove variáveis e funções, não aliases."
+O que é: Parâmetros especiais?105 Shells e Scripts,"$0 é o nome do script; $1, $2... os argumentos; $# a quantidade; $@ todos (com aspas, ""$@"" preserva argumentos com espaços); $? o código de saída do último comando. shift descarta $1 e desloca os demais (shift N desloca N)."
+O que é: Shebang e permissão?105 Shells e Scripts,A primeira linha #!/bin/bash define o interpretador. Para rodar com ./script.sh é preciso o bit x; sem ele vem Permission denied (alternativa: bash script.sh).
+O que é: Testes com [ ]?105 Shells e Scripts,"Arquivos: -f arquivo comum, -d diretório, -e existe, -r leitura, -x execução, -s tamanho maior que zero. Strings: -z vazia, -n não vazia, = e != para comparar. Números: -eq, -ne, -lt, -le, -gt, -ge. Aspas em ""$VAR"" evitam erros com valores vazios."
+O que é: Aritmética e substituição de comando?105 Shells e Scripts,"$(( )) avalia expressões inteiras (10/3 dá 3; para decimais, bc ou awk). $(comando) ou crases capturam a saída; $( ) é preferível por aninhar com facilidade."
+O que é: Estruturas de controle?105 Shells e Scripts,"if condição; then ...; elif ...; else ...; fi. case valor in padrão) ... ;; esac. for var in lista; do ...; done; while repete enquanto a condição é verdadeira e until enquanto é falsa. O if avalia o código de saída do comando (grep -q retorna 0 quando encontra, sem imprimir)."
+O que é: Códigos de saída e && / ||?105 Shells e Scripts,"Zero indica sucesso; outros valores, erros definidos pelo script (exit 3). && executa o segundo se o primeiro deu certo; || executa se falhou; ; executa sempre. Em funções, return define o status sem encerrar o script; exit termina o shell."
+O que é: Funções?105 Shells e Scripts,Escritas como nome() { comandos; } ou function nome { comandos; }. alias não define funções.
+O que é: read e printf?105 Shells e Scripts,"read lê da entrada padrão: -p mostra um prompt, -s oculta a digitação (senhas), -n espera um número de caracteres, -a lê para um vetor, -r não trata barras invertidas. while read linha percorre um arquivo linha por linha. printf usa formatos como %s, %d e \n."
+O que é: Depuração?105 Shells e Scripts,"bash -n verifica a sintaxe sem executar; bash -x (ou set -x) mostra cada comando antes de executar, e set +x desativa."
+"⚠ Pegadinha: Achar que a variável exportada em ./config.sh some por causa de maiúsculas, do cron ou de permissão de root.Como não cair?",O script rodou em processo filho. Para afetar o shell atual: source config.sh ou . config.sh.
+⚠ Pegadinha: Aplicar o ~/.bashrc com bash ~/.bashrc ou chmod +x.Como não cair?,bash abre um subshell e chmod não aplica nada. Use source ~/.bashrc.
+⚠ Pegadinha: Escrever TOTAL=$(A + B) para somar.Como não cair?,$( ) tentaria executar o comando A. Aritmética é $((A + B)).
+⚠ Pegadinha: Esperar 3.33 de echo $((10 / 3)).Como não cair?,$(( )) só trabalha com inteiros: imprime 3.
+⚠ Pegadinha: Comparar strings com -eq ou -gt.Como não cair?,-eq e -gt são numéricos. Strings usam = e !=.
+⚠ Pegadinha: Usar -n para testar variável vazia ou -s para string.Como não cair?,-z testa vazia; -n não vazia; -s testa arquivo com tamanho maior que zero.
+⚠ Pegadinha: Usar [ -d /backup ] && mkdir /backup para criar se não existir.Como não cair?,&& só criaria se já existisse. O certo é [ -d /backup ] || mkdir /backup.
+⚠ Pegadinha: Usar tar ... && mail para avisar falha.Como não cair?,"&& roda em caso de sucesso; ; roda sempre; | envia a saída. Para falha, ||."
+⚠ Pegadinha: Testar quantidade de argumentos com $? ou $0.Como não cair?,$# é a quantidade; $? é o código de saída; $0 o nome do script. Ex.: if [ $# -ne 2 ]; then.
+⚠ Pegadinha: Escrever HOJE='date +%F' ou $HOJE=$(date +%F).Como não cair?,Aspas simples guardam o texto literal e não se usa $ na atribuição. Correto: HOJE=$(date +%F).
+⚠ Pegadinha: Usar for i in seq 1 5 ou for f in ls .log.Como não cair?,Sem substituição o for percorre as palavras literais. Use $(seq 1 5) e o glob *.log.
+⚠ Pegadinha: Usar exit 1 dentro da função para devolver erro.Como não cair?,exit encerra o script inteiro; return 1 encerra só a função.
+⚠ Pegadinha: Usar unset ll para remover um alias.Como não cair?,unset remove variáveis e funções; alias se remove com unalias ll.
+⚠ Pegadinha: Escrever o shebang como !#/bin/bash ou #/bin/bash.Como não cair?,A ordem é #! seguido do caminho: #!/bin/bash.
+Se o enunciado trouxer: aplicar mudanças no terminal atual sem abrir outroPense em…,source ~/.bashrc (ou .)
+Se o enunciado trouxer: variável exportada sumiu depois do scriptPense em…,Processo filho; usar source
+Se o enunciado trouxer: variáveis para todos sem editar /etc/profilePense em…,/etc/profile.d/
+"Se o enunciado trouxer: VAR=valor lido pelo PAM, não pelo shellPense em…",/etc/environment
+Se o enunciado trouxer: alias para todos os usuários em shells interativos (Debian)Pense em…,/etc/bash.bashrc
+Se o enunciado trouxer: alias some ao abrir novo terminalPense em…,Colocar no ~/.bashrc
+Se o enunciado trouxer: executar ao sair do shell de loginPense em…,~/.bash_logout
+Se o enunciado trouxer: sem ~/.bash_profile nem ~/.bash_loginPense em…,~/.profile
+Se o enunciado trouxer: Permission denied ao rodar ./script.shPense em…,Falta o bit de execução
+Se o enunciado trouxer: ver cada comando antes de executarPense em…,bash -x ou set -x
+Se o enunciado trouxer: verificar sintaxe sem executarPense em…,bash -n
+Se o enunciado trouxer: saber se o texto aparece sem mostrar linhasPense em…,grep -q dentro do if
+Se o enunciado trouxer: senha não deve aparecer ao digitarPense em…,read -s
+Se o enunciado trouxer: percorrer argumentos preservando espaçosPense em…,"""$@"""
+~/.bash_profile (e não ~/.bashrc): quando é a escolha certa?,Variáveis só no login (shell de login).
+~/.bashrc (e não ~/.bash_profile): quando é a escolha certa?,Aliases e funções em cada terminal interativo sem login.
+Variáveis só no login (shell de login). É ~/.bash_profile ou ~/.bashrc?,~/.bash_profile
+Aliases e funções em cada terminal interativo sem login. É ~/.bash_profile ou ~/.bashrc?,~/.bashrc
+source script / . script (e não ./script): quando é a escolha certa?,Aplicar mudanças no shell atual (variáveis permanecem).
+./script (e não source script / . script): quando é a escolha certa?,Executar em processo filho; o ambiente do shell atual não muda.
+Aplicar mudanças no shell atual (variáveis permanecem). É source script / . script ou ./script?,source script / . script
+Executar em processo filho; o ambiente do shell atual não muda. É source script / . script ou ./script?,./script
+$(( )) (e não $( )): quando é a escolha certa?,Cálculo aritmético inteiro.
+$( ) (e não $(( ))): quando é a escolha certa?,Substituição de comando (captura a saída).
+Cálculo aritmético inteiro. É $(( )) ou $( )?,$(( ))
+Substituição de comando (captura a saída). É $(( )) ou $( )?,$( )
+= / != (e não -eq / -gt / -ne): quando é a escolha certa?,Comparar strings.
+-eq / -gt / -ne (e não = / !=): quando é a escolha certa?,Comparar números.
+Comparar strings. É = / != ou -eq / -gt / -ne?,= / !=
+Comparar números. É = / != ou -eq / -gt / -ne?,-eq / -gt / -ne
+&& (e não ||): quando é a escolha certa?,Executar o segundo comando só se o primeiro der certo.
+|| (e não &&): quando é a escolha certa?,Executar o segundo só se o primeiro falhar (ex.: [ -d /backup ] || mkdir /backup).
+Executar o segundo comando só se o primeiro der certo. É && ou ||?,&&
+Executar o segundo só se o primeiro falhar (ex.: [ -d /backup ] || mkdir /backup). É && ou ||?,||
+bash -n (e não bash -x): quando é a escolha certa?,Verificar sintaxe sem executar.
+bash -x (e não bash -n): quando é a escolha certa?,Executar mostrando cada comando (rastreamento).
+Verificar sintaxe sem executar. É bash -n ou bash -x?,bash -n
+Executar mostrando cada comando (rastreamento). É bash -n ou bash -x?,bash -x
+return (e não exit): quando é a escolha certa?,Encerrar só a função com um código.
+exit (e não return): quando é a escolha certa?,Encerrar o script/shell inteiro.
+Encerrar só a função com um código. É return ou exit?,return
+Encerrar o script/shell inteiro. É return ou exit?,exit
+O que é: Modelo cliente-servidor do X11?106 Interfaces de Usuário e Desktops,"No X11, o servidor X é quem exibe e roda na máquina local, onde está a tela; os programas são clientes. Ao abrir um programa remoto, o cliente X roda no servidor remoto e desenha na tela local."
+O que é: DISPLAY?106 Interfaces de Usuário e Desktops,"Variável que indica ao cliente X onde exibir a janela. O formato é host:display.tela; vazio antes do : indica a máquina local, então DISPLAY=:0 é o display 0 local. XAUTHORITY aponta o arquivo de autorização do X."
+O que é: ssh -X e X11Forwarding?106 Interfaces de Usuário e Desktops,"ssh -X usuario@servidor executa um programa gráfico remoto e o exibe localmente. No servidor, o sshd_config precisa de X11Forwarding yes e o xauth instalado. É mais seguro que liberar o servidor X na rede."
+O que é: xhost +?106 Interfaces de Usuário e Desktops,"Libera o servidor X para qualquer máquina, por isso é inseguro. O controle por xauth ou o encaminhamento X pelo SSH são as alternativas seguras."
+O que é: Wayland?106 Interfaces de Usuário e Desktops,Protocolo de exibição que vem substituindo o X11; o compositor atua como servidor de exibição e gerencia a exibição.
+O que é: XWayland?106 Interfaces de Usuário e Desktops,Mantém a compatibilidade com aplicativos feitos apenas para X11 em uma sessão Wayland.
+O que é: Xorg e xorg.conf?106 Interfaces de Usuário e Desktops,Xorg é um servidor de exibição. A configuração tradicional fica em /etc/X11/xorg.conf; hoje o Xorg detecta quase tudo sozinho e ajustes ficam em /etc/X11/xorg.conf.d. XFree86 é uma implementação antiga do X11.
+O que é: Gerenciador de exibição?106 Interfaces de Usuário e Desktops,"Display manager como GDM, LightDM ou SDDM: mostra a tela de login gráfica, autentica e inicia a sessão gráfica do usuário."
+O que é: Gerenciador de janelas x ambiente de desktop?106 Interfaces de Usuário e Desktops,"O ambiente de desktop (GNOME, KDE Plasma, Xfce, Cinnamon) reúne gerenciador de janelas, painéis e aplicativos. O gerenciador de janelas sozinho não inclui navegador nem escritório."
+O que é: XDMCP?106 Interfaces de Usuário e Desktops,Protocolo que permite a um terminal remoto obter a tela de login gráfica de um servidor X pela rede. Não é criptografado e deve ser usado com cuidado.
+"O que é: VNC, RDP e SPICE?106 Interfaces de Usuário e Desktops","VNC é comum para ver a mesma tela do usuário remotamente. RDP é o protocolo do cliente de área de trabalho remota nativo do Windows; no Linux, o xrdp oferece RDP. SPICE (e VNC) são comuns para consoles de VMs no KVM, como no virt-manager."
+O que é: Teclas de aderência (sticky keys)?106 Interfaces de Usuário e Desktops,"Mantêm Ctrl, Shift e Alt ativos até a próxima tecla, para quem não consegue pressionar duas teclas ao mesmo tempo."
+O que é: Teclas lentas e de repercussão?106 Interfaces de Usuário e Desktops,"Teclas lentas (slow keys) só aceitam teclas mantidas pressionadas por um tempo. Teclas de repercussão (bounce keys) ignoram repetições rápidas da mesma tecla. Ambas reduzem acionamentos acidentais, por exemplo por tremores."
+O que é: Teclas do mouse?106 Interfaces de Usuário e Desktops,"Mouse keys permitem mover o cursor usando o teclado numérico, para quem não consegue usar um mouse."
+O que é: Leitor de tela e linha braille?106 Interfaces de Usuário e Desktops,O Orca é o leitor de tela comum em desktops Linux e lê o conteúdo em voz alta. Linhas braille têm celas táteis e funcionam junto com leitores de tela.
+O que é: Baixa visão e teclado virtual?106 Interfaces de Usuário e Desktops,"Alto contraste, fontes grandes e lupa de tela ajudam pessoas com baixa visão. O teclado virtual na tela permite digitar clicando, para quem não usa o teclado físico."
+"⚠ Pegadinha: Achar que o servidor X roda no servidor remoto, onde está o programa.Como não cair?",No X11 o servidor é quem exibe: fica na máquina local. No servidor remoto roda o cliente X.
+"⚠ Pegadinha: Pensar que :0 em DISPLAY=:0 é a porta 0, a primeira placa de rede ou o primeiro usuário.Como não cair?",É o display 0 da máquina local; o formato é host:display.tela e host vazio = local.
+"⚠ Pegadinha: Escolher XAUTHORITY, TERM ou HOSTNAME para dizer onde exibir a janela.Como não cair?",Onde exibir é DISPLAY. XAUTHORITY é o arquivo de autorização e TERM o tipo de terminal.
+⚠ Pegadinha: Achar que o ssh -X sem janelas se resolve com PasswordAuthentication ou PermitRootLogin.Como não cair?,"A diretiva é X11Forwarding yes no sshd_config do servidor, com xauth instalado."
+"⚠ Pegadinha: Usar ssh -L, -N ou -q para exibir programa gráfico remoto.Como não cair?","-X é encaminhamento X11. -L encaminha portas locais, -N não executa comandos e -q reduz mensagens."
+"⚠ Pegadinha: Pensar que xhost + só bloqueia usuário, desliga o X ou apaga preferências.Como não cair?",xhost + libera o servidor X a qualquer máquina; por isso é inseguro.
+"⚠ Pegadinha: Confundir XWayland com xargs, xinetd ou xdg-open pelo prefixo x.Como não cair?","xargs monta argumentos, xinetd é superservidor de rede, xdg-open abre arquivos. Compatibilidade X11 no Wayland é XWayland."
+⚠ Pegadinha: Marcar SPICE ou XDMCP como o protocolo que substitui o X11.Como não cair?,Quem substitui o X11 é o Wayland. SPICE é acesso a VMs e XDMCP é login remoto no X.
+"⚠ Pegadinha: Escolher systemd, CUPS ou Xorg como ambiente de desktop.Como não cair?","Ambientes de desktop: GNOME, KDE Plasma, Xfce, Cinnamon. Xorg é servidor de exibição; systemd gerencia serviços; CUPS é impressão."
+"⚠ Pegadinha: Confundir gerenciador de exibição com gerenciador de volumes, pacotes ou impressão.Como não cair?","GDM, LightDM e SDDM são gerenciadores de exibição: tela de login gráfica e início da sessão."
+⚠ Pegadinha: Usar teclas de aderência para quem pressiona a mesma tecla várias vezes sem querer.Como não cair?,Aderência mantém modificadores. Repetições rápidas acidentais = teclas de repercussão; pressão prolongada exigida = teclas lentas.
+⚠ Pegadinha: Marcar /etc/xdg/autostart ou /etc/xinetd.conf como configuração do servidor X.Como não cair?,A configuração tradicional do Xorg é /etc/X11/xorg.conf (ajustes em /etc/X11/xorg.conf.d).
+Se o enunciado trouxer: aplicativo X11 em sessão WaylandPense em…,XWayland
+Se o enunciado trouxer: compositor atua como servidor de exibiçãoPense em…,Wayland
+Se o enunciado trouxer: variável que diz ao cliente X onde exibirPense em…,DISPLAY
+Se o enunciado trouxer: ssh -X não abre janelasPense em…,X11Forwarding yes no sshd_config (e xauth no servidor)
+Se o enunciado trouxer: tela de login gráfica pela rede de um servidor XPense em…,XDMCP (sem criptografia)
+Se o enunciado trouxer: console de VM no KVM/virt-managerPense em…,SPICE (ou VNC)
+Se o enunciado trouxer: cliente de área de trabalho remota do WindowsPense em…,RDP (xrdp no Linux)
+Se o enunciado trouxer: ver a mesma tela do usuário remotamentePense em…,VNC
+"Se o enunciado trouxer: GDM, LightDM, SDDMPense em…",Gerenciador de exibição
+Se o enunciado trouxer: não consegue pressionar Ctrl e C juntosPense em…,Teclas de aderência
+Se o enunciado trouxer: mover o cursor pelo teclado numéricoPense em…,Teclas do mouse
+Se o enunciado trouxer: ler a tela em voz alta / celas táteisPense em…,Leitor de tela (Orca) / linha braille
+Servidor X (e não Cliente X): quando é a escolha certa?,"Roda na máquina local, onde está a tela, e exibe as janelas."
+Cliente X (e não Servidor X): quando é a escolha certa?,"É o programa; em acesso remoto, roda no servidor remoto onde está o programa."
+"Roda na máquina local, onde está a tela, e exibe as janelas. É Servidor X ou Cliente X?",Servidor X
+"É o programa; em acesso remoto, roda no servidor remoto onde está o programa. É Servidor X ou Cliente X?",Cliente X
+DISPLAY (e não XAUTHORITY): quando é a escolha certa?,Indica onde exibir a janela (host:display.tela).
+XAUTHORITY (e não DISPLAY): quando é a escolha certa?,Indica o arquivo de autorização do X.
+Indica onde exibir a janela (host:display.tela). É DISPLAY ou XAUTHORITY?,DISPLAY
+Indica o arquivo de autorização do X. É DISPLAY ou XAUTHORITY?,XAUTHORITY
+Teclas de aderência (e não Teclas lentas): quando é a escolha certa?,Não consegue pressionar Ctrl e C ao mesmo tempo: mantém modificadores ativos.
+Teclas lentas (e não Teclas de aderência): quando é a escolha certa?,Aciona teclas sem querer: só aceita teclas mantidas pressionadas por um tempo.
+Não consegue pressionar Ctrl e C ao mesmo tempo: mantém modificadores ativos. É Teclas de aderência ou Teclas lentas?,Teclas de aderência
+Aciona teclas sem querer: só aceita teclas mantidas pressionadas por um tempo. É Teclas de aderência ou Teclas lentas?,Teclas lentas
+Teclas de repercussão (e não Teclas de repetição): quando é a escolha certa?,Ignora repetições rápidas da mesma tecla pressionada várias vezes sem querer.
+Teclas de repetição (e não Teclas de repercussão): quando é a escolha certa?,Controla a repetição de caracteres.
+Ignora repetições rápidas da mesma tecla pressionada várias vezes sem querer. É Teclas de repercussão ou Teclas de repetição?,Teclas de repercussão
+Controla a repetição de caracteres. É Teclas de repercussão ou Teclas de repetição?,Teclas de repetição
+VNC (e não RDP): quando é a escolha certa?,Acesso remoto vendo a mesma tela do usuário.
+RDP (e não VNC): quando é a escolha certa?,Cliente de área de trabalho remota nativo do Windows acessando o Linux (xrdp).
+Acesso remoto vendo a mesma tela do usuário. É VNC ou RDP?,VNC
+Cliente de área de trabalho remota nativo do Windows acessando o Linux (xrdp). É VNC ou RDP?,RDP
+Wayland (e não XWayland): quando é a escolha certa?,"Protocolo de exibição que substitui o X11, com o compositor como servidor."
+XWayland (e não Wayland): quando é a escolha certa?,Camada que roda apps X11 dentro de uma sessão Wayland.
+"Protocolo de exibição que substitui o X11, com o compositor como servidor. É Wayland ou XWayland?",Wayland
+Camada que roda apps X11 dentro de uma sessão Wayland. É Wayland ou XWayland?,XWayland
+O que é: /etc/passwd?107 Tarefas Administrativas,"Campos: login, senha, UID, GID, comentário, home e shell. O x no segundo campo indica que a senha está no /etc/shadow. O passwd é legível por todos; o shadow só pelo root."
+O que é: /etc/shadow e bloqueio?107 Tarefas Administrativas,"Guarda os hashes das senhas locais. Um ! no início do hash indica conta bloqueada, inserido por passwd -l ou usermod -L (desbloqueio com -u ou -U)."
+O que é: /etc/group e /etc/gshadow?107 Tarefas Administrativas,"/etc/group tem nome, senha (x), GID e lista de membros secundários. /etc/gshadow guarda as senhas criptografadas e os administradores dos grupos, como o shadow complementa o passwd."
+O que é: useradd?107 Tarefas Administrativas,"-m cria o home copiando /etc/skel; -u define o UID; -e define a data de expiração da conta; -r cria conta de sistema; -d define o home, -g o grupo primário, -c o comentário, -f dias de inatividade, -k o diretório modelo. Altera /etc/passwd e /etc/shadow (e pode alterar /etc/group e /etc/gshadow)."
+O que é: Padrões de criação de contas?107 Tarefas Administrativas,"/etc/default/useradd guarda os padrões do useradd (shell, diretório base), vistos ou alterados com useradd -D. /etc/login.defs define faixas de UID (UID_MIN, geralmente 1000) e a validade máxima padrão das senhas para contas novas. /etc/skel contém os modelos como .bashrc e .profile."
+O que é: usermod?107 Tarefas Administrativas,-aG acrescenta grupos secundários (só -G substitui a lista); -l muda o login; -d muda o home e -m move o conteúdo; -s muda o shell (chsh também); -g muda o grupo primário; -c o comentário; -L/-U bloqueiam e desbloqueiam.
+O que é: userdel e grupos?107 Tarefas Administrativas,"userdel -r apaga a conta, o home e o spool de e-mail; sem -r o home fica. groupadd cria, groupmod altera (-n renomeia, -g muda o GID) e groupdel remove grupos. gpasswd -a adiciona e -d remove membros. newgrp inicia um shell com outro grupo efetivo."
+O que é: chage e passwd?107 Tarefas Administrativas,"chage -l mostra a validade; -M validade máxima; -m mínimo; -W dias de aviso; -I inatividade após expirar; -E expiração da conta; -d 0 força troca. passwd -l bloqueia, -u desbloqueia, -e força troca no próximo login, -d remove a senha e -S mostra o estado."
+O que é: Consultas de identidade e consistência?107 Tarefas Administrativas,"id mostra UID, GID e grupos (id -u só o UID, id -un o nome); groups mostra os grupos. getent passwd consulta todas as fontes do nsswitch, inclusive LDAP. pwck verifica /etc/passwd e /etc/shadow e grpck verifica group e gshadow. vipw e vigr editam com bloqueio (-s edita os shadow)."
+O que é: UID 0 e contas de serviço?107 Tarefas Administrativas,UID 0 identifica o superusuário: qualquer conta com UID 0 tem poderes de root. Contas de serviço usam /sbin/nologin ou /bin/false para impedir login interativo.
+O que é: Crontab?107 Tarefas Administrativas,"Campos: minuto, hora, dia do mês, mês, dia da semana (0 ou 7 é domingo) e comando. */N significa a cada N unidades. Atalhos: @reboot, @hourly, @daily, @weekly, @monthly, @yearly. crontab -l lista, -e edita, -r remove, -u usuario permite ao root gerenciar outro usuário. MAILTO define quem recebe a saída (vazio desativa)."
+O que é: Crontabs do sistema?107 Tarefas Administrativas,"/etc/crontab e arquivos de /etc/cron.d têm um sexto campo com o usuário. Pacotes colocam tarefas em /etc/cron.d. Scripts sem horário vão em /etc/cron.hourly, daily, weekly ou monthly. Crontabs dos usuários ficam em /var/spool/cron (no Debian, /var/spool/cron/crontabs)."
+O que é: cron.allow e cron.deny?107 Tarefas Administrativas,"Se cron.allow existe, só os listados usam o crontab. Se não existe, cron.deny lista os bloqueados. A mesma lógica vale para at.allow e at.deny: sem at.allow e com at.deny vazio, todos podem usar o at; sem os dois arquivos, só o root."
+"O que é: at, batch e anacron?107 Tarefas Administrativas","at agenda tarefas únicas (at 23:00, at now + 1 hour, at -f arquivo 18:00); atq e atrm listam e removem (= at -l e at -d). batch executa quando a carga do sistema baixar. anacron executa tarefas periódicas atrasadas em máquinas desligadas; o /etc/anacrontab tem período em dias, atraso em minutos, identificador e comando."
+O que é: Timers do systemd?107 Tarefas Administrativas,backup.timer ativa por padrão backup.service (a diretiva Unit= aponta outra). OnCalendar define horários de calendário; OnBootSec e OnUnitActiveSec definem intervalos. systemctl list-timers mostra a próxima e a última execução. systemd-run --on-active=30m cria um temporizador transitório.
+O que é: Locale?107 Tarefas Administrativas,"Formato idioma_TERRITÓRIO.codificação (pt_BR.UTF-8). Precedência: LC_ALL, depois LC_*, depois LANG. LC_TIME controla datas, LC_NUMERIC números, LC_MONETARY moeda, LC_COLLATE ordenação. LANG=C (ou LC_ALL=C) deixa mensagens e ordenação previsíveis. locale mostra o atual, locale -a lista os disponíveis e localectl set-locale define o do sistema."
+O que é: Codificação e fuso?107 Tarefas Administrativas,"UTF-8 codifica Unicode com tamanho variável e é compatível com ASCII nos primeiros 128 caracteres; iconv -f origem -t destino converte codificações. O fuso fica em /etc/localtime (link para /usr/share/zoneinfo), definido com timedatectl set-timezone Região/Cidade; tzselect ajuda a achar o nome. date -u mostra UTC e date +%F ou +%Y-%m-%d o formato ISO."
+⚠ Pegadinha: Usar usermod -G docker ana para adicionar ao grupo docker.Como não cair?,"Sem -a, -G substitui a lista de grupos secundários. O certo é usermod -aG docker ana (ou gpasswd -a ana docker)."
+⚠ Pegadinha: Usar usermod -d novo_home sem -m esperando mover os arquivos.Como não cair?,-d só altera o caminho; -m move o conteúdo antigo: usermod -d /home/novo -m usuario.
+⚠ Pegadinha: Usar usermod -d ou -c para renomear o login.Como não cair?,Renomear login é usermod -l novo antigo; -d é home e -c é comentário.
+⚠ Pegadinha: Usar chage -M 7 para avisar 7 dias antes.Como não cair?,"Aviso é -W; -M é validade máxima, -E expiração da conta, -I inatividade."
+⚠ Pegadinha: Bloquear com passwd -d ou ver validade com passwd -l.Como não cair?,passwd -d remove a senha; passwd -l bloqueia; validade é chage -l.
+⚠ Pegadinha: Achar que userdel temp apaga o home.Como não cair?,Sem -r o diretório pessoal permanece; userdel -r apaga home e spool de e-mail.
+⚠ Pegadinha: Ler o x do /etc/passwd como conta bloqueada ou sem senha.Como não cair?,x indica que a senha está no /etc/shadow; bloqueio é ! no início do hash no shadow.
+"⚠ Pegadinha: Com só estagiario no cron.deny e sem cron.allow, achar que ninguém ou só ele usa o cron.Como não cair?","Sem cron.allow, o deny lista os bloqueados: só estagiario fica sem acesso."
+⚠ Pegadinha: Escrever 15 * * * * para rodar a cada 15 minutos.Como não cair?,15 no primeiro campo é o minuto 15 de cada hora. A cada 15 minutos é */15 * * * *.
+⚠ Pegadinha: Ler 30 2 * * 1 como dia 1 do mês.Como não cair?,O 1 está no quinto campo (dia da semana): é às 2h30 de toda segunda-feira.
+⚠ Pegadinha: Usar crontab -e joao ou crontab -l joao como root.Como não cair?,Outro usuário exige -u: crontab -u joao -l.
+⚠ Pegadinha: Usar localectl set-timezone para o fuso.Como não cair?,localectl trata locale e teclado; fuso é timedatectl set-timezone.
+"⚠ Pegadinha: Escolher TZ, LANGUAGE ou LC_CTYPE como a variável que sobrepõe todas.Como não cair?",LC_ALL tem precedência sobre LC_* e LANG; TZ é fuso e LANGUAGE ordena idiomas de mensagens.
+"⚠ Pegadinha: Usar tr, file ou locale para converter ISO-8859-1 em UTF-8.Como não cair?",Conversão de codificação é iconv -f ISO-8859-1 -t UTF-8.
+Se o enunciado trouxer: rodar uma única vez hoje às 23hPense em…,at 23:00
+Se o enunciado trouxer: quando a carga do sistema estiver baixaPense em…,batch
+Se o enunciado trouxer: notebook desligado à noite perde tarefas diáriasPense em…,anacron (/etc/anacrontab)
+Se o enunciado trouxer: pacote instala tarefa agendada sem editar /etc/crontabPense em…,/etc/cron.d/
+Se o enunciado trouxer: rodar uma vez por dia sem escrever horárioPense em…,/etc/cron.daily/
+Se o enunciado trouxer: executar script sempre que o sistema iniciarPense em…,@reboot no crontab
+Se o enunciado trouxer: para quem vai o e-mail com a saída do cronPense em…,MAILTO
+Se o enunciado trouxer: tarefa única em 30 minutos com systemdPense em…,systemd-run --on-active=30m
+Se o enunciado trouxer: horário de calendário em timerPense em…,OnCalendar
+Se o enunciado trouxer: modelos copiados para o home de novos usuáriosPense em…,/etc/skel
+Se o enunciado trouxer: faixas de UID para contas comuns e de sistemaPense em…,/etc/login.defs
+Se o enunciado trouxer: conta de serviço sem login interativoPense em…,/sbin/nologin ou /bin/false
+Se o enunciado trouxer: entrada do usuário mesmo vinda do LDAPPense em…,getent passwd usuario
+Se o enunciado trouxer: saída de comandos em inglês e ordenação previsívelPense em…,LANG=C (ou LC_ALL=C)
+usermod -aG (e não usermod -G): quando é a escolha certa?,Acrescentar grupo secundário mantendo os outros.
+usermod -G (e não usermod -aG): quando é a escolha certa?,Substituir toda a lista de grupos secundários.
+Acrescentar grupo secundário mantendo os outros. É usermod -aG ou usermod -G?,usermod -aG
+Substituir toda a lista de grupos secundários. É usermod -aG ou usermod -G?,usermod -G
+chage -M (e não chage -E): quando é a escolha certa?,Validade máxima da senha em dias (ex.: expira a cada 90 dias).
+chage -E (e não chage -M): quando é a escolha certa?,Data de expiração da conta inteira.
+Validade máxima da senha em dias (ex.: expira a cada 90 dias). É chage -M ou chage -E?,chage -M
+Data de expiração da conta inteira. É chage -M ou chage -E?,chage -E
+chage -W (e não chage -I): quando é a escolha certa?,Dias de aviso antes de a senha expirar.
+chage -I (e não chage -W): quando é a escolha certa?,Dias de inatividade após a senha expirar.
+Dias de aviso antes de a senha expirar. É chage -W ou chage -I?,chage -W
+Dias de inatividade após a senha expirar. É chage -W ou chage -I?,chage -I
+cron.allow (e não cron.deny): quando é a escolha certa?,"Se existe, só os listados podem usar o crontab."
+cron.deny (e não cron.allow): quando é a escolha certa?,Só vale quando cron.allow não existe; lista os bloqueados.
+"Se existe, só os listados podem usar o crontab. É cron.allow ou cron.deny?",cron.allow
+Só vale quando cron.allow não existe; lista os bloqueados. É cron.allow ou cron.deny?,cron.deny
+at (e não crontab / anacron): quando é a escolha certa?,Tarefa única em um horário (batch: quando a carga baixar).
+crontab / anacron (e não at): quando é a escolha certa?,Tarefa repetida; anacron recupera execuções perdidas em máquina desligada.
+Tarefa única em um horário (batch: quando a carga baixar). É at ou crontab / anacron?,at
+Tarefa repetida; anacron recupera execuções perdidas em máquina desligada. É at ou crontab / anacron?,crontab / anacron
+/etc/crontab e /etc/cron.d (e não crontab do usuário): quando é a escolha certa?,Têm sexto campo com o usuário que executa.
+crontab do usuário (e não /etc/crontab e /etc/cron.d): quando é a escolha certa?,Sem campo de usuário; roda como o próprio dono.
+Têm sexto campo com o usuário que executa. É /etc/crontab e /etc/cron.d ou crontab do usuário?,/etc/crontab e /etc/cron.d
+Sem campo de usuário; roda como o próprio dono. É /etc/crontab e /etc/cron.d ou crontab do usuário?,crontab do usuário
+LC_ALL (e não LANG): quando é a escolha certa?,Sobrepõe todas as configurações de localização.
+LANG (e não LC_ALL): quando é a escolha certa?,"Valor padrão, usado quando LC_ALL e LC_* não estão definidos."
+Sobrepõe todas as configurações de localização. É LC_ALL ou LANG?,LC_ALL
+"Valor padrão, usado quando LC_ALL e LC_* não estão definidos. É LC_ALL ou LANG?",LANG
+O que é: hwclock --systohc e --hctosys?108 Serviços Essenciais do Sistema,hwclock lê e ajusta o relógio de hardware (RTC). --systohc grava a hora do sistema no RTC; --hctosys copia a hora do RTC para o sistema. hwclock --show mostra a hora guardada no RTC.
+O que é: /etc/adjtime?108 Serviços Essenciais do Sistema,"Registra se o relógio de hardware está em UTC ou em hora local e guarda ajustes do RTC. Em servidores Linux, o recomendado é manter o RTC em UTC. Não confundir com /etc/localtime (fuso do sistema) nem /etc/timezone (nome do fuso)."
+O que é: timedatectl?108 Serviços Essenciais do Sistema,"Mostra e ajusta hora, fuso e NTP em sistemas com systemd. timedatectl status (ou sem argumentos) mostra horário de sistema, horário do RTC e se o NTP está ativo; set-ntp true ativa a sincronização; set-timezone define o fuso; list-timezones lista os fusos do banco em /usr/share/zoneinfo; set-time espera uma data e hora."
+O que é: chrony e chronyc?108 Serviços Essenciais do Sistema,"O chronyd sincroniza o relógio; a configuração fica em /etc/chrony.conf ou /etc/chrony/chrony.conf, com fontes definidas pelas diretivas server e pool (ex.: pool 2.pool.ntp.org iburst). chronyc sources lista as fontes, chronyc tracking mostra o desvio (offset) e a referência, e chronyc makestep força a correção imediata em vez do ajuste gradual."
+O que é: ntpd e ntpq -p?108 Serviços Essenciais do Sistema,"O ntpd lê os servidores de tempo em /etc/ntp.conf. ntpq -p lista os pares consultados e o estado de sincronização (equivale ao chronyc sources). ntpd -p é opção de arquivo de PID, não lista pares."
+O que é: NTP: porta e stratum?108 Serviços Essenciais do Sistema,"O NTP usa 123/UDP. O stratum indica a distância até a referência: stratum 0 são relógios de referência e cada nível acima soma um. Clientes NTP no Linux: chronyd, ntpd e systemd-timesyncd (cliente SNTP simples do systemd)."
+O que é: systemd-journald e journalctl?108 Serviços Essenciais do Sistema,"O journald coleta as mensagens do sistema; com systemd, ele costuma atender o socket /dev/log. journalctl -u filtra por unidade, -f acompanha em tempo real, -k mostra só o kernel, -r inverte a ordem, --since/--until filtram por tempo, --list-boots lista inicializações (usadas com -b) e --disk-usage mostra o espaço ocupado."
+O que é: journald.conf?108 Serviços Essenciais do Sistema,"Em /etc/systemd/journald.conf: Storage aceita volatile, persistent, auto e none (persistent grava em disco em /var/log/journal). SystemMaxUse limita o espaço do journal persistente e RuntimeMaxUse o journal em memória (/run/log/journal). ForwardToSyslog=yes repassa as mensagens a um syslog tradicional como o rsyslog."
+O que é: Limpeza do journal?108 Serviços Essenciais do Sistema,journalctl --vacuum-size (ex.: =500M) e --vacuum-time limpam arquivos arquivados antigos; SystemMaxUse limita de forma permanente. --rotate só gira os arquivos atuais e --flush grava o journal volátil em disco.
+O que é: rsyslog?108 Serviços Essenciais do Sistema,"Configuração principal em /etc/rsyslog.conf e regras extras em arquivos .conf de /etc/rsyslog.d. O seletor é facility.prioridade e a prioridade inclui as mais graves (mail.err = mail com erro ou pior). Para log remoto, @ envia por UDP e @@ por TCP; o syslog tradicional recebe em 514/UDP. Em distribuições modernas, o journald coleta e o rsyslog grava os arquivos em /var/log; os dois coexistem."
+O que é: Prioridades do syslog?108 Serviços Essenciais do Sistema,"Da mais grave para a menos grave: emerg, alert, crit, err, warning, notice, info, debug. As facilities local0 a local7 são livres para uso."
+O que é: Arquivos de log por distribuição?108 Serviços Essenciais do Sistema,Debian: autenticação em /var/log/auth.log e log geral em /var/log/syslog. Família Red Hat: autenticação em /var/log/secure e log geral em /var/log/messages; há também /var/log/maillog e /var/log/cron.
+O que é: logrotate?108 Serviços Essenciais do Sistema,"Gira, compacta e apaga logs antigos; costuma rodar diariamente por cron ou timer do systemd. Opções globais em /etc/logrotate.conf, que inclui as regras por pacote de /etc/logrotate.d/. rotate N mantém N cópias, compress compacta, e o bloco postrotate ... endscript recarrega o serviço após girar. logrotate -f força a rotação e -d só simula."
+O que é: logger e systemd-cat?108 Serviços Essenciais do Sistema,"logger grava mensagens no syslog/journal a partir de scripts: -t define a etiqueta (filtrável com journalctl -t), -p define facility.prioridade (ex.: local0.info), -f lê de um arquivo e -n define servidor remoto. systemd-cat -t conecta a saída de um comando ao journal."
+O que é: MTA e e-mail local?108 Serviços Essenciais do Sistema,"Postfix, Exim e Sendmail são MTAs; todos oferecem o comando sendmail por compatibilidade com programas. /etc/aliases redireciona e-mails locais e newaliases gera o banco usado pelo MTA; ~/.forward redireciona o e-mail do próprio usuário. mailq (equivale a sendmail -bp) mostra a fila; mail -s envia e, sem argumentos, lê a caixa em /var/spool/mail (ou /var/mail)."
+O que é: Comandos de impressão lp*?108 Serviços Essenciais do Sistema,"lpr imprime (-P escolhe a impressora, -# define cópias); lp é o estilo System V (-d destino, -n cópias). lpq mostra a fila, lprm ou cancel removem trabalhos. lpstat -d mostra a padrão, -p o estado das impressoras, -t o resumo completo, -o só os trabalhos, -a quem aceita e -r se o servidor roda."
+O que é: lpadmin e lpoptions?108 Serviços Essenciais do Sistema,"lpadmin gerencia impressoras do CUPS: -p configura, -x remove, -d define a padrão do sistema, -u define permissões de uso. lpoptions -d define a padrão do próprio usuário, gravada em ~/.cups/lpoptions."
+O que é: Arquivos e portas do CUPS?108 Serviços Essenciais do Sistema,"Configuração do servidor em /etc/cups/cupsd.conf; impressoras em /etc/cups/printers.conf (gerado pelo CUPS, não editar com o serviço rodando); spool em /var/spool/cups; logs em /var/log/cups. A interface web fica na porta 631/TCP. PPD descreve os recursos de um modelo; impressoras de rede usam URIs como ipp://, socket://, lpd:// e usb://."
+⚠ Pegadinha: Achar que lpstat -P financeiro arquivo imprime na fila financeiro.Como não cair?,Quem imprime é lpr (-P escolhe a impressora) ou lp (-d destino). lpstat só mostra estado; lpq mostra a fila; lprm remove.
+⚠ Pegadinha: Usar lp -P para escolher a impressora no estilo System V.Como não cair?,-P é do lpr. No lp o destino é -d: lp -d financeiro nota.pdf.
+⚠ Pegadinha: Usar lpr -P 3 para imprimir 3 cópias.Como não cair?,"-P escolhe a impressora chamada 3. Cópias no lpr são -# 3; no lp, -n 3."
+⚠ Pegadinha: Marcar *.* @10.0.0.5:514 para log remoto por TCP.Como não cair?,Um @ é UDP; dois @@ é TCP. # no início seria comentário.
+⚠ Pegadinha: Achar que journalctl -k nginx ou -f nginx filtra o serviço nginx.Como não cair?,"Filtro por unidade é -u. -k mostra só o kernel, -f acompanha tudo e -r inverte a ordem."
+⚠ Pegadinha: Usar journalctl --until 1 hour ago para ver a última hora.Como não cair?,"--until mostra até uma hora atrás, ou seja, o oposto. A última hora é --since 1 hour ago."
+⚠ Pegadinha: Escolher Storage=volatile para gravar o journal em disco.Como não cair?,volatile mantém só em memória e none descarta. Disco persistente é Storage=persistent.
+⚠ Pegadinha: Usar journalctl --disk-usage=500M ou --rotate para reduzir o journal.Como não cair?,--disk-usage só mostra o uso e --rotate só gira. Reduzir é --vacuum-size=500M (ou --vacuum-time).
+⚠ Pegadinha: Marcar NTP como 123/TCP.Como não cair?,NTP é 123/UDP. 514/UDP é syslog e 53/UDP é DNS.
+⚠ Pegadinha: Usar prerotate ou firstaction para recarregar o serviço depois da rotação.Como não cair?,"Depois de girar é postrotate ... endscript; prerotate e firstaction rodam antes, e compress não usa bloco."
+⚠ Pegadinha: Escolher logrotate -d para forçar a rotação.Como não cair?,-d só simula (teste de regras); forçar é -f. -s define o arquivo de estado e -v mostra detalhes.
+⚠ Pegadinha: Usar logger -p backup para etiquetar a mensagem.Como não cair?,-p espera facility.prioridade (ex.: local0.info). Etiqueta é -t; -f lê de arquivo e -n define servidor.
+⚠ Pegadinha: Achar que chronyc tracking ou sources corrige o relógio atrasado.Como não cair?,tracking e sources só mostram. Correção imediata é chronyc makestep; normalmente o chrony ajusta aos poucos para não saltar o horário.
+⚠ Pegadinha: Marcar mail.* para pegar só erros de e-mail.Como não cair?,mail.* pega todas as prioridades; *.err pega erros de todas as facilities; mail.none exclui. Só erros de mail é mail.err.
+"Se o enunciado trouxer: girar, compactar e apagar logs antigosPense em…",logrotate (/etc/logrotate.conf e /etc/logrotate.d/)
+Se o enunciado trouxer: gravar mensagem no log a partir de um scriptPense em…,logger (ou systemd-cat para o journal)
+Se o enunciado trouxer: desvio/offset do relógio no chronyPense em…,chronyc tracking
+"Se o enunciado trouxer: relógio atrasado, corrigir imediatamente no chronyPense em…",chronyc makestep
+Se o enunciado trouxer: RTC em UTC ou hora localPense em…,/etc/adjtime
+Se o enunciado trouxer: ativar sincronização NTP com systemdPense em…,timedatectl set-ntp true
+Se o enunciado trouxer: cliente SNTP simples do systemdPense em…,systemd-timesyncd
+Se o enunciado trouxer: socket local para enviar mensagens ao logPense em…,/dev/log
+Se o enunciado trouxer: postmaster deve ir para adminPense em…,/etc/aliases e depois newaliases
+Se o enunciado trouxer: mensagens aguardando envio na fila do MTAPense em…,mailq (= sendmail -bp)
+Se o enunciado trouxer: MTA escutando só em 127.0.0.1:25Pense em…,Evitar virar relay aberto
+Se o enunciado trouxer: comando sendmail em sistema com Postfix ou EximPense em…,Compatibilidade com programas
+Se o enunciado trouxer: interface web de administração do CUPSPense em…,Porta 631/TCP
+Se o enunciado trouxer: arquivo que descreve os recursos de um modelo de impressoraPense em…,PPD
+hwclock --systohc (e não hwclock --hctosys): quando é a escolha certa?,O relógio do sistema está certo e quero gravar no hardware (sistema -> RTC).
+hwclock --hctosys (e não hwclock --systohc): quando é a escolha certa?,Quero carregar no sistema a hora do relógio de hardware (RTC -> sistema).
+O relógio do sistema está certo e quero gravar no hardware (sistema -> RTC). É hwclock --systohc ou hwclock --hctosys?,hwclock --systohc
+Quero carregar no sistema a hora do relógio de hardware (RTC -> sistema). É hwclock --systohc ou hwclock --hctosys?,hwclock --hctosys
+chronyc tracking (e não chronyc sources): quando é a escolha certa?,Pergunta sobre desvio/offset e a fonte de referência atual.
+chronyc sources (e não chronyc tracking): quando é a escolha certa?,Pergunta sobre listar as fontes de tempo usadas e seu estado (equivalente ao ntpq -p no ntpd).
+Pergunta sobre desvio/offset e a fonte de referência atual. É chronyc tracking ou chronyc sources?,chronyc tracking
+Pergunta sobre listar as fontes de tempo usadas e seu estado (equivalente ao ntpq -p no ntpd). É chronyc tracking ou chronyc sources?,chronyc sources
+@ no rsyslog (e não @@ no rsyslog): quando é a escolha certa?,Envio de log remoto por UDP.
+@@ no rsyslog (e não @ no rsyslog): quando é a escolha certa?,Envio de log remoto por TCP.
+Envio de log remoto por UDP. É @ no rsyslog ou @@ no rsyslog?,@ no rsyslog
+Envio de log remoto por TCP. É @ no rsyslog ou @@ no rsyslog?,@@ no rsyslog
+SystemMaxUse= (e não RuntimeMaxUse=): quando é a escolha certa?,Limitar o journal persistente em disco (/var/log/journal).
+RuntimeMaxUse= (e não SystemMaxUse=): quando é a escolha certa?,Limitar o journal volátil em memória (/run/log/journal).
+Limitar o journal persistente em disco (/var/log/journal). É SystemMaxUse= ou RuntimeMaxUse=?,SystemMaxUse=
+Limitar o journal volátil em memória (/run/log/journal). É SystemMaxUse= ou RuntimeMaxUse=?,RuntimeMaxUse=
+lpadmin -d (e não lpoptions -d): quando é a escolha certa?,Definir a impressora padrão do sistema inteiro.
+lpoptions -d (e não lpadmin -d): quando é a escolha certa?,Usuário define a sua própria impressora padrão (~/.cups/lpoptions).
+Definir a impressora padrão do sistema inteiro. É lpadmin -d ou lpoptions -d?,lpadmin -d
+Usuário define a sua própria impressora padrão (~/.cups/lpoptions). É lpadmin -d ou lpoptions -d?,lpoptions -d
+/etc/aliases + newaliases (e não ~/.forward): quando é a escolha certa?,"O administrador redireciona e-mail de um usuário/alias, como postmaster, para outro."
+~/.forward (e não /etc/aliases + newaliases): quando é a escolha certa?,O próprio usuário redireciona seus e-mails sem mexer no /etc/aliases.
+"O administrador redireciona e-mail de um usuário/alias, como postmaster, para outro. É /etc/aliases + newaliases ou ~/.forward?",/etc/aliases + newaliases
+O próprio usuário redireciona seus e-mails sem mexer no /etc/aliases. É /etc/aliases + newaliases ou ~/.forward?,~/.forward
+/var/log/auth.log e /var/log/syslog (Debian) (e não /var/log/secure e /var/log/messages (Red Hat)): quando é a escolha certa?,Enunciado cita Debian: autenticação e log geral.
+/var/log/secure e /var/log/messages (Red Hat) (e não /var/log/auth.log e /var/log/syslog (Debian)): quando é a escolha certa?,Enunciado cita família Red Hat: autenticação e log geral.
+Enunciado cita Debian: autenticação e log geral. É /var/log/auth.log e /var/log/syslog (Debian) ou /var/log/secure e /var/log/messages (Red Hat)?,/var/log/auth.log e /var/log/syslog (Debian)
+Enunciado cita família Red Hat: autenticação e log geral. É /var/log/auth.log e /var/log/syslog (Debian) ou /var/log/secure e /var/log/messages (Red Hat)?,/var/log/secure e /var/log/messages (Red Hat)
+O que é: Sub-redes IPv4?109 Fundamentos de Rede,Hosts utilizáveis = 2^(32-prefixo) - 2 (rede e broadcast). /30 tem 4 endereços e 2 hosts; /28 tem 16 endereços e 14 hosts; /26 tem 64 e 62 hosts; /24 tem 254; /16 tem 65534. Cada bit a mais no prefixo dobra o número de sub-redes: /24 dividida em /26 gera quatro sub-redes.
+O que é: Endereço de rede e broadcast?109 Fundamentos de Rede,"Em /26 o último octeto avança em blocos de 64, então 192.168.10.77/26 está na rede 192.168.10.64 (broadcast 192.168.10.127). Em /28 os blocos são de 16: 192.168.1.0/28 tem broadcast 192.168.1.15 e a próxima rede é .16."
+O que é: Máscaras?109 Fundamentos de Rede,"Cada 255 representa 8 bits de rede: /8 = 255.0.0.0, /16 = 255.255.0.0, /24 = 255.255.255.0 e /25 = 255.255.255.128."
+O que é: Faixas especiais IPv4?109 Fundamentos de Rede,"Privadas (RFC 1918): 10.0.0.0/8 (classe A), 172.16.0.0/12 e 192.168.0.0/16; 172.32.x.x fica fora. 169.254.0.0/16 é link-local, usada quando não há DHCP. Loopback é 127.0.0.0/8 e multicast 224.0.0.0/4."
+O que é: IPv6: formato e abreviação?109 Fundamentos de Rede,"IPv6 tem 128 bits, escritos em 8 grupos hexadecimais. Zeros à esquerda podem sair e :: substitui uma única sequência de grupos zerados: 2001:0db8:0:0:0:0:0:1 vira 2001:db8::1. O :: só pode aparecer uma vez."
+O que é: IPv6: tipos de endereço?109 Fundamentos de Rede,"fe80::/10 é link-local (enlace local); ::1 é loopback; ff00::/8 é multicast; globais costumam começar com 2 ou 3. IPv6 não tem broadcast: usa unicast, multicast e anycast. Sub-redes de LAN usam /64 (64 bits de prefixo e 64 de interface); /128 identifica um único host."
+O que é: SLAAC e NDP?109 Fundamentos de Rede,"Com SLAAC, o host obtém endereço global sem DHCPv6, combinando o prefixo anunciado pelo roteador com um identificador de interface. O IPv6 não usa ARP: a descoberta de vizinhos (NDP) cumpre esse papel."
+O que é: TCP x UDP e protocolos de apoio?109 Fundamentos de Rede,"TCP é orientado a conexão e confiável, com handshake SYN, SYN-ACK, ACK; UDP envia datagramas sem confirmação. Ambos usam portas. ping usa ICMP (ping6 usa ICMPv6) e ARP descobre o MAC de um IPv4 na rede local."
+O que é: Portas?109 Fundamentos de Rede,"Bem conhecidas: 0 a 1023 (só root escuta abaixo de 1024 por padrão); registradas 1024 a 49151; dinâmicas 49152 a 65535. O arquivo /etc/services associa nomes de serviços a portas e protocolos (ex.: ssh 22/tcp, domain 53/udp)."
+O que é: Comandos ip (iproute2)?109 Fundamentos de Rede,"O iproute2 substitui ifconfig e route. ip addr show/add/del trata endereços; ip route show/add/del/get trata rotas (ip route show default mostra o gateway, ip route get simula a decisão de roteamento); ip link set eth0 up/down ativa interfaces e ip -s link mostra contadores; ip neigh show mostra a tabela de vizinhos (legado: arp -n). ip -4 e ip -6 filtram a família. Tudo o que é feito com ip se perde ao reiniciar."
+O que é: ss e netstat?109 Fundamentos de Rede,"ss substitui o netstat, mas os dois aparecem na prova. Opções do ss: -t TCP, -u UDP, -x Unix, -a todos, -l escuta, -n numérico, -p processo, -s resumo; aceita filtros de estado (ss -t state established). netstat -rn mostra a tabela de roteamento numérica (como route -n)."
+O que é: NetworkManager e nmcli?109 Fundamentos de Rede,nmcli general status mostra o estado geral; nmcli device status mostra os dispositivos; nmcli connection show lista as conexões; nmcli connection up/down ativa e desativa perfis; nmcli con modify grava IP fixo de forma persistente (depois aplicar com connection up); nmcli networking on/off liga e desliga toda a rede.
+O que é: Configuração persistente por distribuição?109 Fundamentos de Rede,"Debian com ifupdown: /etc/network/interfaces, aplicado com ifup/ifdown. Ubuntu com netplan: YAML em /etc/netplan, aplicado com netplan apply. systemd-networkd: arquivos .network em /etc/systemd/network/. Nome estático da máquina em /etc/hostname, definido com hostnamectl set-hostname."
+O que é: Resolução de nomes?109 Fundamentos de Rede,"/etc/hosts tem o formato IP nome apelidos e vale na hora. /etc/resolv.conf lista nameserver, search/domain (completam nomes curtos) e options. /etc/nsswitch.conf define a ordem: hosts: files dns consulta primeiro o /etc/hosts. Com systemd-resolved, o resolv.conf aponta para 127.0.0.53 e resolvectl status mostra os servidores DNS reais por interface."
+"O que é: dig, host e getent?109 Fundamentos de Rede","dig e host consultam só servidores DNS; getent hosts segue o nsswitch, como as aplicações. No dig: @servidor escolhe o servidor, tipos como A, AAAA, MX, NS, CNAME, PTR e TXT, -x faz reversa, +short resume, +trace mostra a delegação desde a raiz. host -t MX consulta um tipo e host IP faz reversa."
+O que é: Diagnóstico?109 Fundamentos de Rede,ping -c N envia N pacotes (sem -c continua até interromper); ping -6 testa IPv6. traceroute e tracepath mostram os roteadores no caminho; tracepath também descobre o MTU sem root. nc -zv host porta testa se a porta aceita TCP e nc -l porta abre uma porta em escuta. hostname -I lista rapidamente os IPs.
+⚠ Pegadinha: Contar 4 hosts em uma /30 ou 64 em uma /26.Como não cair?,Tire rede e broadcast: /30 = 2 hosts; /26 = 62; /16 = 65534.
+⚠ Pegadinha: Marcar 172.32.10.5 como privado porque começa com 172.Como não cair?,"A faixa privada é 172.16.0.0/12, que vai só até 172.31.x.x."
+⚠ Pegadinha: Abreviar como 2001::db8::1.Como não cair?,O :: só pode aparecer uma vez. Forma correta: 2001:db8::1.
+⚠ Pegadinha: Achar que o IPv6 usa broadcast ou ARP.Como não cair?,IPv6 usa multicast (e unicast/anycast) e a descoberta de vizinhos (NDP) no lugar do ARP.
+⚠ Pegadinha: Usar ip route del para remover um endereço ou ip addr add default via para gateway.Como não cair?,Endereço = ip addr; rota/gateway = ip route; interface = ip link; vizinho = ip neigh.
+⚠ Pegadinha: Achar que o dig acha um nome que está só no /etc/hosts.Como não cair?,"dig, host e nslookup consultam só o DNS. Para seguir o nsswitch, use getent hosts."
+"⚠ Pegadinha: Com hosts: files dns, pensar que o DNS vence ou que há conflito.Como não cair?",A ordem da linha hosts define a prioridade: o /etc/hosts vem primeiro e é usado.
+⚠ Pegadinha: Confundir search do resolv.conf com o servidor DNS primário.Como não cair?,search completa nomes curtos; o servidor é definido por nameserver.
+⚠ Pegadinha: Achar que ping pelo IP funciona e pelo nome não por causa de cabo ou gateway.Como não cair?,"Se o IP responde, a rede está ok: o problema é resolução de nomes (resolv.conf, nsswitch, DNS)."
+⚠ Pegadinha: Ler Network is unreachable como porta TCP fechada ou falha de DNS.Como não cair?,Significa que não há rota para a rede de destino; verifique com ip route. O ping nem usa TCP.
+⚠ Pegadinha: Usar ping -t 4 ou -i 4 para enviar 4 pacotes.Como não cair?,"-c define a quantidade; -i é intervalo, -s tamanho dos dados e -t o TTL."
+⚠ Pegadinha: Usar ss -u state established.Como não cair?,UDP não tem estado established; ss -t state established mostra conexões TCP estabelecidas.
+⚠ Pegadinha: Usar nc -z para abrir uma porta em escuta.Como não cair?,-z faz varredura sem dados; escutar é nc -l 9000 (algumas versões exigem nc -l -p 9000).
+⚠ Pegadinha: Usar ifconfig ou ip addr add para IP fixo persistente.Como não cair?,Ambos são temporários (ifconfig ainda é legado). Persistente no NetworkManager é nmcli con modify.
+Se o enunciado trouxer: endereço 169.254.x.x sem resposta do DHCPPense em…,Link-local
+Se o enunciado trouxer: fe80::Pense em…,IPv6 de enlace local (fe80::/10)
+"Se o enunciado trouxer: endereço global IPv6 sem DHCPv6, por anúncios do roteadorPense em…",SLAAC
+Se o enunciado trouxer: 127.0.0.53 no resolv.confPense em…,Resolvedor local do systemd-resolved (resolvectl status)
+Se o enunciado trouxer: resolver seguindo /etc/hosts e DNS como as aplicaçõesPense em…,getent hosts
+Se o enunciado trouxer: caminho de delegação desde os servidores raizPense em…,dig +trace
+Se o enunciado trouxer: consulta reversa de IPPense em…,dig -x IP (ou host IP)
+Se o enunciado trouxer: qual rota e interface serão usadas para um destinoPense em…,ip route get
+Se o enunciado trouxer: tabela de vizinhos com IP e MACPense em…,ip neigh show (legado arp -n)
+Se o enunciado trouxer: estatísticas de pacotes e erros por interfacePense em…,ip -s link
+Se o enunciado trouxer: rastrear caminho e descobrir MTU sem rootPense em…,tracepath
+Se o enunciado trouxer: testar se a porta 443 aceita conexões TCPPense em…,nc -zv servidor 443
+Se o enunciado trouxer: aplicar YAML de rede no UbuntuPense em…,netplan apply
+Se o enunciado trouxer: associar nomes de serviços às portasPense em…,/etc/services
+dig / host (e não getent hosts): quando é a escolha certa?,Consultar diretamente o servidor DNS (ignora /etc/hosts).
+getent hosts (e não dig / host): quando é a escolha certa?,"Resolver como as aplicações, seguindo /etc/nsswitch.conf (/etc/hosts e DNS)."
+Consultar diretamente o servidor DNS (ignora /etc/hosts). É dig / host ou getent hosts?,dig / host
+"Resolver como as aplicações, seguindo /etc/nsswitch.conf (/etc/hosts e DNS). É dig / host ou getent hosts?",getent hosts
+/etc/resolv.conf (e não /etc/nsswitch.conf): quando é a escolha certa?,"Quais servidores DNS consultar (nameserver, search)."
+/etc/nsswitch.conf (e não /etc/resolv.conf): quando é a escolha certa?,"Em que ordem consultar as fontes (files, dns)."
+"Quais servidores DNS consultar (nameserver, search). É /etc/resolv.conf ou /etc/nsswitch.conf?",/etc/resolv.conf
+"Em que ordem consultar as fontes (files, dns). É /etc/resolv.conf ou /etc/nsswitch.conf?",/etc/nsswitch.conf
+ip addr add/del (e não nmcli con modify): quando é a escolha certa?,"Alteração temporária de endereço, perdida ao reiniciar."
+nmcli con modify (e não ip addr add/del): quando é a escolha certa?,IP fixo persistente em uma conexão do NetworkManager.
+"Alteração temporária de endereço, perdida ao reiniciar. É ip addr add/del ou nmcli con modify?",ip addr add/del
+IP fixo persistente em uma conexão do NetworkManager. É ip addr add/del ou nmcli con modify?,nmcli con modify
+dig +short (e não dig +trace): quando é a escolha certa?,+short mostra só a resposta (o IP).
+dig +trace (e não dig +short): quando é a escolha certa?,+trace mostra toda a cadeia de delegação desde os servidores raiz.
++short mostra só a resposta (o IP). É dig +short ou dig +trace?,dig +short
++trace mostra toda a cadeia de delegação desde os servidores raiz. É dig +short ou dig +trace?,dig +trace
+traceroute (e não tracepath): quando é a escolha certa?,Mostrar os roteadores até o destino.
+tracepath (e não traceroute): quando é a escolha certa?,"Mostrar os saltos e também descobrir o MTU, sem exigir root."
+Mostrar os roteadores até o destino. É traceroute ou tracepath?,traceroute
+"Mostrar os saltos e também descobrir o MTU, sem exigir root. É traceroute ou tracepath?",tracepath
+ss -tlnp (e não ss -uan): quando é a escolha certa?,Portas TCP em escuta com os processos.
+ss -uan (e não ss -tlnp): quando é a escolha certa?,Todos os sockets UDP em formato numérico.
+Portas TCP em escuta com os processos. É ss -tlnp ou ss -uan?,ss -tlnp
+Todos os sockets UDP em formato numérico. É ss -tlnp ou ss -uan?,ss -uan
+"169.254.0.0/16 (e não 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16): quando é a escolha certa?",Link-local: máquina sem resposta do DHCP.
+"10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 (e não 169.254.0.0/16): quando é a escolha certa?",Faixas privadas da RFC 1918.
+"Link-local: máquina sem resposta do DHCP. É 169.254.0.0/16 ou 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16?",169.254.0.0/16
+"Faixas privadas da RFC 1918. É 169.254.0.0/16 ou 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16?","10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
+O que é: sudo?110 Segurança,"Permite menor privilégio e auditoria por usuário (registra quem executou o quê) e pede a senha do próprio usuário. sudo -l lista o que o usuário pode executar; -i abre shell de login como root; -s shell sem login; -u usuario executa como outro usuário (sem -u, root); -k invalida e -v renova a credencial em cache; -e edita arquivos como outro usuário."
+O que é: sudoers?110 Segurança,"Formato: quem máquinas=(como_quem) comandos; % indica grupo (%admin ALL=(ALL) ALL). NOPASSWD dispensa senha: backup ALL=(root) NOPASSWD: /usr/bin/rsync. Edite com visudo (trava e valida sintaxe); visudo -c só verifica; regras extras ficam em /etc/sudoers.d/, editadas com visudo -f."
+O que é: su x su -?110 Segurança,su - simula um login completo e carrega o ambiente do usuário de destino; su mantém boa parte do ambiente atual. O su - continua pedindo a senha.
+O que é: Auditoria de logins?110 Segurança,"last lê /var/log/wtmp e lista logins com data e origem; last reboot mostra reinicializações (pseudousuário reboot). lastb lê /var/log/btmp e mostra tentativas falhas, exigindo privilégios. who lista sessões, w mostra também carga e comando atual, who -b mostra a última inicialização (uptime -s também)."
+O que é: find para auditoria?110 Segurança,find / -nouser e -nogroup encontram arquivos órfãos após remover contas. find / -perm -o+w -type f procura arquivos que qualquer usuário pode alterar.
+O que é: lsof?110 Segurança,"Mostra arquivos, sockets e dispositivos abertos. -u usuário filtra por usuário; -i filtra conexões de rede (lsof -i :80 mostra quem usa a porta 80); -p espera PID; -c filtra pelo nome do comando; -d pelo descritor. ss -tlnp e fuser 80/tcp também ajudam."
+O que é: Limites de recursos?110 Segurança,"ulimit -a mostra os limites do shell atual (como arquivos abertos). Limites persistentes por usuário ficam em /etc/security/limits.conf, aplicados no login pelo módulo pam_limits."
+O que é: /etc/nologin e reforço do host?110 Segurança,"Quando /etc/nologin existe, impede o login de usuários comuns e mostra seu conteúdo; só o root entra. Desativar serviços sem uso (systemctl disable --now, remoção de pacotes) reduz a superfície de ataque. nmap faz varredura de portas, apenas com autorização."
+O que é: Ativação por socket?110 Segurança,"Unidades .socket do systemd substituem o antigo superservidor inetd/xinetd, iniciando o serviço só quando chega uma conexão."
+O que é: Chaves SSH do usuário?110 Segurança,"ssh-keygen -t ed25519 gera o par; ssh-copy-id usuario@servidor acrescenta a pública ao ~/.ssh/authorized_keys remoto. ssh-keygen -l -f mostra a impressão digital, -p troca a frase secreta (sem mudar o par), -y gera a pública a partir da privada, -R remove um host do known_hosts. ssh-agent guarda chaves em memória e ssh-add as carrega, pedindo a senha uma vez."
+O que é: Arquivos do SSH?110 Segurança,"~/.ssh/authorized_keys fica no servidor; ~/.ssh/known_hosts fica no cliente e guarda as chaves dos servidores conhecidos; ~/.ssh/config cria atalhos com blocos Host, HostName, Port, User e IdentityFile. As chaves do próprio servidor ficam em /etc/ssh/ssh_host_*. Permissões: ~/.ssh 700 e chave privada 600."
+O que é: sshd_config?110 Segurança,"PermitRootLogin no impede login direto do root; PasswordAuthentication no aceita só chaves; Port define a porta e ListenAddress o endereço. sshd -t testa a configuração antes de reiniciar, e após mudar é preciso recarregar o serviço."
+O que é: Túneis SSH?110 Segurança,"-L porta_local:destino:porta encaminha porta local (ex.: ssh -L 8080:interno:80 usuario@bastion); -R abre a porta no servidor e envia ao lado do cliente; -D cria proxy SOCKS dinâmico; -N não abre shell (útil para túneis) e -f envia para segundo plano. -i indica a chave privada, -l o login, -p a porta."
+O que é: GnuPG: chaves?110 Segurança,"gpg --gen-key (ou --full-generate-key) cria o par em ~/.gnupg (permissões restritas, como 700). --list-keys lista públicas e --list-secret-keys privadas. --import adiciona chave recebida; --export -a exporta a pública em texto (--armor); --send-keys publica em servidor de chaves e --recv-keys baixa. Gere logo um certificado de revogação (gpg --gen-revoke) para invalidar a chave se ela for perdida."
+O que é: GnuPG: cifrar e assinar?110 Segurança,gpg -e -r destinatario cifra com a chave pública do destinatário; gpg -c (--symmetric) cifra com senha; gpg -d (--decrypt) decifra com a chave privada. --sign assina com a privada; --clearsign mantém o texto legível com a assinatura; --detach-sign gera assinatura separada; --verify confere com a pública.
+⚠ Pegadinha: Achar que o sudo dispensa a senha do usuário ou dá acesso total a todos.Como não cair?,"O sudo pede a senha do próprio usuário, permite controle fino e registra quem executou o quê."
+⚠ Pegadinha: Usar @admin ou admin para dar permissão ao grupo admin no sudoers.Como não cair?,Grupo se indica com %: %admin ALL=(ALL) ALL. # seria comentário e sem % é usuário.
+⚠ Pegadinha: Achar que backup ALL=(ALL) /usr/bin/rsync dispensa senha.Como não cair?,Sem NOPASSWD: a senha é exigida. backup NOPASSWD=(root) ALL é sintaxe inválida.
+⚠ Pegadinha: Usar sudo -e ou nano para editar o sudoers.Como não cair?,visudo trava e valida a sintaxe antes de salvar; sudo -e edita arquivos comuns.
+⚠ Pegadinha: Procurar a chave anterior do servidor em authorized_keys.Como não cair?,authorized_keys fica no servidor. A chave do servidor fica no known_hosts do cliente; remova com ssh-keygen -R servidor após confirmar a mudança.
+⚠ Pegadinha: Usar ssh-keygen ou ssh-keyscan para instalar a chave no servidor.Como não cair?,ssh-keygen gera localmente e ssh-keyscan coleta chaves de hosts. Instalar é ssh-copy-id.
+⚠ Pegadinha: Usar ssh -l ou -p para indicar a chave privada.Como não cair?,"-i indica a chave; -l é o login, -p a porta e -o opções."
+⚠ Pegadinha: Trocar -L por -R ou -D no túnel.Como não cair?,-L = porta local; -R = porta aberta no servidor remoto; -D = proxy SOCKS; -X = X11.
+"⚠ Pegadinha: Usar ssh -v, -A ou -t para criar só o túnel sem shell.Como não cair?","-N não executa comando remoto. -v detalha, -A encaminha o agente e -t força terminal."
+⚠ Pegadinha: Desativar senha com PubkeyAuthentication no.Como não cair?,Isso desativaria as chaves. Para aceitar só chaves: PasswordAuthentication no.
+⚠ Pegadinha: Usar chmod 755 ou 644 no ~/.ssh.Como não cair?,O diretório deve ser 700 (644 tira a execução do diretório) e a chave privada 600.
+⚠ Pegadinha: Exportar com --export-secret-keys para enviar a outras pessoas.Como não cair?,Isso exporta a privada. Para compartilhar: gpg --export -a (só a pública).
+⚠ Pegadinha: Usar gpg -e para cifrar só com senha ou -s para cifrar.Como não cair?,-c é simétrico (senha); -e usa chave pública; -s assina.
+⚠ Pegadinha: Usar lsof -p www-data ou lsof -d 80.Como não cair?,-p espera PID e -d descritor. Usuário é -u; porta de rede é -i :80.
+Se o enunciado trouxer: aviso de identificação do servidor mudouPense em…,~/.ssh/known_hosts no cliente; ssh-keygen -R após confirmar
+Se o enunciado trouxer: não digitar a frase da chave a cada conexãoPense em…,ssh-agent e ssh-add
+"Se o enunciado trouxer: atalho ssh prod com host, porta e usuárioPense em…","~/.ssh/config (Host, HostName, Port, User)"
+Se o enunciado trouxer: checar o sshd_config antes de reiniciarPense em…,sshd -t
+Se o enunciado trouxer: regras extras do sudo sem editar o arquivo principalPense em…,/etc/sudoers.d/ com visudo -f
+Se o enunciado trouxer: verificar a sintaxe do sudoers sem editarPense em…,visudo -c
+Se o enunciado trouxer: arquivos sem dono válido após remover contasPense em…,find / -nouser (e -nogroup)
+Se o enunciado trouxer: impedir login de usuários comuns com mensagemPense em…,/etc/nologin
+Se o enunciado trouxer: limite persistente de arquivos abertos por usuárioPense em…,/etc/security/limits.conf (pam_limits)
+Se o enunciado trouxer: substituto do inetd/xinetdPense em…,Unidades .socket do systemd
+Se o enunciado trouxer: qual processo usa a porta 80Pense em…,lsof -i :80
+Se o enunciado trouxer: tentativas de login falhasPense em…,lastb (/var/log/btmp)
+Se o enunciado trouxer: invalidar a chave GnuPG perdidaPense em…,Certificado de revogação (gpg --gen-revoke)
+Se o enunciado trouxer: assinatura junto ao texto legívelPense em…,gpg --clearsign
+~/.ssh/authorized_keys (e não ~/.ssh/known_hosts): quando é a escolha certa?,No servidor: chaves públicas autorizadas a entrar na conta.
+~/.ssh/known_hosts (e não ~/.ssh/authorized_keys): quando é a escolha certa?,No cliente: chaves dos servidores já conhecidos (aviso de identificação alterada).
+No servidor: chaves públicas autorizadas a entrar na conta. É ~/.ssh/authorized_keys ou ~/.ssh/known_hosts?,~/.ssh/authorized_keys
+No cliente: chaves dos servidores já conhecidos (aviso de identificação alterada). É ~/.ssh/authorized_keys ou ~/.ssh/known_hosts?,~/.ssh/known_hosts
+ssh -L (e não ssh -R): quando é a escolha certa?,Acessar pela porta local um serviço do lado remoto/interno.
+ssh -R (e não ssh -L): quando é a escolha certa?,Expor um serviço local em uma porta do servidor remoto.
+Acessar pela porta local um serviço do lado remoto/interno. É ssh -L ou ssh -R?,ssh -L
+Expor um serviço local em uma porta do servidor remoto. É ssh -L ou ssh -R?,ssh -R
+last (e não lastb): quando é a escolha certa?,Logins bem-sucedidos (wtmp) e reinicializações.
+lastb (e não last): quando é a escolha certa?,"Tentativas de login que falharam (btmp, exige privilégios)."
+Logins bem-sucedidos (wtmp) e reinicializações. É last ou lastb?,last
+"Tentativas de login que falharam (btmp, exige privilégios). É last ou lastb?",lastb
+gpg -e -r (e não gpg -c): quando é a escolha certa?,Cifrar com a chave pública de um destinatário.
+gpg -c (e não gpg -e -r): quando é a escolha certa?,"Cifrar com senha, sem par de chaves (simétrico)."
+Cifrar com a chave pública de um destinatário. É gpg -e -r ou gpg -c?,gpg -e -r
+"Cifrar com senha, sem par de chaves (simétrico). É gpg -e -r ou gpg -c?",gpg -c
+gpg --clearsign (e não gpg --detach-sign): quando é a escolha certa?,Assinatura junto ao texto legível.
+gpg --detach-sign (e não gpg --clearsign): quando é a escolha certa?,Assinatura em arquivo separado.
+Assinatura junto ao texto legível. É gpg --clearsign ou gpg --detach-sign?,gpg --clearsign
+Assinatura em arquivo separado. É gpg --clearsign ou gpg --detach-sign?,gpg --detach-sign
+sudo -i (e não sudo -l): quando é a escolha certa?,Abrir shell de login como root.
+sudo -l (e não sudo -i): quando é a escolha certa?,Listar o que o usuário pode executar com sudo.
+Abrir shell de login como root. É sudo -i ou sudo -l?,sudo -i
+Listar o que o usuário pode executar com sudo. É sudo -i ou sudo -l?,sudo -l
+su - (e não su): quando é a escolha certa?,Carregar o ambiente de login completo do usuário de destino.
+su (e não su -): quando é a escolha certa?,Trocar de usuário mantendo boa parte do ambiente atual.
+Carregar o ambiente de login completo do usuário de destino. É su - ou su?,su -
+Trocar de usuário mantendo boa parte do ambiente atual. É su - ou su?,su
