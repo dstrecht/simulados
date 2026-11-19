@@ -2,7 +2,7 @@
 
 Simulados de certificação grátis, com questões comentadas, domínios com peso e plano de estudo: https://strechtsimulados.com.br/
 
-Este repositório publica o site. São 85 certificações, com 85 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
+Este repositório publica o site. São 86 certificações, com 86 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
 
 ## Simulados
 
@@ -86,6 +86,7 @@ Este repositório publica o site. São 85 certificações, com 85 guias de prepa
 - [Simulado PMI-CPMAI](https://strechtsimulados.com.br/simulado-pmi-cpmai/)
 - [Simulado PMP](https://strechtsimulados.com.br/simulado-pmp/)
 - [Simulado Power BI Data Analyst PL-300](https://strechtsimulados.com.br/simulado-pl-300/)
+- [Simulado PQO B3](https://strechtsimulados.com.br/simulado-pqo-b3/)
 - [Simulado PSM I](https://strechtsimulados.com.br/simulado-psm-i/)
 - [Simulado PSM II](https://strechtsimulados.com.br/simulado-psm-ii/)
 - [Simulado PSPO I](https://strechtsimulados.com.br/simulado-pspo-i/)
