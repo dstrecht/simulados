@@ -2,7 +2,7 @@
 
 Simulados de certificação grátis, com questões comentadas, domínios com peso e plano de estudo: https://strechtsimulados.com.br/
 
-Este repositório publica o site. São 86 certificações, com 86 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
+Este repositório publica o site. São 87 certificações, com 87 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
 
 ## Simulados
 
@@ -49,6 +49,7 @@ Este repositório publica o site. São 86 certificações, com 86 guias de prepa
 - [Simulado EXIN ISFS ISO 27001](https://strechtsimulados.com.br/simulado-exin-isfs-iso-27001/)
 - [Simulado EXIN Machine Learning](https://strechtsimulados.com.br/simulado-exin-machine-learning/)
 - [Simulado EXIN PDPF](https://strechtsimulados.com.br/simulado-exin-pdpf/)
+- [Simulado FBB-100](https://strechtsimulados.com.br/simulado-fbb-100/)
 - [Simulado GitHub Actions GH-200](https://strechtsimulados.com.br/simulado-gh-200/)
 - [Simulado GitHub Agentic AI Business Professional GH-700](https://strechtsimulados.com.br/simulado-gh-700/)
 - [Simulado GitHub Agentic AI Developer GH-600](https://strechtsimulados.com.br/simulado-gh-600/)
