@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-<url><loc>https://strechtsimulados.com.br/</loc><lastmod>2026-11-25</lastmod></url>
+<url><loc>https://strechtsimulados.com.br/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/aws/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/az-900-vs-ai-900/</loc><lastmod>2026-11-18</lastmod></url>
-<url><loc>https://strechtsimulados.com.br/certificacoes/</loc><lastmod>2026-11-25</lastmod></url>
+<url><loc>https://strechtsimulados.com.br/certificacoes/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/clf-c02-vs-aif-c01/</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/cpa-vs-c-pro-r/</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/dados/</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/gestao-ti/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/github-devops/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/google-cloud/</loc><lastmod>2026-11-21</lastmod></url>
+<url><loc>https://strechtsimulados.com.br/governanca-ti/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/guia/</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/guia/como-passar-na-cpa-anbima-em-4-semanas/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/guia/como-se-preparar-para-o-az-900/</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/guia/itil-5-foundation-o-que-mudou-e-como-treinar/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/inteligencia-artificial/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/linux/</loc><lastmod>2026-11-18</lastmod></url>
-<url><loc>https://strechtsimulados.com.br/materiais-gratis/</loc><lastmod>2026-11-25</lastmod></url>
+<url><loc>https://strechtsimulados.com.br/materiais-gratis/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/mercado-financeiro/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/microsoft/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/privacidade/</loc><lastmod>2026-11-18</lastmod></url>
@@ -50,6 +51,7 @@
 <url><loc>https://strechtsimulados.com.br/simulado-cfp/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-cfp.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-cisco-ot-security-practitioner/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-cisco-ot-security-practitioner.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-clf-c02/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-clf-c02.jpg</image:loc></image:image></url>
+<url><loc>https://strechtsimulados.com.br/simulado-cobit-7-foundation/</loc><lastmod>2026-11-26</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-cobit-7-foundation.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-comptia-cysa/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-comptia-cysa.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-comptia-secai/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-comptia-secai.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-comptia-security-sy0-701/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-comptia-security-sy0-701.jpg</image:loc></image:image></url>
@@ -112,6 +114,6 @@
 <url><loc>https://strechtsimulados.com.br/simulado-scs-c03/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-scs-c03.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-soa-c03/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-soa-c03.jpg</image:loc></image:image></url>
 <url><loc>https://strechtsimulados.com.br/simulado-terraform-associate/</loc><lastmod>2026-11-25</lastmod><image:image><image:loc>https://strechtsimulados.com.br/img/simulado-terraform-associate.jpg</image:loc></image:image></url>
-<url><loc>https://strechtsimulados.com.br/sobre/</loc><lastmod>2026-11-19</lastmod></url>
+<url><loc>https://strechtsimulados.com.br/sobre/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://strechtsimulados.com.br/termos/</loc><lastmod>2026-11-18</lastmod></url>
 </urlset>

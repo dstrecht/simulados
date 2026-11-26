@@ -2,7 +2,7 @@
 
 Simulados de certificação grátis, com questões comentadas, domínios com peso e plano de estudo: https://strechtsimulados.com.br/
 
-Este repositório publica o site. São 87 certificações, com 87 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
+Este repositório publica o site. São 88 certificações, com 88 guias de preparação em PDF e baralhos do Anki grátis (https://strechtsimulados.com.br/materiais-gratis/). Quem mantém e como conferimos: https://strechtsimulados.com.br/sobre/
 
 ## Simulados
 
@@ -35,6 +35,7 @@ Este repositório publica o site. São 87 certificações, com 87 guias de prepa
 - [Simulado CCNA](https://strechtsimulados.com.br/simulado-ccna/)
 - [Simulado CFP](https://strechtsimulados.com.br/simulado-cfp/)
 - [Simulado Cisco OT Security Practitioner](https://strechtsimulados.com.br/simulado-cisco-ot-security-practitioner/)
+- [Simulado COBIT 7 Foundation](https://strechtsimulados.com.br/simulado-cobit-7-foundation/)
 - [Simulado CompTIA CySA+](https://strechtsimulados.com.br/simulado-comptia-cysa/)
 - [Simulado CompTIA SecAI+](https://strechtsimulados.com.br/simulado-comptia-secai/)
 - [Simulado CompTIA Security+ SY0-701](https://strechtsimulados.com.br/simulado-comptia-security-sy0-701/)
