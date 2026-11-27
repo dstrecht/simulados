@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Simulado GitHub Foundations GH-900 em Português Grátis 2026</title><meta name="description" content="Simulado GitHub Foundations GH-900 em português grátis e online: 12 questões comentadas no formato do exame, domínios, nota de corte e plano de estudo.">
+<title>Simulado GH-900 em Português Grátis: GitHub Foundations</title><meta name="description" content="Simulado GH-900 grátis em português: 12 questões comentadas de Git, repositórios, colaboração, projetos e segurança no GitHub, no formato da prova.">
 <link rel="canonical" href="https://strechtsimulados.com.br/simulado-gh-900/"><meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="Strecht Simulados">
-<meta property="og:title" content="Simulado GitHub Foundations GH-900 em Português Grátis 2026"><meta property="og:description" content="Simulado GitHub Foundations GH-900 em português grátis e online: 12 questões comentadas no formato do exame, domínios, nota de corte e plano de estudo."><meta property="og:url" content="https://strechtsimulados.com.br/simulado-gh-900/">
+<meta property="og:title" content="Simulado GH-900 em Português Grátis: GitHub Foundations"><meta property="og:description" content="Simulado GH-900 grátis em português: 12 questões comentadas de Git, repositórios, colaboração, projetos e segurança no GitHub, no formato da prova."><meta property="og:url" content="https://strechtsimulados.com.br/simulado-gh-900/">
 <meta property="og:image" content="https://strechtsimulados.com.br/img/simulado-gh-900.jpg"><meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Diego Strecht"><meta name="theme-color" content="#0b1020"><link rel="icon" href="https://strechtsimulados.com.br/img/logo.png">
 <script>document.documentElement.classList.add('js')</script><style>:root{--ink:#0f172a;--mut:#475569;--bd:#e2e8f0;--soft:#f8fafc;--pri:#6d28d9;--pri2:#4f46e5;--cta:#f59e0b;--ctah:#fbbf24;--ok:#059669;--bad:#dc2626}
@@ -141,13 +141,19 @@ var cc=null,it=null;try{cc=localStorage.getItem('cc');var pi=new URLSearchParams
 g('consent','default',{analytics_storage:cc==='1'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:300});
 var cf={allow_google_signals:false,allow_ad_personalization_signals:false,content_group:GR};if(it==='1')cf.traffic_type='internal';
 g('js',new Date());g('config',ID,cf);
-function carregar(){var s=D.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;D.head.appendChild(s)}
-if(w.requestIdleCallback)requestIdleCallback(carregar,{timeout:4000});else setTimeout(carregar,2500);
+function ev(n,p){p=p||{};p.content_group=GR;if(it==='1')p.traffic_type='internal';g('event',n,p)}
+var st=0,ok=0,fila=[];function pronto(){if(ok)return;ok=1;var f=fila;fila=[];f.forEach(function(x){x()})}
+function carregar(){if(st)return;st=1;var s=D.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;s.onload=function(){setTimeout(pronto,300)};s.onerror=pronto;D.head.appendChild(s)}
+var IA=['pointerdown','keydown','touchstart','scroll','wheel','mousemove'];function cedo(){IA.forEach(function(x){w.removeEventListener(x,cedo,true)});if(w.requestIdleCallback)w.requestIdleCallback(carregar,{timeout:800});else setTimeout(carregar,50)}
+IA.forEach(function(x){w.addEventListener(x,cedo,{capture:true,passive:true})});
+function aposLoad(){setTimeout(carregar,5000)}if(D.readyState==='complete')aposLoad();else w.addEventListener('load',aposLoad);setTimeout(carregar,12000);
+function seguir(e,a){if(ok||e.defaultPrevented||e.button||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||!a.href||a.hasAttribute('download'))return;var tg=a.getAttribute('target');if(tg&&tg!=='_self')return;
+e.preventDefault();var h=a.href,foi=0,ir=function(){if(!foi){foi=1;location.href=h}};fila.push(function(){setTimeout(ir,300)});setTimeout(ir,2000);carregar()}
 if(cc===null){var b=D.createElement('div');b.id='cc';b.setAttribute('role','dialog');b.setAttribute('aria-label','Aviso de cookies');
 b.innerHTML='<p>Usamos cookies do Google Analytics só se você permitir, para saber quais páginas ajudam e melhorar o site. Sem a permissão, nenhum cookie é gravado. <a href="https://strechtsimulados.com.br/privacidade/">Saiba mais</a></p><div><button type="button" data-r="1">Permitir</button><button type="button" data-r="0">Agora não</button></div>';
 D.body.appendChild(b);var fx=D.querySelector('.fix'),sobe=function(){b.style.bottom=fx&&fx.offsetHeight?Math.max(96,fx.offsetHeight+36)+'px':''};sobe();w.addEventListener('resize',sobe);
 b.addEventListener('click',function(e){var r=e.target.getAttribute&&e.target.getAttribute('data-r');if(r===null||r===undefined)return;
-try{localStorage.setItem('cc',r)}catch(x){}g('consent','update',{analytics_storage:r==='1'?'granted':'denied'});if(r==='1')g('event','consentimento',{escolha:'aceito'});b.remove()})}
+try{localStorage.setItem('cc',r)}catch(x){}g('consent','update',{analytics_storage:r==='1'?'granted':'denied'});if(r==='1')ev('consentimento',{escolha:'aceito'});b.remove()})}
 function curso(a){var m=(a.href||'').match(/udemy\.com\/course\/([^\/?#]+)/);return m?m[1]:''}
 function cupom(a){var m=(a.href||'').match(/couponCode=([^&#]+)/);return m?decodeURIComponent(m[1]):''}
 function seg(){return Math.round((w.performance&&performance.now?performance.now():0)/1000)}
@@ -155,20 +161,20 @@ var pag=location.pathname.replace(/^\/|\/$/g,'')||'inicio',cur=!!D.getElementByI
 function lugar(u){var bd=u.closest('.band'),ant=bd&&bd.previousElementSibling;return u.closest('.hero')?'topo':u.closest('#resultado')?'resultado':u.closest('#barra')?'barra':u.closest('#sair')?'saida':
 u.closest('.fix')?'fixo_mobile':u.closest('.avs')?'avaliacoes':ant&&ant.classList.contains('q')?'questoes':u.closest('.foot')?'rodape':u.closest('.card')?'cartao':bd?'oferta':'corpo'}
 function qest(){var s=w.__sq;return !s||!s.fe?'nao_iniciado':s.fim?'concluido':'em_andamento'}
-D.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;
-var u=t.closest('a[href*="udemy.com/course/"]');if(u){var cp=cupom(u);g('event','click_udemy',{curso:curso(u),pagina:pag,local:lugar(u),oferta:!cp?'sem':/FREE/i.test(cp)?'gratis':'pago',cupom:cp,
-quiz_estado:qest(),respondidas:(w.__sq||{}).fe||0,t_seg:seg(),value:1})}
-var d=t.closest('a[download]');if(d){var h=d.getAttribute('href')||'';g('event','download_material',{arquivo:h.split('/').pop(),pagina:pag,local:d.closest('#sair')?'saida':d.closest('.mats')?'materiais':'isca',tipo:/\.apkg$/i.test(h)?'anki':'pdf'})}
-var sh=t.closest('.share a,.share button');if(sh){g('event','compartilhar',{canal:sh.classList.contains('wa')?'whatsapp':sh.classList.contains('li')?'linkedin':'nativo',pagina:pag})}
-var rs=t.closest('.res a');if(rs){g('event','busca_clique',{destino:(rs.getAttribute('href')||'').replace(/^.*\/(simulado-[^\/]+)\/?$/,'$1'),pagina:pag})}
+D.addEventListener('click',function(e){var t=e.target;if(!t.closest)return;var nv=null;
+var u=t.closest('a[href*="udemy.com/course/"]');if(u){var cp=cupom(u);ev('click_udemy',{curso:curso(u),pagina:pag,local:lugar(u),oferta:!cp?'sem':/FREE/i.test(cp)?'gratis':'pago',cupom:cp,
+quiz_estado:qest(),respondidas:(w.__sq||{}).fe||0,t_seg:seg(),value:1});nv=u}
+var d=t.closest('a[download]');if(d){var h=d.getAttribute('href')||'';ev('download_material',{arquivo:h.split('/').pop(),pagina:pag,local:d.closest('#sair')?'saida':d.closest('.mats')?'materiais':'isca',tipo:/\.apkg$/i.test(h)?'anki':'pdf'})}
+var sh=t.closest('.share a,.share button');if(sh){ev('compartilhar',{canal:sh.classList.contains('wa')?'whatsapp':sh.classList.contains('li')?'linkedin':'nativo',pagina:pag});if(sh.tagName==='A')nv=sh}
+var rs=t.closest('.res a');if(rs){ev('busca_clique',{destino:(rs.getAttribute('href')||'').replace(/^.*\/(simulado-[^\/]+)\/?$/,'$1'),pagina:pag});nv=rs}
 var a=t.closest('a[href]');if(a&&!u&&!d&&!rs&&a.href.indexOf(B)===0){var ds=a.href.slice(B.length).split(/[?#]/)[0].replace(/\/$/,'')||'inicio';
-if(ds!==pag)g('event','link_interno',{destino:ds.slice(0,100),pagina:pag,local:a.closest('.bc')?'breadcrumb':a.closest('.foot')?'rodape':a.closest('.card')?(cur?'relacionados':'cartao'):/-vs-|^qual-|^guia(\/|$)/.test(ds)?'comparativo':'corpo'})}
-var sm=t.closest('details.fq>summary');if(sm&&!sm.parentNode.open){g('event','faq_abre',{indice:[].indexOf.call(D.querySelectorAll('details.fq'),sm.parentNode),pergunta:(sm.textContent||'').trim().slice(0,80),pagina:pag})}},true);
-D.addEventListener('sq',function(e){var x=e.detail||{},p={pagina:pag};for(var k in x)if(k!=='t')p[k]=x[k];if(x.t==='inicio'){if(w.__qi)return;w.__qi=1}if(x.t==='fim'){if(w.__qf)return;w.__qf=1}g('event','quiz_'+x.t,p)});
-var r=D.getElementById('resultado');if(r&&w.MutationObserver){new MutationObserver(function(){if(!r.hidden&&!w.__qf){w.__qf=1;var p=r.querySelector('.pct');g('event','quiz_fim',{pagina:pag,percentual:parseInt(p&&p.textContent,10)||0})}}).observe(r,{attributes:true,attributeFilter:['hidden']})}
+if(ds!==pag){ev('link_interno',{destino:ds.slice(0,100),pagina:pag,local:a.closest('.bc')?'breadcrumb':a.closest('.foot')?'rodape':a.closest('.card')?(cur?'relacionados':'cartao'):/-vs-|^qual-|^guia(\/|$)/.test(ds)?'comparativo':'corpo'});nv=a}}
+var sm=t.closest('details.fq>summary');if(sm&&!sm.parentNode.open){ev('faq_abre',{indice:[].indexOf.call(D.querySelectorAll('details.fq'),sm.parentNode),pergunta:(sm.textContent||'').trim().slice(0,80),pagina:pag})}if(nv)seguir(e,nv)},true);
+D.addEventListener('sq',function(e){var x=e.detail||{},p={pagina:pag};for(var k in x)if(k!=='t')p[k]=x[k];if(x.t==='inicio'){if(w.__qi)return;w.__qi=1}if(x.t==='fim'){if(w.__qf)return;w.__qf=1}ev('quiz_'+x.t,p)});
+var r=D.getElementById('resultado');if(r&&w.MutationObserver){new MutationObserver(function(){if(!r.hidden&&!w.__qf){w.__qf=1;var p=r.querySelector('.pct');ev('quiz_fim',{pagina:pag,percentual:parseInt(p&&p.textContent,10)||0})}}).observe(r,{attributes:true,attributeFilter:['hidden']})}
 if('IntersectionObserver'in w){var sv={questoes:D.querySelector('.q'),oferta:D.querySelector('#resultado~.band')||D.querySelector('.band:not(#resultado)'),materiais:D.getElementById('materiais'),
 resumo:D.getElementById('resumo'),plano:D.getElementById('plano'),faq:D.getElementById('faq'),relacionados:cur?D.querySelector('main .cards'):null};
-var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){io.unobserve(x.target);g('event','secao_vista',{secao:x.target.__sv,pagina:pag})}})},{threshold:.3});
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){io.unobserve(x.target);ev('secao_vista',{secao:x.target.__sv,pagina:pag})}})},{threshold:.3});
 for(var k in sv)if(sv[k]){sv[k].__sv=k;io.observe(sv[k])}}
 })();</script>
 <footer class="foot"><div class="wrap"><p><b style="color:#e2e8f0">Strecht Simulados</b> · <a href="https://www.youtube.com/@strechtsimulados" rel="me noopener" target="_blank">YouTube</a> · <a href="https://www.instagram.com/strecht.simulados/" rel="me noopener" target="_blank">Instagram</a> · <a href="https://www.linkedin.com/in/diegostrecht" rel="me noopener" target="_blank">LinkedIn</a></p>
