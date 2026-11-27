@@ -144,11 +144,11 @@ g('js',new Date());g('config',ID,cf);
 function ev(n,p){p=p||{};p.content_group=GR;if(it==='1')p.traffic_type='internal';g('event',n,p)}
 var st=0,ok=0,fila=[];function pronto(){if(ok)return;ok=1;var f=fila;fila=[];f.forEach(function(x){x()})}
 function carregar(){if(st)return;st=1;var s=D.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;s.onload=function(){setTimeout(pronto,300)};s.onerror=pronto;D.head.appendChild(s)}
-var IA=['pointerdown','keydown','touchstart','scroll','wheel','mousemove'];function cedo(){IA.forEach(function(x){w.removeEventListener(x,cedo,true)});if(w.requestIdleCallback)w.requestIdleCallback(carregar,{timeout:800});else setTimeout(carregar,50)}
+var IA=['pointerdown','keydown','touchstart','scroll','wheel','mousemove'];function cedo(e){IA.forEach(function(x){w.removeEventListener(x,cedo,true)});if(/down|start/.test(e&&e.type||''))carregar();else if(w.requestIdleCallback)w.requestIdleCallback(carregar,{timeout:800});else setTimeout(carregar,50)}
 IA.forEach(function(x){w.addEventListener(x,cedo,{capture:true,passive:true})});
-function aposLoad(){setTimeout(carregar,5000)}if(D.readyState==='complete')aposLoad();else w.addEventListener('load',aposLoad);setTimeout(carregar,12000);
+function aposLoad(){try{var l=D.createElement('link');l.rel='preconnect';l.href='https://www.googletagmanager.com';D.head.appendChild(l)}catch(x){}setTimeout(carregar,5000)}if(D.readyState==='complete')aposLoad();else w.addEventListener('load',aposLoad);setTimeout(carregar,12000);
 function seguir(e,a){if(ok||e.defaultPrevented||e.button||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||!a.href||a.hasAttribute('download'))return;var tg=a.getAttribute('target');if(tg&&tg!=='_self')return;
-e.preventDefault();var h=a.href,foi=0,ir=function(){if(!foi){foi=1;location.href=h}};fila.push(function(){setTimeout(ir,300)});setTimeout(ir,2000);carregar()}
+e.preventDefault();var h=a.href,foi=0,ir=function(){if(!foi){foi=1;location.href=h}};fila.push(function(){setTimeout(ir,300)});setTimeout(ir,3000);carregar()}
 if(cc===null){var b=D.createElement('div');b.id='cc';b.setAttribute('role','dialog');b.setAttribute('aria-label','Aviso de cookies');
 b.innerHTML='<p>Usamos cookies do Google Analytics só se você permitir, para saber quais páginas ajudam e melhorar o site. Sem a permissão, nenhum cookie é gravado. <a href="https://strechtsimulados.com.br/privacidade/">Saiba mais</a></p><div><button type="button" data-r="1">Permitir</button><button type="button" data-r="0">Agora não</button></div>';
 D.body.appendChild(b);var fx=D.querySelector('.fix'),sobe=function(){b.style.bottom=fx&&fx.offsetHeight?Math.max(96,fx.offsetHeight+36)+'px':''};sobe();w.addEventListener('resize',sobe);
